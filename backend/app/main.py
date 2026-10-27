@@ -5,6 +5,7 @@ from sqlalchemy import text
 from app.auth.dependencies import DBSession
 from app.auth.router import auth_router
 from app.interview.router import interview_router
+from app.core.config import settings
 
 app = FastAPI(
     title="AI Interview Simulator",
@@ -13,7 +14,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[settings.frontend_url],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

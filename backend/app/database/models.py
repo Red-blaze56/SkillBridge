@@ -19,7 +19,7 @@ class ProgrammingLanguageEnum(str, Enum):
     RUBY = "ruby"
     GO = "go"
     PHP = "php"
-    CPLUSPLUS = "cplusplus"
+    CPP = "cpp"
     SWIFT = "swift"
     KOTLIN = "kotlin"
 
@@ -66,6 +66,20 @@ class User(Base):
     is_verified: Mapped[bool] = mapped_column(Boolean, default=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
     created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())
+
+    refresh_tokens: Mapped[list["RefreshToken"]] = relationship(back_populates="user", cascade="all, delete-orphan")
+
+class RefreshToken(Base):
+    __tablename__ = "refresh_tokens"
+
+    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
+    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
+    token_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True, nullable=False)
+    expires_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False)
+    revoked_at: Mapped[datetime | None] = mapped_column(TIMESTAMP(timezone=True), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())
+
+    user: Mapped["User"] = relationship(back_populates="refresh_tokens")
 
 class Interview(Base):
     __tablename__ = "interviews"
