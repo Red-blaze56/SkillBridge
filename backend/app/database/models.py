@@ -1,7 +1,7 @@
 from datetime import datetime
 from enum import Enum
 from uuid import UUID, uuid4
-from sqlalchemy import JSON, TIMESTAMP, Boolean, Integer, String, Enum as SqlEnum, ForeignKey, Uuid, func
+from sqlalchemy import JSON, TIMESTAMP, Boolean, Index, Integer, String, Enum as SqlEnum, ForeignKey, Uuid, func
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 class Base(DeclarativeBase):
@@ -83,6 +83,8 @@ class RefreshToken(Base):
 
 class Interview(Base):
     __tablename__ = "interviews"
+    # Serves the paginated "my interviews, newest first" query (see interview/pagination.py).
+    __table_args__ = (Index("ix_interviews_user_created", "user_id", "created_at", "id"),)
 
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, index=True, default = uuid4)
     user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id"), nullable=False)

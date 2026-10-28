@@ -3,11 +3,12 @@ from datetime import datetime, timezone
 
 from fastapi import status, HTTPException
 
-from sqlalchemy import select
+from sqlalchemy import select, tuple_
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.database.models import Interview, Messages, SenderEnum, StageEnum, StatusEnum
+from app.interview.pagination import encode_cursor
 from app.interview.schemas import InterviewCreate
 from app.interview.llm import LLMUnavailable, ask_next, final_report
 from app.interview.probe import apply_probe
@@ -131,15 +132,22 @@ async def submit_answer(db:AsyncSession, *, interview: Interview, content: str) 
 
 #--------------------------------------------------------------------------------------
 
-async def list_interviews(db: AsyncSession, *, user_id: UUID, limit: int = 20, offset: int = 0) -> list[Interview]:
-    result = await db.scalars(
-        select(Interview)
-        .where(Interview.user_id == user_id)
-        .order_by(Interview.created_at.desc())
-        .limit(limit)
-        .offset(offset)
-    )
-    return list(result.all())
+async def list_interviews(
+    db: AsyncSession, *, user_id: UUID, limit: int = 20, cursor: tuple[datetime, UUID] | None = None
+) -> tuple[list[Interview], str | None]:
+    """One page of the user's interviews, newest first, plus the cursor for the next page
+    (None on the last page). Rows are ordered by (created_at, id) so rows created in the
+    same instant still have a fixed order, which keyset paging needs."""
+    stmt = select(Interview).where(Interview.user_id == user_id)
+    if cursor is not None:
+        stmt = stmt.where(tuple_(Interview.created_at, Interview.id) < tuple_(*cursor))
+    # One extra row tells us whether another page exists, without a COUNT query.
+    stmt = stmt.order_by(Interview.created_at.desc(), Interview.id.desc()).limit(limit + 1)
+
+    rows = list((await db.scalars(stmt)).all())
+    page = rows[:limit]
+    next_cursor = encode_cursor(page[-1].created_at, page[-1].id) if len(rows) > limit else None
+    return page, next_cursor
 
 async def finish_interview(db: AsyncSession, *, interview:Interview) -> Interview:
     if interview.status == StatusEnum.ACTIVE or not interview.report:

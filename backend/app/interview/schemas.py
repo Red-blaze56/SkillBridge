@@ -60,3 +60,7 @@ class InterviewListItem(BaseModel):
     programming_language: ProgrammingLanguageEnum
     candidate_level: CandidateLevelEnum
     created_at: datetime
+
+class InterviewListPage(BaseModel):
+    items: list[InterviewListItem]
+    next_cursor: str | None = None  # pass back as ?cursor= for the next page; None on the last
