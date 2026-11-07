@@ -6,7 +6,7 @@ import { Logo } from '@/components/Logo'
 export function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-svh bg-background p-2 sm:p-3">
-      <div className="bg-plus-pattern flex min-h-[calc(100svh-1rem)] flex-col rounded-2xl border bg-muted/40 sm:min-h-[calc(100svh-1.5rem)]">
+      <div className="bg-plus-pattern flex min-h-[calc(100svh-1rem)] flex-col rounded-2xl border sm:min-h-[calc(100svh-1.5rem)]">
         <header className="flex justify-center px-4 pt-8 sm:pt-10">
           <Logo />
         </header>

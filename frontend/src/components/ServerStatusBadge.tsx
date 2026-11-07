@@ -2,16 +2,17 @@ import { Badge } from '@/components/ui/badge'
 import { useServerStatus, type ServerStatus } from '@/hooks/useServerStatus'
 import { cn } from '@/lib/utils'
 
+// Online stays quiet (only the dot is green); offline is the one that should catch the eye.
 const STYLES: Record<ServerStatus, { label: string; badge: string; dot: string }> = {
   online: {
     label: 'Server online',
-    badge: 'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300',
-    dot: 'bg-emerald-500',
+    badge: 'border-border bg-card text-muted-foreground',
+    dot: 'bg-emerald-600',
   },
   offline: {
     label: 'Server offline',
-    badge: 'border-red-200 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300',
-    dot: 'bg-red-500',
+    badge: 'border-destructive/40 bg-card text-destructive',
+    dot: 'bg-destructive',
   },
   checking: {
     label: 'Checking…',

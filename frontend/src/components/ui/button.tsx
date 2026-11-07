@@ -17,9 +17,9 @@ const buttonVariants = cva(
         destructive:
           "bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40",
         link: "text-primary underline-offset-4 hover:underline",
-        // Brand call-to-action: pink→purple gradient with a soft glow.
+        // Main call-to-action: a near-black pill.
         brand:
-          "bg-linear-to-r from-pink-600 to-purple-600 font-semibold text-white shadow-lg shadow-fuchsia-500/40 hover:brightness-110",
+          "rounded-full bg-primary font-semibold text-primary-foreground hover:bg-primary/85",
       },
       size: {
         default:

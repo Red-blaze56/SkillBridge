@@ -79,7 +79,7 @@ export default function History() {
   return (
     <Card className="mx-auto max-w-3xl">
       <CardHeader>
-        <CardTitle className="text-2xl font-bold">History</CardTitle>
+        <CardTitle className="text-3xl font-semibold">History</CardTitle>
         <CardDescription>Your past interviews, newest first.</CardDescription>
       </CardHeader>
 
@@ -155,13 +155,8 @@ function InterviewRow({ item }: { item: InterviewListItem }) {
         </p>
       </div>
 
-      <Badge
-        variant={active ? 'outline' : 'secondary'}
-        className={cn(
-          active &&
-            'border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300',
-        )}
-      >
+      {/* In progress: outlined, so it stands out from the finished ones without colour. */}
+      <Badge variant={active ? 'outline' : 'secondary'} className={cn(active ? 'border-foreground/60' : 'text-muted-foreground')}>
         {STATUS_LABELS[item.status]}
       </Badge>
       <ChevronRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />

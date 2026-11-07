@@ -1,4 +1,4 @@
-import { BarChart3, History, PlusCircle, type LucideIcon } from 'lucide-react'
+import { History, PlusCircle, type LucideIcon } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import {
   Sidebar,
@@ -6,7 +6,6 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
-  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
@@ -24,9 +23,8 @@ const ITEMS: NavItem[] = [
   { to: '/history', label: 'History', icon: History },
 ]
 
-// The active item gets the brand gradient from the design.
-const ACTIVE =
-  'data-active:bg-linear-to-r data-active:from-pink-600 data-active:to-purple-600 data-active:text-white data-active:shadow-md data-active:shadow-fuchsia-500/30 data-active:hover:text-white'
+// The active item gets a soft tint and bold text, no colour.
+const ACTIVE = 'data-active:bg-sidebar-accent data-active:font-semibold'
 
 export function AppSidebar() {
   const { pathname } = useLocation()
@@ -56,15 +54,6 @@ export function AppSidebar() {
                   </SidebarMenuItem>
                 )
               })}
-
-              {/* No backend endpoint yet: shown so the layout matches the design, but not clickable. */}
-              <SidebarMenuItem>
-                <SidebarMenuButton size="lg" disabled>
-                  <BarChart3 />
-                  <span>Reports</span>
-                </SidebarMenuButton>
-                <SidebarMenuBadge>Soon</SidebarMenuBadge>
-              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

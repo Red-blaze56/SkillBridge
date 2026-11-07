@@ -31,7 +31,7 @@ export function UserMenu() {
         className="rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
       >
         <Avatar>
-          <AvatarFallback className="bg-linear-to-br from-pink-500 to-purple-600 text-xs font-semibold text-white">
+          <AvatarFallback className="bg-primary text-xs font-semibold text-primary-foreground">
             {initials(user.email)}
           </AvatarFallback>
         </Avatar>

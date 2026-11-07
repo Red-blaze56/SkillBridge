@@ -50,9 +50,9 @@ export default function Login() {
 
   return (
     <AuthLayout>
-      <Card className="w-full max-w-sm gap-6 py-8 shadow-xl">
+      <Card className="w-full max-w-sm gap-6 py-8 shadow-sm">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-extrabold tracking-tight text-slate-700 dark:text-slate-100">
+          <CardTitle className="text-3xl font-semibold">
             Welcome back!
           </CardTitle>
           <CardDescription>Enter your email and password to continue</CardDescription>
@@ -111,7 +111,7 @@ export default function Login() {
           <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
             {['AI follow-up questions', 'Scored report', 'Your history'].map((item) => (
               <li key={item} className="flex items-center gap-1">
-                <Check className="size-3.5 text-purple-600" aria-hidden="true" />
+                <Check className="size-3.5 text-foreground" aria-hidden="true" />
                 {item}
               </li>
             ))}

@@ -1,5 +1,5 @@
 import { useState, type SubmitEvent } from 'react'
-import { LoaderCircle, Sparkles } from 'lucide-react'
+import { LoaderCircle } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import {
   CANDIDATE_LEVELS,
@@ -89,10 +89,7 @@ export default function Home() {
   return (
     <Card className="mx-auto max-w-3xl">
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-2xl font-bold">
-          <Sparkles className="size-5 text-purple-600" aria-hidden="true" />
-          Configure Session
-        </CardTitle>
+        <CardTitle className="text-3xl font-semibold">Session setup</CardTitle>
         <CardDescription>Customize your mock interview. These settings are fixed once it starts.</CardDescription>
       </CardHeader>
 

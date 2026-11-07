@@ -38,9 +38,9 @@ export default function Register() {
 
   return (
     <AuthLayout>
-      <Card className="w-full max-w-sm gap-6 py-8 shadow-xl">
+      <Card className="w-full max-w-sm gap-6 py-8 shadow-sm">
         <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-extrabold tracking-tight text-slate-700 dark:text-slate-100">
+          <CardTitle className="text-3xl font-semibold">
             Create your account
           </CardTitle>
           <CardDescription>Enter your email and a password to get started</CardDescription>
