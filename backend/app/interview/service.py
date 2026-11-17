@@ -40,7 +40,7 @@ async def create_interview(db: AsyncSession, *, user_id: UUID, payload: Intervie
         stage=StageEnum.ICE_BREAKER,
         next_question=OPENING_QUESTION,
         covered_topics=[],
-        focus_topics=[],
+        focus_topics=(payload.focus_topics or [])[:8],
     )
     interview.messages.append(
         Messages(sender=SenderEnum.INTERVIEWER, content=OPENING_QUESTION)
@@ -83,7 +83,6 @@ async def _build_probe(db: AsyncSession, interview: Interview) -> dict:
         "consecutive_wrongs": interview.consecutive_wrongs,
         "covered": covered,
         "planned": [t for t in (interview.focus_topics or []) if t not in covered],
-        "resume_text": interview.resume_text,
         "jd_text": interview.jd_text,
         "bank": bank,
     }

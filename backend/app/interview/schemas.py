@@ -1,5 +1,6 @@
 import uuid
 from datetime import datetime
+from typing import Annotated
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -18,8 +19,9 @@ class InterviewCreate(BaseModel):
     candidate_level: CandidateLevelEnum
     personality_type: PersonalityTypeEnum
     correction_mode: CorrectionModeEnum = CorrectionModeEnum.GUIDED
-    resume_text: str | None = None
-    jd_text: str | None = None
+    resume_text: str | None = Field(None, max_length=20_000)
+    jd_text: str | None = Field(None, max_length=5_000)
+    focus_topics: list[Annotated[str, Field(max_length=80)]] = Field(default_factory=list, max_length=8)          
 
 class MessageOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)

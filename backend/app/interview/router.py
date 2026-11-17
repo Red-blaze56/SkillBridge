@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, HTTPException, Query, status
+from fastapi import APIRouter, File, HTTPException, Query, UploadFile, status
 
 from app.auth.dependencies import CurrentUser, DBSession
 from app.interview import service
@@ -14,6 +14,8 @@ from app.interview.schemas import (
     InterviewOut,
 )
 from app.interview.dependencies import OwnedInterview
+from app.interview.resume import MAX_BYTES, ResumeParseError, extract_resume_text
+from app.interview.llm import extract_resume_agenda
 
 interview_router = APIRouter(prefix="/interviews", tags=["interview"])
 
@@ -54,3 +56,18 @@ async def submit_answer(payload: AnswerIn, interview: OwnedInterview, db: DBSess
 @interview_router.post("/{interview_id}/finish", response_model=InterviewOut)
 async def final_report(db: DBSession, interview: OwnedInterview):
     return await service.finish_interview(db, interview=interview)
+
+
+@interview_router.post("/parse-resume")
+async def parse_resume(user: CurrentUser, file: UploadFile = File(...)):
+    """Runs while the user fills the setup form. Returns editable text + an agenda; the
+    client submits both with POST /interviews."""
+    data = await file.read(MAX_BYTES + 1)              # cap the read; extract_resume_text rejects >MAX_BYTES
+    try:
+        text = extract_resume_text(data)
+    except ResumeParseError as exc:
+        raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, str(exc))
+    if text is None:                                   # scanned/empty PDF -> OCR deferred (v2)
+        return {"readable": False, "resume_text": "", "focus_topics": []}
+    topics = await extract_resume_agenda(text)
+    return {"readable": True, "resume_text": text, "focus_topics": topics}
