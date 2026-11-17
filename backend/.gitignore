@@ -1,0 +1,19 @@
+node_modules/
+dist/
+coverage/
+
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Runtime data and generated files
+*.log
+uploads/resumes/*
+!uploads/resumes/.gitkeep
+*.tsbuildinfo
+
+# Tool caches
+.cache/
+.vite/
