@@ -139,7 +139,6 @@ function InterviewScreen({ id }: { id: string }) {
   const busy = sending || finishing
   const messages = interview.messages
   const answered = messages.filter((m) => m.sender === 'candidate').length
-  const questionNumber = messages.filter((m) => m.sender === 'interviewer').length
   const currentQuestion = messages.findLast((m) => m.sender === 'interviewer')?.content
   const lastAnswer = pendingAnswer ?? messages.findLast((m) => m.sender === 'candidate')?.content
   const title = `${LANGUAGE_LABELS[interview.programming_language]} · ${LEVEL_LABELS[interview.candidate_level]}`
@@ -210,12 +209,7 @@ function InterviewScreen({ id }: { id: string }) {
 
           {/* Left: the question, whose turn it is, and the answer box. */}
           <section className="flex flex-col gap-5 rounded-2xl border bg-card p-5 shadow-sm lg:p-6">
-            <div className="flex items-center justify-between">
-              <span className="rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
-                Question {questionNumber}
-              </span>
-              <span className="label-caps">{STAGE_LABELS[interview.stage]}</span>
-            </div>
+            <span className="label-caps">{STAGE_LABELS[interview.stage]}</span>
 
             <div aria-live="polite" className={cn('min-h-32 flex-1 transition-opacity', busy && 'opacity-60')}>
               {finishing ? (

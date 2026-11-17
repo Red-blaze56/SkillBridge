@@ -18,7 +18,7 @@ export function StatusLine({ kind }: { kind: InterviewStatusKind }) {
         aria-hidden="true"
         className={cn(
           'size-2 rounded-full',
-          working ? 'bg-foreground motion-safe:animate-pulse' : 'border border-muted-foreground',
+          working ? 'bg-primary motion-safe:animate-pulse' : 'border border-muted-foreground',
         )}
       />
       {LABELS[kind]}

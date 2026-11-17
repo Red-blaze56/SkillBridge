@@ -7,7 +7,7 @@ const STYLES: Record<ServerStatus, { label: string; badge: string; dot: string }
   online: {
     label: 'Server online',
     badge: 'border-border bg-card text-muted-foreground',
-    dot: 'bg-emerald-600',
+    dot: 'bg-positive',
   },
   offline: {
     label: 'Server offline',

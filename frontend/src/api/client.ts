@@ -62,13 +62,14 @@ interface RawOptions {
   method?: string
   json?: unknown
   form?: Record<string, string>
+  multipart?: FormData // file uploads
   token?: string | null
 }
 
 // One HTTP call, no auth logic and no retries. Always throws ApiError on failure.
 async function rawRequest<T>(
   path: string,
-  { method = 'GET', json, form, token }: RawOptions = {},
+  { method = 'GET', json, form, multipart, token }: RawOptions = {},
 ): Promise<T> {
   const headers: Record<string, string> = {}
   let body: BodyInit | undefined
@@ -78,6 +79,8 @@ async function rawRequest<T>(
     body = JSON.stringify(json)
   } else if (form) {
     body = new URLSearchParams(form) // browser sets the form-encoded Content-Type
+  } else if (multipart) {
+    body = multipart // browser sets the multipart Content-Type, boundary included
   }
   if (token) headers.Authorization = `Bearer ${token}`
 
@@ -124,15 +127,16 @@ interface RequestOptions {
   method?: string
   json?: unknown
   form?: Record<string, string>
+  multipart?: FormData
   // false for login/register, where a 401 means "wrong credentials", not "token expired".
   auth?: boolean
 }
 
 export async function request<T>(
   path: string,
-  { method = 'GET', json, form, auth = true }: RequestOptions = {},
+  { method = 'GET', json, form, multipart, auth = true }: RequestOptions = {},
 ): Promise<T> {
-  const send = () => rawRequest<T>(path, { method, json, form, token: auth ? accessToken : null })
+  const send = () => rawRequest<T>(path, { method, json, form, multipart, token: auth ? accessToken : null })
   const tokenUsed = accessToken // what the first attempt carries
 
   try {

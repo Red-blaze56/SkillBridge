@@ -6,6 +6,8 @@ import { cn } from '@/lib/utils'
 // The backend doesn't state a range for the overall score. The per-answer scale in its
 // prompt is 1-10, so this assumes the same.
 const SCORE_MAX = 10
+// From here up the score shows in green ("went well"); below it, in red ("needs work").
+const GOOD_SCORE = 7
 
 function formatScore(score: number): string {
   return Number.isInteger(score) ? String(score) : score.toFixed(1)
@@ -55,8 +57,9 @@ export function ReportView({ report }: { report: Report }) {
       <Card>
         <CardHeader>
           <CardDescription>Overall score</CardDescription>
-          {/* The score is where the report judges you, so it gets the red. */}
-          <CardTitle className="text-6xl font-semibold text-signal">
+          <CardTitle
+            className={cn('text-6xl font-semibold', report.overall_score >= GOOD_SCORE ? 'text-positive' : 'text-signal')}
+          >
             {formatScore(report.overall_score)}
             <span className="text-2xl font-medium text-muted-foreground"> / {SCORE_MAX}</span>
           </CardTitle>
@@ -69,7 +72,7 @@ export function ReportView({ report }: { report: Report }) {
       </Card>
 
       <div className="grid gap-4 md:grid-cols-3">
-        <BulletCard title="Strengths" items={report.strengths} />
+        <BulletCard title="Strengths" items={report.strengths} titleClassName="text-positive" />
         <BulletCard title="Weaknesses" items={report.weaknesses} titleClassName="text-signal" />
         <BulletCard title="Suggestions" items={report.suggestions} />
       </div>

@@ -1,12 +1,10 @@
 import { useState, type SubmitEvent } from 'react'
-import { Check } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import { AuthLayout } from '@/components/AuthLayout'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Field, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { Separator } from '@/components/ui/separator'
 import { useAuth } from '@/hooks/useAuth'
 
 interface LocationState {
@@ -49,75 +47,54 @@ export default function Login() {
   }
 
   return (
-    <AuthLayout>
-      <Card className="w-full max-w-sm gap-6 py-8 shadow-sm">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-semibold">
-            Welcome back!
-          </CardTitle>
-          <CardDescription>Enter your email and password to continue</CardDescription>
-        </CardHeader>
+    <AuthLayout title="Welcome back" description="Log in to continue practising.">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <FieldGroup>
+          {sessionError && <FieldError>{sessionError}</FieldError>}
 
-        <CardContent className="flex flex-col gap-5">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            <FieldGroup>
-              {sessionError && <FieldError>{sessionError}</FieldError>}
+          <Field>
+            <FieldLabel htmlFor="email">Email</FieldLabel>
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              autoComplete="email"
+              required
+              className="h-11 bg-card"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Field>
 
-              <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Email"
-                  autoComplete="email"
-                  required
-                  className="h-10"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Field>
+          <Field>
+            <FieldLabel htmlFor="password">Password</FieldLabel>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Your password"
+              autoComplete="current-password"
+              required
+              className="h-11 bg-card"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Field>
 
-              <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  autoComplete="current-password"
-                  required
-                  className="h-10"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Field>
+          {error && <FieldError>{error}</FieldError>}
+        </FieldGroup>
 
-              {error && <FieldError>{error}</FieldError>}
-            </FieldGroup>
+        <Button type="submit" variant="brand" className="h-11 w-full" disabled={submitting}>
+          {submitting ? 'Logging in…' : 'Log in'}
+          {!submitting && <ArrowRight aria-hidden="true" />}
+        </Button>
+      </form>
 
-            <Button type="submit" variant="brand" className="h-10 w-full" disabled={submitting}>
-              {submitting ? 'Logging in…' : 'Login'}
-            </Button>
-          </form>
-
-          <Separator />
-
-          <p className="text-center text-sm text-muted-foreground">
-            Not registered?{' '}
-            <Link to="/register" className="underline underline-offset-4 hover:text-foreground">
-              Sign up here
-            </Link>
-          </p>
-
-          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-            {['AI follow-up questions', 'Scored report', 'Your history'].map((item) => (
-              <li key={item} className="flex items-center gap-1">
-                <Check className="size-3.5 text-foreground" aria-hidden="true" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </CardContent>
-      </Card>
+      <p className="mt-6 text-center text-sm text-muted-foreground">
+        Not registered?{' '}
+        <Link to="/register" className="font-semibold text-foreground underline-offset-4 hover:underline">
+          Create an account
+        </Link>
+      </p>
     </AuthLayout>
   )
 }

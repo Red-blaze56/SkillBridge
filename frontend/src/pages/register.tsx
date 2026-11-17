@@ -1,12 +1,11 @@
 import { useState, type SubmitEvent } from 'react'
+import { ArrowRight } from 'lucide-react'
 import { Link, Navigate } from 'react-router-dom'
 import { register } from '@/api/auth'
 import { AuthLayout } from '@/components/AuthLayout'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { Separator } from '@/components/ui/separator'
 import { useAuth } from '@/hooks/useAuth'
 
 export default function Register() {
@@ -37,66 +36,54 @@ export default function Register() {
   }
 
   return (
-    <AuthLayout>
-      <Card className="w-full max-w-sm gap-6 py-8 shadow-sm">
-        <CardHeader className="text-center">
-          <CardTitle className="text-3xl font-semibold">
-            Create your account
-          </CardTitle>
-          <CardDescription>Enter your email and a password to get started</CardDescription>
-        </CardHeader>
+    <AuthLayout title="Create your account" description="Enter your email and a password to get started.">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+        <FieldGroup>
+          <Field>
+            <FieldLabel htmlFor="email">Email</FieldLabel>
+            <Input
+              id="email"
+              type="email"
+              placeholder="you@example.com"
+              autoComplete="email"
+              required
+              className="h-11 bg-card"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Field>
 
-        <CardContent className="flex flex-col gap-5">
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            <FieldGroup>
-              <Field>
-                <FieldLabel htmlFor="email">Email</FieldLabel>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Email"
-                  autoComplete="email"
-                  required
-                  className="h-10"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Field>
+          <Field>
+            <FieldLabel htmlFor="password">Password</FieldLabel>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Choose a password"
+              autoComplete="new-password"
+              required
+              minLength={8}
+              className="h-11 bg-card"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <FieldDescription>At least 8 characters.</FieldDescription>
+          </Field>
 
-              <Field>
-                <FieldLabel htmlFor="password">Password</FieldLabel>
-                <Input
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  autoComplete="new-password"
-                  required
-                  minLength={8}
-                  className="h-10"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-                <FieldDescription>At least 8 characters.</FieldDescription>
-              </Field>
+          {error && <FieldError>{error}</FieldError>}
+        </FieldGroup>
 
-              {error && <FieldError>{error}</FieldError>}
-            </FieldGroup>
+        <Button type="submit" variant="brand" className="h-11 w-full" disabled={submitting}>
+          {submitting ? 'Creating account…' : 'Sign up'}
+          {!submitting && <ArrowRight aria-hidden="true" />}
+        </Button>
+      </form>
 
-            <Button type="submit" variant="brand" className="h-10 w-full" disabled={submitting}>
-              {submitting ? 'Creating account…' : 'Sign up'}
-            </Button>
-          </form>
-
-          <Separator />
-
-          <p className="text-center text-sm text-muted-foreground">
-            Already have an account?{' '}
-            <Link to="/login" className="underline underline-offset-4 hover:text-foreground">
-              Login here
-            </Link>
-          </p>
-        </CardContent>
-      </Card>
+      <p className="mt-6 text-center text-sm text-muted-foreground">
+        Already have an account?{' '}
+        <Link to="/login" className="font-semibold text-foreground underline-offset-4 hover:underline">
+          Log in
+        </Link>
+      </p>
     </AuthLayout>
   )
 }

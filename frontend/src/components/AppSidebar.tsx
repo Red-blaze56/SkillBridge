@@ -1,4 +1,4 @@
-import { History, PlusCircle, type LucideIcon } from 'lucide-react'
+import { BarChart3, History, PlusCircle, type LucideIcon } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 import {
   Sidebar,
@@ -6,6 +6,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarMenu,
+  SidebarMenuBadge,
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
@@ -54,6 +55,15 @@ export function AppSidebar() {
                   </SidebarMenuItem>
                 )
               })}
+
+              {/* No backend endpoint yet: shown so the layout matches the design, but not clickable. */}
+              <SidebarMenuItem>
+                <SidebarMenuButton size="lg" disabled>
+                  <BarChart3 />
+                  <span>Reports</span>
+                </SidebarMenuButton>
+                <SidebarMenuBadge>Soon</SidebarMenuBadge>
+              </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

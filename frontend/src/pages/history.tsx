@@ -156,7 +156,7 @@ function InterviewRow({ item }: { item: InterviewListItem }) {
       </div>
 
       {/* In progress: outlined, so it stands out from the finished ones without colour. */}
-      <Badge variant={active ? 'outline' : 'secondary'} className={cn(active ? 'border-foreground/60' : 'text-muted-foreground')}>
+      <Badge variant={active ? 'outline' : 'secondary'} className={cn(active ? 'border-primary text-primary' : 'text-muted-foreground')}>
         {STATUS_LABELS[item.status]}
       </Badge>
       <ChevronRight className="size-4 shrink-0 text-muted-foreground" aria-hidden="true" />

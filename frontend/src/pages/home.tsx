@@ -9,9 +9,11 @@ import {
   type CandidateLevel,
   type CorrectionMode,
   type InterviewCreate,
+  type ParsedResume,
   type PersonalityType,
   type ProgrammingLanguage,
 } from '@/api/interviews'
+import { ResumeUpload } from '@/components/ResumeUpload'
 import { SelectField } from '@/components/SelectField'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -30,7 +32,7 @@ interface FormState {
   candidate_level: CandidateLevel
   personality_type: PersonalityType
   correction_mode: CorrectionMode
-  resume_text: string
+  resume: ParsedResume | null // what the backend read from the uploaded PDF
   jd_text: string
 }
 
@@ -39,7 +41,7 @@ const INITIAL: FormState = {
   candidate_level: 'junior',
   personality_type: 'warm',
   correction_mode: 'guided',
-  resume_text: '',
+  resume: null,
   jd_text: '',
 }
 
@@ -53,6 +55,7 @@ export default function Home() {
   const [form, setForm] = useState<FormState>(INITIAL)
   const [error, setError] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
+  const [readingResume, setReadingResume] = useState(false)
 
   // set('candidate_level') returns a handler that only accepts a CandidateLevel.
   const set =
@@ -65,15 +68,14 @@ export default function Home() {
     setError(null)
     setSubmitting(true)
 
-    // Optional texts are left out entirely when empty.
-    const resume = form.resume_text.trim()
+    // Optional parts are left out entirely when empty.
     const jd = form.jd_text.trim()
     const payload: InterviewCreate = {
       programming_language: form.programming_language,
       candidate_level: form.candidate_level,
       personality_type: form.personality_type,
       correction_mode: form.correction_mode,
-      ...(resume ? { resume_text: resume } : {}),
+      ...(form.resume ? { resume_text: form.resume.resume_text, focus_topics: form.resume.focus_topics } : {}),
       ...(jd ? { jd_text: jd } : {}),
     }
 
@@ -90,7 +92,7 @@ export default function Home() {
     <Card className="mx-auto max-w-3xl">
       <CardHeader>
         <CardTitle className="text-3xl font-semibold">Session setup</CardTitle>
-        <CardDescription>Customize your mock interview. These settings are fixed once it starts.</CardDescription>
+        <CardDescription>Customise your mock interview. These settings are fixed once it starts.</CardDescription>
       </CardHeader>
 
       <CardContent>
@@ -130,14 +132,14 @@ export default function Home() {
             <FieldGroup>
               <Field>
                 <FieldLabel htmlFor="resume">Resume (optional)</FieldLabel>
-                <Textarea
+                <ResumeUpload
                   id="resume"
-                  rows={5}
-                  placeholder="Paste your resume text"
-                  value={form.resume_text}
-                  onChange={(e) => set('resume_text')(e.target.value)}
+                  describedBy="resume-hint"
+                  disabled={submitting}
+                  onChange={set('resume')}
+                  onBusyChange={setReadingResume}
                 />
-                <FieldDescription>The interviewer can ask about what's on it.</FieldDescription>
+                <FieldDescription id="resume-hint">PDF only. The interviewer can ask about what's on it.</FieldDescription>
               </Field>
 
               <Field>
@@ -156,13 +158,18 @@ export default function Home() {
           {error && <FieldError>{error}</FieldError>}
 
           <div className="flex flex-col items-center gap-2">
-            <Button type="submit" variant="brand" size="lg" className="h-10 px-8" disabled={submitting}>
+            <Button type="submit" variant="brand" size="lg" className="h-10 px-8" disabled={submitting || readingResume}>
               {submitting && <LoaderCircle className="animate-spin" aria-hidden="true" />}
               {submitting ? 'Starting interview…' : 'Start interview'}
             </Button>
             {submitting && (
               <p className="text-xs text-muted-foreground" role="status">
                 The interviewer is preparing the first question. This takes a few seconds.
+              </p>
+            )}
+            {readingResume && !submitting && (
+              <p className="text-xs text-muted-foreground" role="status">
+                You can start once your resume has been read.
               </p>
             )}
           </div>

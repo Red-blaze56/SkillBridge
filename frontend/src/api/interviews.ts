@@ -22,6 +22,14 @@ export interface InterviewCreate{
     correction_mode: CorrectionMode
     resume_text?: string | null
     jd_text?: string | null
+    focus_topics?: string[] // from parseResume, sent along with its resume_text
+}
+
+// What the backend pulled out of an uploaded resume PDF. resume_text is empty when the
+// PDF has no readable text (a scanned image, say); focus_topics is then empty too.
+export interface ParsedResume {
+  resume_text: string
+  focus_topics: string[]
 }
 
 export interface Message {
@@ -73,6 +81,12 @@ export interface AnswerResponse {
 
 export function createInterview(payload: InterviewCreate): Promise<Interview> {
   return request<Interview>('/interviews', { method: 'POST', json: payload })
+}
+
+export function parseResume(file: File): Promise<ParsedResume> {
+  const body = new FormData()
+  body.append('file', file)
+  return request<ParsedResume>('/interviews/parse-resume', { method: 'POST', multipart: body })
 }
 
 // One page of the list. Pass the previous page's next_cursor to get the next one;

@@ -13,7 +13,7 @@ const BARS: [number, number][] = [
 export function Logo({ className, compact = false }: { className?: string; compact?: boolean }) {
   return (
     <div className={cn('flex items-center gap-2.5', className)}>
-      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" className="text-foreground">
+      <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true" className="text-primary">
         {BARS.map(([x, h]) => (
           <rect key={x} x={x} y={(30 - h) / 2} width="3.5" height={h} rx="1.75" fill="currentColor" />
         ))}
