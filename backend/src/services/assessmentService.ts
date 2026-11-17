@@ -4,47 +4,12 @@ import { Assessment } from '../models/Assessment.js'
 import { Resume } from '../models/Resume.js'
 import type { ResumeAnalysisResult } from '../types/resumeAnalysis.js'
 import type { AssessmentDocument, ReadinessLevel, RoleSkill, SkillBreakdown, SkillStatus, TargetRole } from '../types/assessment.js'
-
-const practicalMarkers = ['built', 'developed', 'implemented', 'created', 'deployed', 'worked', 'used', 'integrated', 'designed', 'contributed', 'project', 'experience']
+import { evidenceLevel } from '../utils/skillMatching.js'
 
 export class AssessmentError extends Error {
   constructor(message: string, public readonly statusCode: number) {
     super(message)
   }
-}
-
-function normalized(value: string): string {
-  return value.toLowerCase().replace(/[./_-]+/g, ' ').replace(/\s+/g, ' ').trim()
-}
-
-function matchesAlias(value: string, skill: RoleSkill): boolean {
-  const source = normalized(value)
-  return skill.aliases.some((alias) => {
-    const candidate = normalized(alias)
-    return source === candidate || source.includes(candidate) || candidate.includes(source)
-  })
-}
-
-function containsAlias(value: string, skill: RoleSkill): boolean {
-  const source = normalized(value)
-  return skill.aliases.some((alias) => source.includes(normalized(alias)))
-}
-
-function evidenceLevel(analysis: ResumeAnalysisResult, skill: RoleSkill): number {
-  const matchingSkills = analysis.skills.filter((item) => matchesAlias(item.name, skill))
-  const matchingProjects = analysis.projects.filter((project) =>
-    project.technologies.some((technology) => matchesAlias(technology, skill)) || containsAlias(`${project.name} ${project.description}`, skill),
-  )
-  const matchingExperience = analysis.experience.filter((experience) =>
-    containsAlias(`${experience.title} ${experience.company} ${experience.description}`, skill),
-  )
-  const practicalSkillEvidence = matchingSkills.filter((item) => practicalMarkers.some((marker) => normalized(item.evidence).includes(marker)))
-  const practicalSources = matchingProjects.length + matchingExperience.length + practicalSkillEvidence.length
-
-  if (practicalSources >= 2) return 3
-  if (practicalSources === 1) return 2
-  if (matchingSkills.length > 0) return 1
-  return 0
 }
 
 function skillStatus(evidence: number, expected: number): SkillStatus {

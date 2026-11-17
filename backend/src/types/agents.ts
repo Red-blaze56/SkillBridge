@@ -1,5 +1,57 @@
 import type { Types } from 'mongoose'
-import type { JobMatchResult } from './job.js'
+
+/* ---------- Skill Gap Analyzer Agent ---------- */
+
+export type GapSeverity = 'Critical' | 'High' | 'Medium' | 'Low'
+
+export interface SkillGapItem {
+  skill: string
+  severity: GapSeverity
+  currentLevel: string
+  targetLevel: string
+  whyItMatters: string
+  actions: string[]
+  estimatedWeeks: number
+}
+
+export interface SkillGapAnalysisResult {
+  agent: 'Skill Gap Analyzer Agent'
+  summary: string
+  gaps: SkillGapItem[]
+  quickWins: string[]
+}
+
+/* ---------- Job Finder Agent ---------- */
+
+export type JobEligibility = 'Eligible' | 'Partially Eligible' | 'Not Eligible'
+
+export interface FoundJob {
+  id: string
+  title: string
+  company: string
+  location: string
+  description: string
+  url?: string
+  postedAt?: string
+  salary?: string
+  contractType?: string
+  requiredSkills: string[]
+  matchedSkills: string[]
+  missingSkills: string[]
+  matchPercentage: number
+  eligibility: JobEligibility
+}
+
+export interface JobFinderResult {
+  agent: 'Job Finder Agent'
+  source: 'adzuna' | 'sample'
+  query: string
+  location: string
+  summary: string
+  jobs: FoundJob[]
+}
+
+/* ---------- Learning Roadmap Agent ---------- */
 
 export interface LearningRoadmapDay {
   day: number
@@ -16,28 +68,9 @@ export interface LearningRoadmapResult {
   roadmap: LearningRoadmapDay[]
 }
 
-export interface InterviewQuestion {
-  question: string
-  topic: string
-  difficulty: 'Beginner' | 'Intermediate' | 'Advanced'
-  reason: string
-  sampleAnswer: string
-}
+/* ---------- Workflow ---------- */
 
-export interface InterviewPreparationResult {
-  agent: 'Interview Preparation Agent'
-  summary: string
-  questions: InterviewQuestion[]
-}
-
-export interface JobMatchingResult {
-  agent: 'Job Matching Agent'
-  summary: string
-  matches: JobMatchResult[]
-}
-
-export type AgentName = 'learningRoadmap' | 'interviewPreparation' | 'jobMatching'
-export type AgentStatus = 'completed' | 'failed'
+export type AgentName = 'skillGapAnalysis' | 'jobFinder' | 'learningRoadmap'
 
 export interface AgentFailure {
   agent: AgentName
@@ -48,9 +81,11 @@ export interface AgentWorkflowDocument {
   userId: Types.ObjectId
   assessmentId: Types.ObjectId
   status: 'completed' | 'partial'
+  skillGapAnalysis?: SkillGapAnalysisResult
+  jobFinder?: JobFinderResult
   learningRoadmap?: LearningRoadmapResult
-  interviewPreparation?: InterviewPreparationResult
-  jobMatching?: JobMatchingResult
   failures: AgentFailure[]
+  /** Milliseconds each agent took, plus `totalMs` for the whole parallel run. */
+  timings?: Partial<Record<AgentName | 'totalMs', number>>
   createdAt: Date
 }

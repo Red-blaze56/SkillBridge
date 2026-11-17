@@ -9,5 +9,9 @@ export const env = {
   jwtExpiresIn: process.env.JWT_EXPIRES_IN ?? '7d',
   geminiApiKey: process.env.GEMINI_API_KEY ?? '',
   geminiModel: process.env.GEMINI_MODEL ?? 'gemini-2.5-flash',
+  adzunaAppId: process.env.ADZUNA_APP_ID ?? '',
+  adzunaAppKey: process.env.ADZUNA_APP_KEY ?? '',
+  adzunaCountry: (process.env.ADZUNA_COUNTRY || 'in').toLowerCase(),
+  adzunaLocation: process.env.ADZUNA_LOCATION ?? '',
   disableAuth: process.env.DISABLE_AUTH === 'true' && (process.env.NODE_ENV ?? 'development') !== 'production',
 }

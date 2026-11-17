@@ -1,5 +1,20 @@
 import { z } from 'zod'
 
+export const skillGapAnalysisSchema = z.object({
+  agent: z.literal('Skill Gap Analyzer Agent'),
+  summary: z.string(),
+  gaps: z.array(z.object({
+    skill: z.string().min(1),
+    severity: z.enum(['Critical', 'High', 'Medium', 'Low']),
+    currentLevel: z.string(),
+    targetLevel: z.string(),
+    whyItMatters: z.string(),
+    actions: z.array(z.string()).min(1).max(5),
+    estimatedWeeks: z.number().min(0.5).max(26),
+  })).max(8),
+  quickWins: z.array(z.string()).max(5),
+})
+
 export const learningRoadmapSchema = z.object({
   agent: z.literal('Learning Roadmap Agent'),
   summary: z.string(),
@@ -13,17 +28,5 @@ export const learningRoadmapSchema = z.object({
   })).length(7),
 })
 
-export const interviewPreparationSchema = z.object({
-  agent: z.literal('Interview Preparation Agent'),
-  summary: z.string(),
-  questions: z.array(z.object({
-    question: z.string(),
-    topic: z.string(),
-    difficulty: z.enum(['Beginner', 'Intermediate', 'Advanced']),
-    reason: z.string(),
-    sampleAnswer: z.string(),
-  })).length(10),
-})
-
+export type ValidatedSkillGapAnalysis = z.infer<typeof skillGapAnalysisSchema>
 export type ValidatedLearningRoadmap = z.infer<typeof learningRoadmapSchema>
-export type ValidatedInterviewPreparation = z.infer<typeof interviewPreparationSchema>
