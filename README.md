@@ -9,6 +9,7 @@ solid, backs off when you're not, and produces a final report.
 - **Auth** — register / login (JWT access tokens).
 - **Grounded interview loop** — an adaptive probe state machine (deepen / switch / correct-and-stay) backed by a seeded reference bank, so the grader checks answers against known-good material instead of rewarding confident nonsense.
 - **Report** — per-answer evaluation plus an end-of-interview summary.
+- **Voice** — questions read aloud and answered by speaking (Web Speech API, Chrome/Edge).
 - **History** — list and reopen your past interviews.
 
 ## Tech stack
@@ -18,7 +19,7 @@ solid, backs off when you're not, and produces a final report.
 | Backend | FastAPI (async), SQLAlchemy 2.0 + asyncpg, Alembic, PyJWT, pydantic-settings |
 | Database | PostgreSQL 16 (via Docker) |
 | LLM | Gemini |
-| Frontend | React 19 + Vite + React Router |
+| Frontend | React 19 + Vite + React Router, Web Speech API |
 | Tooling | `uv` (Python), `npm` (Node) |
 
 ## Prerequisites
