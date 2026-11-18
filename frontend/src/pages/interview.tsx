@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { ChevronLeft } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { ChevronLeft, Volume2, VolumeX } from 'lucide-react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ApiError } from '@/api/client'
 import { finishInterview, getInterview, submitAnswer, type Interview } from '@/api/interviews'
@@ -17,6 +17,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { FieldError } from '@/components/ui/field'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSessionTimer } from '@/hooks/useSessionTimer'
+import { useSpeak } from '@/hooks/useSpeech'
 import { LANGUAGE_LABELS, LEVEL_LABELS, STAGE_LABELS } from '@/lib/interview-options'
 import { formatDuration } from '@/lib/time'
 import { cn } from '@/lib/utils'
@@ -45,6 +46,10 @@ function InterviewScreen({ id }: { id: string }) {
 
   const sessionSeconds = useSessionTimer(interview?.status === 'active')
 
+  const { speak, cancel, supported: ttsSupported } = useSpeak()
+  const [muted, setMuted] = useState(false)
+  const spokenRef = useRef<string | null>(null) // the question we last spoke, so we don't repeat it
+
   useEffect(() => {
     let cancelled = false
     getInterview(id)
@@ -64,6 +69,16 @@ function InterviewScreen({ id }: { id: string }) {
       cancelled = true
     }
   }, [id, attempt])
+
+  // Speak each new interviewer question aloud, unless muted. Derived from `interview`
+  // here (not the values below) because hooks must run before the early returns.
+  useEffect(() => {
+    if (!interview || interview.status === 'finished' || muted) return
+    const question = interview.messages.findLast((m) => m.sender === 'interviewer')?.content
+    if (!question || spokenRef.current === question) return
+    spokenRef.current = question
+    speak(question)
+  }, [interview, muted, speak])
 
   function retryLoad() {
     setLoadError(null)
@@ -161,6 +176,24 @@ function InterviewScreen({ id }: { id: string }) {
 
         <div className="flex items-center justify-end gap-2">
           {!finished && <SessionClock seconds={sessionSeconds} />}
+          {!finished && ttsSupported && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="rounded-full"
+              onClick={() => {
+                const next = !muted
+                setMuted(next)
+                if (next) cancel()
+              }}
+              aria-pressed={muted}
+              aria-label={muted ? 'Unmute spoken questions' : 'Mute spoken questions'}
+              title={muted ? 'Unmute questions' : 'Mute questions'}
+            >
+              {muted ? <VolumeX /> : <Volume2 />}
+            </Button>
+          )}
           <TranscriptSheet messages={messages} className="lg:hidden" />
           {!finished && (
             <FinishDialog
