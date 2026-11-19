@@ -1,0 +1,39 @@
+{
+  "name": "wellfound-auto-apply",
+  "version": "1.0.0",
+  "description": "Local Playwright automation for applying to jobs on Wellfound.",
+  "type": "module",
+  "scripts": {
+    "start:wellfound": "tsx src/bots/wellfound/index.ts",
+    "start:wellfound-search": "tsx src/bots/wellfound/index.ts --search",
+    "start:instahyre": "tsx src/bots/instahyre/index.ts",
+    "start:instahyre-search": "tsx src/bots/instahyre/index.ts --search",
+    "start:indeed": "tsx src/bots/indeed/index.ts",
+    "start:indeed-search": "tsx src/bots/indeed/index.ts --search",
+    "start:glassdoor": "tsx src/bots/glassdoor/index.ts",
+    "start:glassdoor-search": "tsx src/bots/glassdoor/index.ts --search",
+    "start:naukri": "tsx src/bots/naukri/index.ts",
+    "start:naukri-search": "tsx src/bots/naukri/index.ts --search",
+    "start:forms": "tsx src/bots/forms/index.ts",
+    "start:jobscout": "tsx src/jobscout/run.ts run --send",
+    "start:jobscout-s": "tsx src/jobscout/run.ts scan --send",
+    "start:jobscout-delete-all": "tsx src/jobscout/run.ts delete-all",
+    "start:jobscout-setup": "tsx src/jobscout/run.ts setup",
+    "start:jobscout-profile": "tsx src/jobscout/run.ts profile",
+    "start:jobscout-boards": "tsx src/jobscout/run.ts boards",
+    "start:jobscout-check": "tsx src/jobscout/run.ts check",
+    "start:jobscout-reset": "tsx src/jobscout/run.ts reset",
+    "start:scraper": "tsx src/jobscout/run.ts scrape",
+    "dashboard": "tsx src/reports/dashboard.ts"
+  },
+  "packageManager": "pnpm@10.28.2",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "playwright": "^1.62.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.23.13",
+    "typescript": "^5.0.0"
+  }
+}

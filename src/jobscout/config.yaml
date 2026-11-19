@@ -1,0 +1,159 @@
+filters:
+  # Title regexes, matched case-insensitively against job title only.
+  # A title must match at least one include AND zero excludes.
+  include_titles:
+    # Matches Full Stack, Backend, Frontend, Web, Cloud, etc. before or after "Engineer/Developer"
+    - '\b(software|backend|back[\s-]?end|frontend|front[\s-]?end|full[\s-]?stack|web|platform|systems|cloud)\b.*\b(engineer|developer)\b'
+    - '\b(engineer|developer)\b.*\b(software|backend|back[\s-]?end|frontend|front[\s-]?end|full[\s-]?stack|web|platform|systems|cloud)\b'
+    # Tech-specific titles based on your resume
+    - '\b(react|node\.?js|mern|javascript|typescript)\b.*\b(developer|engineer)?\b'
+    - '\b(python|django|ai|ml|machine learning|gen[\s-]?ai|llm)\b.*\b(developer|engineer)\b'
+    # Internships: only tech ones ("Software Engineer Intern" yes, "Social Work Intern" no)
+    - '\b(software|sde|engineer(ing)?|developer|development|full[\s-]?stack|front[\s-]?end|back[\s-]?end|web|ai|ml|data|tech(nology)?|cloud|devops|python|react|node|java(script)?|programming|computer)\b.*\bintern(ship)?s?\b'
+    - '\bintern(ship)?s?\b.*\b(software|sde|engineer(ing)?|developer|development|full[\s-]?stack|front[\s-]?end|back[\s-]?end|web|ai|ml|data|tech(nology)?|cloud|devops|python|react|node|java(script)?|programming|computer)\b'
+    - '\bsde\b'
+    - '\bsde\s*-?\s*(i|1)\b'
+    - '\bmember of technical staff\b'
+    - '\bsite reliability engineer\b'
+    - '\bsre\b'
+    # Fresher / new-grad / entry-level SDE and developer titles
+    - '\b(graduate|new[\s-]?grad|fresher|junior|associate|entry[\s-]?level|trainee)\b.*\b(engineer|developer|sde)\b'
+    - '\b(engineer|developer|sde)\b.*\b(graduate|new[\s-]?grad|fresher|junior|associate|entry[\s-]?level|trainee)\b'
+    - '\bsoftware development engineer\b'
+    - '\b(programmer analyst|application developer|python developer)\b'
+    - '\b(web|mern|mean|full[\s-]?stack|frontend|front[\s-]?end)\s+(developer|engineer|dev)\b'
+    - '\bjunior\s+(web|software|full[\s-]?stack|frontend|backend)\b'
+
+  exclude_titles:
+    - '\b(staff|principal|distinguished|fellow|architect)\b'
+    - '\bsenior\b'
+    # Levels above fresher: SDE 2, Engineer II/III, Lead, Sr, Intermediate, Mid-level
+    - '\b(ii|iii|iv|lead|sr|intermediate|mid[\s-]?level)\b'
+    - '\b(sde|engineer|developer)\s*-?\s*[2-9]\b'
+    - '\b(director|vp|vice president|head of|chief|cto)\b'
+    - '\b(manager|management)\b'
+    - '\bapprentice\b'
+    - '\b(sales|account executive|marketing|recruit|support|success)\b'
+    - '\b(ios|android|mobile|game|designer)\b'
+    - '\b(data scientist|machine learning scientist|research scientist)\b'
+
+  # A job anywhere in India passes (office, hybrid or remote): it passes when its
+  # location names India or one of these cities (whole words, so "india" does
+  # not match "Indiana"). Outside India a job passes only when its location says
+  # remote (allow_remote: true), e.g. "Remote, US" or "Remote - Europe".
+  locations:
+    - greater noida
+    - noida
+    - delhi
+    - new delhi
+    - gurugram
+    - gurgaon
+    - ghaziabad
+    - lucknow
+    - jhansi
+    - kanpur
+    - agra
+    - jaipur
+    - ahmedabad
+    - indore
+    - pune
+    - mumbai
+    - hyderabad
+    - bengaluru
+    - bangalore
+    - chennai
+    - kolkata
+    - chandigarh
+    - mohali
+    - kochi
+    - coimbatore
+    - bhubaneswar
+    - nagpur
+    - surat
+    - vadodara
+    - mysuru
+    - mysore
+    - visakhapatnam
+    - thiruvananthapuram
+    - trivandrum
+    - bhopal
+    - dehradun
+    - india
+
+  allow_remote: true
+  max_age_days: 45
+  # Jobs whose description asks for more years than this are dropped
+  # ("2+ years", "3-5 years"). "0-2", "1-3", "fresher" and "not mentioned" stay.
+  max_experience_years: 1
+
+screen_batch_size: 8
+screen_jd_chars: 1800
+draft_jd_chars: 6000
+score_threshold: 7.0           # every job scoring this or more is emailed
+max_per_digest: 5              # how many of them get an AI summary (1 API call each)
+
+# `start:jobscout` checks 30 random companies from companies.yaml plus 5 random
+# rows from each CSV in ats_matcher/; CSV picks with a live board always move
+# into companies.yaml. `start:jobscout-check` checks every company in companies.yaml.
+# Both give a strike for 0 jobs matching the filters above and reset it to 0
+# when matching jobs are found. Results go to output/jobscout/ats_matcher/:
+#   failed_not_found.csv    dead or wrong link (removed)
+#   failed_max_retries.csv  hit zero_match_limit strikes (removed)
+#   passed.csv              companies whose jobs were emailed to you
+companies_sample_size: 40      # random picks from companies.yaml per run (0 = all)
+ats_matcher_dir: ats_matcher   # folder of candidate CSVs
+ats_matcher_per_file: 8        # random picks per CSV per run (0 = off)
+zero_match_limit: 3            # runs in a row with 0 matching jobs before a company is removed
+
+# `start:scraper` searches job sites with JobSpy (no API key, no AI, no email).
+# Every site is searched for every term, results go through the filters above,
+# and new jobs are appended to output/scraper/<site>_jobs.csv (linkedin_jobs.csv,
+# indeed_jobs.csv, ...). The same job (same company + title) from several sites or
+# cities is saved once: its other cities go in Location, other sites in "Also On",
+# and a job already in any site's CSV is never written again.
+scraper:
+  include_in_run: true               # start:jobscout also AI-scores jobs saved here (once each)
+  mail_min_score: 7.5              # scraper jobs need this score to be emailed (they score high)
+  mail_max: 6                       # at most this many scraper jobs per email, best first
+  score_per_site: 5                 # per run: 5 random unscored jobs from each site (5 sites = 25);
+                                     # the rest wait for later runs. 0 = score all of them
+  sites: [linkedin, indeed, glassdoor, naukri, google]   # also: zip_recruiter (US/Canada), bayt (Gulf), bdjobs (Bangladesh), hellowork (France)
+  search_terms:
+    - software engineer fresher
+    - full stack developer
+    - backend developer
+    - software engineer intern
+  location: India
+  country_indeed: india              # which country's Indeed / Glassdoor to search
+  # Any setting below can be given per site as <site>_<setting>, e.g.
+  # linkedin_results_wanted. The site's own value wins over the shared one.
+  results_wanted: 25                 # jobs per search term (Indeed, Glassdoor, Naukri, Google)
+  linkedin_results_wanted: 20        # LinkedIn: jobs per search term
+  hours_old: 48                      # only jobs posted in the last 48 hours (every site but LinkedIn)
+  linkedin_hours_old: 12             # LinkedIn: only the last 12 hours, newest first
+  retention_days: 3                  # delete saved rows older than 3 days (every site but LinkedIn)
+  linkedin_retention_days: 2         # LinkedIn rows are deleted after 2 days
+  remote_only: false                 # true = ask the sites for remote jobs only (LinkedIn ignores it);
+                                     # false = onsite/hybrid too, the city list above still applies
+  # true = full description, skills, seniority, industry and direct apply link.
+  # LinkedIn and Naukri open one page per job, so for them only jobs that pass
+  # the title/location filters are opened; experience is checked after that.
+  fetch_description: true
+  description_format: plain          # plain | markdown | html: how the Description column is written
+  linkedin_company_ids: []           # LinkedIn only: search just these companies, e.g. [1035, 1441]
+                                     # (the number in a company's LinkedIn jobs-search URL, f_C=1035)
+  apply_filters: true               # false = save everything the sites return
+  # true = skip internships that pay nothing: the only perks are a certificate /
+  # letter of recommendation, the stipend is only "performance-based, up to ...",
+  # or the post says unpaid / asks for a fee. A fixed stipend is always kept.
+  drop_unpaid_internships: true
+  pause_seconds: 5                   # wait between searches so sites don't block you
+
+companies_file: companies.yaml
+# Your files and the tool's memory: data/ (gitignored, never shared).
+profile_file: data/profile.json
+seen_file: data/seen.json
+matcher_state_file: data/matcher_state.json
+# Written into output/jobscout/.
+digest_file: digest.html
+tracker_csv: tracker.csv

@@ -1,0 +1,486 @@
+# Boards to poll. One entry per company.
+#
+#   ats:   greenhouse | lever | ashby | workable | smartrecruiters | recruitee | breezy | teamtailor
+#   slug:  the company's board identifier (NOT its domain)
+#   name:  whatever you want to see in the digest
+#
+# The slug is the last path segment of the company's public careers board:
+#   https://boards.greenhouse.io/<slug>        -> ats: greenhouse
+#   https://jobs.lever.co/<slug>               -> ats: lever
+#   https://jobs.ashbyhq.com/<slug>            -> ats: ashby
+#   https://apply.workable.com/<slug>          -> ats: workable
+#   https://jobs.smartrecruiters.com/<slug>    -> ats: smartrecruiters
+#   https://<slug>.recruitee.com               -> ats: recruitee
+#   https://<slug>.breezy.hr                   -> ats: breezy
+#   https://<slug>.teamtailor.com              -> ats: teamtailor
+#
+# THESE ARE EXAMPLES — verify each one before you trust the output. Companies
+# migrate between ATS vendors and slugs go dead. Check a slug in your browser:
+#   https://boards-api.greenhouse.io/v1/boards/<slug>/jobs?content=true
+#   https://api.lever.co/v0/postings/<slug>?mode=json
+#   https://api.ashbyhq.com/posting-api/job-board/<slug>?includeCompensation=true
+#   https://apply.workable.com/api/v1/widget/accounts/<slug>?details=true
+#   https://api.smartrecruiters.com/v1/companies/<slug>/postings
+#   https://<slug>.recruitee.com/api/offers/
+#   https://<slug>.breezy.hr/json
+#   https://<slug>.teamtailor.com/jobs.json
+#
+# Or just write a company name on its own line (- Razorpay) and run
+# `pnpm start:jobscout-check`: it looks the name up on all eight boards. A name
+# found on none of them is removed and logged to failed_not_found.csv.
+#
+# Dead links (404) are removed automatically by both `start:jobscout` and
+# `start:jobscout-check`, and logged to output/jobscout/ats_matcher/failed_not_found.csv.
+# Companies added from ats_matcher/*.csv are appended at the bottom of this list.
+
+companies:
+  - { ats: lever, slug: fampay, name: FamPay }
+  - { ats: smartrecruiters, slug: PHONEPELIMITED, name: PhonePe }
+  - { ats: greenhouse, slug: slice, name: Slice }
+  - { ats: greenhouse, slug: hackerrank, name: HackerRank }
+  - { ats: lever, slug: hevodata, name: Hevo Data }
+  # Added by name; `pnpm start:jobscout-check` finds each one's board
+  - { ats: smartrecruiters, slug: BoschGroup, name: Bosch }
+  - { ats: greenhouse, slug: stripe, name: Stripe }
+  - { ats: greenhouse, slug: pinterest, name: Pinterest }
+  - { ats: greenhouse, slug: affirm, name: Affirm }
+  - { ats: greenhouse, slug: gitlab, name: GitLab }
+  - { ats: greenhouse, slug: twilio, name: Twilio }
+  - { ats: greenhouse, slug: mongodb, name: MongoDB }
+  - { ats: ashby, slug: supabase, name: Supabase }
+  - { ats: greenhouse, slug: vercel, name: Vercel }
+  - { ats: greenhouse, slug: abnormalsecurity, name: Abnormal }
+  - { ats: greenhouse, slug: reddit, name: Reddit }
+  - { ats: lever, slug: lingarogroup, name: Lingarogroup }
+  - { ats: ashby, slug: deepgram, name: Deepgram }
+  - { ats: breezy, slug: test-yantra-eu-2, name: Test Yantra Eu 2 }
+  - { ats: lever, slug: brillio-2, name: Brillio 2 }
+  - { ats: recruitee, slug: careersdeltacapita, name: Careersdeltacapita }
+  - { ats: ashby, slug: rain, name: Rain }
+  - { ats: breezy, slug: delan-associates-inc, name: Delan Associates Inc }
+  - { ats: breezy, slug: recruiting, name: Recruiting }
+  - { ats: recruitee, slug: tether, name: Tether }
+  - { ats: breezy, slug: talentc, name: Talentc }
+  - { ats: greenhouse, slug: bybit, name: Bybit }
+  - { ats: recruitee, slug: easyapplyrekluti, name: Easyapplyrekluti }
+  - { ats: breezy, slug: zero-hash, name: Zero Hash }
+  - { ats: breezy, slug: bitdeer, name: Bitdeer }
+  - { ats: ashby, slug: clickhouse, name: Clickhouse }
+  - { ats: lever, slug: jobgether, name: Jobgether }
+  - { ats: breezy, slug: nucleusteq, name: Nucleusteq }
+  - { ats: greenhouse, slug: abinbev, name: Abinbev }
+  - { ats: greenhouse, slug: purestorage, name: Purestorage }
+  - { ats: breezy, slug: uvation, name: Uvation }
+  - { ats: breezy, slug: sourcefit, name: Sourcefit }
+  - { ats: greenhouse, slug: nebius, name: Nebius }
+  - { ats: ashby, slug: cursor, name: Cursor }
+  - { ats: breezy, slug: ontrac-solutions-llc, name: Ontrac Solutions Llc }
+  - { ats: breezy, slug: pyrovio, name: Pyrovio }
+  - { ats: greenhouse, slug: intersystems, name: Intersystems }
+  - { ats: breezy, slug: helpware-inc, name: Helpware Inc }
+  - { ats: breezy, slug: concurrent-technologies-corporation, name: Concurrent Technologies Corporation }
+  - { ats: ashby, slug: alan, name: Alan }
+  - { ats: ashby, slug: fieldguide, name: Fieldguide }
+  - { ats: ashby, slug: 1password, name: 1Password }
+  - { ats: breezy, slug: commerzbank-poland, name: Commerzbank Poland }
+  - { ats: recruitee, slug: deintraumjobwartet, name: Deintraumjobwartet }
+  - { ats: breezy, slug: aviation-technology-associates-llc, name: Aviation Technology Associates Llc }
+  - { ats: greenhouse, slug: tailscale, name: Tailscale }
+  - { ats: greenhouse, slug: towerresearchcapital, name: Towerresearchcapital }
+  - { ats: ashby, slug: constructor, name: Constructor }
+  - { ats: greenhouse, slug: natera, name: Natera }
+  - { ats: breezy, slug: gen-tech, name: Gen Tech }
+  - { ats: greenhouse, slug: justmarkets, name: Justmarkets }
+  - { ats: greenhouse, slug: smartsheet, name: Smartsheet }
+  - { ats: breezy, slug: betclic-group, name: Betclic Group }
+  - { ats: breezy, slug: adoc-tm, name: Adoc Tm }
+  - { ats: greenhouse, slug: mozilla, name: Mozilla }
+  - { ats: greenhouse, slug: beyondtrust, name: Beyondtrust }
+  - { ats: ashby, slug: commure, name: Commure }
+  - { ats: lever, slug: ion, name: Ion }
+  - { ats: recruitee, slug: rimutee, name: Rimutee }
+  - { ats: greenhouse, slug: innodatainc, name: Innodatainc }
+  - { ats: greenhouse, slug: motional, name: Motional }
+  - { ats: breezy, slug: navaide, name: Navaide }
+  - { ats: breezy, slug: urrly, name: Urrly }
+  - { ats: greenhouse, slug: point72, name: Point72 }
+  - { ats: greenhouse, slug: jetbrains, name: Jetbrains }
+  - { ats: recruitee, slug: vdkgroep, name: Vdkgroep }
+  - { ats: breezy, slug: nationsbenefits, name: Nationsbenefits }
+  # Added by name from the wilsy.in "Top 100 for 2027 freshers" list
+  - { ats: breezy, slug: oracle, name: Oracle }
+  - { ats: greenhouse, slug: pine, name: Pine Labs }
+  - { ats: lever, slug: pocketfm, name: Pocket FM }
+  - { ats: smartrecruiters, slug: whatfix, name: Whatfix }
+  # Added by name from speedyapply/2027-SWE-College-Jobs (only companies that also hire engineers in India)
+  - { ats: greenhouse, slug: singlestore, name: SingleStore }
+  - { ats: ashby, slug: hadrian-automation, name: Hadrian Automation }
+  - { ats: greenhouse, slug: quberesearchandtechnologies, name: Quberesearchandtechnologies }
+  - { ats: greenhouse, slug: missionhealthcare, name: Missionhealthcare }
+  - { ats: greenhouse, slug: effectiveschoolsolutions, name: Effectiveschoolsolutions }
+  - { ats: greenhouse, slug: michelscorporation, name: Michelscorporation }
+  - { ats: recruitee, slug: flextrade, name: Flextrade }
+  - { ats: recruitee, slug: stichtingpergamijn, name: Stichtingpergamijn }
+  - { ats: recruitee, slug: londiscareers, name: Londiscareers }
+  - { ats: recruitee, slug: stjansdal, name: Stjansdal }
+  - { ats: teamtailor, slug: therapieclinic, name: Therapieclinic }
+  - { ats: teamtailor, slug: bricocenteritalia, name: Bricocenteritalia }
+  - { ats: teamtailor, slug: grupohospitalariohla, name: Grupohospitalariohla }
+  - { ats: ashby, slug: harvey, name: Harvey }
+  - { ats: ashby, slug: forus, name: Forus }
+  - { ats: breezy, slug: vetsez, name: Vetsez }
+  - { ats: breezy, slug: talent-acquisition-concepts, name: Talent Acquisition Concepts }
+  - { ats: breezy, slug: everstar, name: Everstar }
+  - { ats: greenhouse, slug: syskahennessy, name: Syskahennessy }
+  - { ats: greenhouse, slug: gleanwork, name: Gleanwork }
+  - { ats: greenhouse, slug: high-volume, name: High Volume }
+  - { ats: lever, slug: qonto, name: Qonto }
+  - { ats: lever, slug: crestoperations, name: Crestoperations }
+  - { ats: recruitee, slug: decircletalentpartner, name: Decircletalentpartner }
+  - { ats: recruitee, slug: chg, name: Chg }
+  - { ats: teamtailor, slug: puntonet, name: Puntonet }
+  - { ats: teamtailor, slug: vivat, name: Vivat }
+  - { ats: teamtailor, slug: storallearning, name: Storallearning }
+  - { ats: teamtailor, slug: synsamgroup, name: Synsamgroup }
+  - { ats: ashby, slug: listenlabs, name: Listenlabs }
+  - { ats: ashby, slug: lumaai, name: Lumaai }
+  - { ats: breezy, slug: atlas-technica, name: Atlas Technica }
+  - { ats: breezy, slug: absolute-pets, name: Absolute Pets }
+  - { ats: greenhouse, slug: robinhood, name: Robinhood }
+  - { ats: greenhouse, slug: grafanalabs, name: Grafanalabs }
+  - { ats: greenhouse, slug: samsungsemiconductor, name: Samsungsemiconductor }
+  - { ats: greenhouse, slug: vitalcaringgroup, name: Vitalcaringgroup }
+  - { ats: greenhouse, slug: bethesdahealthgroup, name: Bethesdahealthgroup }
+  - { ats: lever, slug: amtengineering, name: Amtengineering }
+  - { ats: lever, slug: ro, name: Ro }
+  - { ats: lever, slug: arrivelogistics, name: Arrivelogistics }
+  - { ats: lever, slug: ciandt, name: Ciandt }
+  - { ats: lever, slug: life, name: Life }
+  - { ats: recruitee, slug: palazzohospitality, name: Palazzohospitality }
+  - { ats: teamtailor, slug: groupelrtechnologies, name: Groupelrtechnologies }
+  - { ats: teamtailor, slug: skillonnet-1744715103, name: Skillonnet 1744715103 }
+  - { ats: teamtailor, slug: qargo-1711385673, name: Qargo 1711385673 }
+  - { ats: ashby, slug: docebo, name: Docebo }
+  - { ats: breezy, slug: katapult, name: Katapult }
+  - { ats: greenhouse, slug: simtrabps, name: Simtrabps }
+  - { ats: greenhouse, slug: ifoodcarreiras, name: Ifoodcarreiras }
+  - { ats: greenhouse, slug: moneymart, name: Moneymart }
+  - { ats: greenhouse, slug: shieldshealthsolutions, name: Shieldshealthsolutions }
+  - { ats: greenhouse, slug: mixpanel, name: Mixpanel }
+  - { ats: lever, slug: parnalllaw, name: Parnalllaw }
+  - { ats: lever, slug: wadetrim, name: Wadetrim }
+  - { ats: lever, slug: cogentanalytics, name: Cogentanalytics }
+  - { ats: recruitee, slug: bukoinfrasupport, name: Bukoinfrasupport }
+  - { ats: recruitee, slug: signode, name: Signode }
+  - { ats: recruitee, slug: igh, name: Igh }
+  - { ats: recruitee, slug: cello1, name: Cello1 }
+  - { ats: teamtailor, slug: teamlewis, name: Teamlewis }
+  - { ats: teamtailor, slug: groupebbl, name: Groupebbl }
+  - { ats: teamtailor, slug: bsm, name: Bsm }
+  - { ats: ashby, slug: marianaminerals, name: Marianaminerals }
+  - { ats: ashby, slug: robin-radar, name: Robin Radar }
+  - { ats: ashby, slug: amplify, name: Amplify }
+  - { ats: breezy, slug: westphalia-holdings, name: Westphalia Holdings }
+  - { ats: breezy, slug: abc-imaging, name: Abc Imaging }
+  - { ats: breezy, slug: foundationhealth, name: Foundationhealth }
+  - { ats: breezy, slug: herotel-5f74feffb7e1, name: Herotel 5F74Feffb7E1 }
+  - { ats: breezy, slug: sage-haus, name: Sage Haus }
+  - { ats: greenhouse, slug: scopely, name: Scopely }
+  - { ats: recruitee, slug: veocareers, name: Veocareers }
+  - { ats: recruitee, slug: egroup, name: Egroup }
+  - { ats: recruitee, slug: mumc, name: Mumc }
+  - { ats: recruitee, slug: novacard, name: Novacard }
+  - { ats: recruitee, slug: adesso1, name: Adesso1 }
+  - { ats: teamtailor, slug: cartrackasiacareerpage, name: Cartrackasiacareerpage }
+  - { ats: teamtailor, slug: artemys, name: Artemys }
+  - { ats: ashby, slug: eliseai, name: Eliseai }
+  - { ats: ashby, slug: g2, name: G2 }
+  - { ats: ashby, slug: higgsfieldai, name: Higgsfieldai }
+  - { ats: breezy, slug: aspria, name: Aspria }
+  - { ats: breezy, slug: community-dental-partners, name: Community Dental Partners }
+  - { ats: breezy, slug: scientific-safety-alliance, name: Scientific Safety Alliance }
+  - { ats: breezy, slug: 20four7va, name: 20Four7Va }
+  - { ats: breezy, slug: jway-group, name: Jway Group }
+  - { ats: greenhouse, slug: helsing, name: Helsing }
+  - { ats: greenhouse, slug: skilledwoundcare, name: Skilledwoundcare }
+  - { ats: lever, slug: happyhiller, name: Happyhiller }
+  - { ats: lever, slug: lyrahealth, name: Lyrahealth }
+  - { ats: lever, slug: pointclickcare, name: Pointclickcare }
+  - { ats: recruitee, slug: swordservices, name: Swordservices }
+  - { ats: recruitee, slug: loisium, name: Loisium }
+  - { ats: teamtailor, slug: lacotelarete, name: Lacotelarete }
+  - { ats: teamtailor, slug: stichtingtravers-doomijn, name: Stichtingtravers Doomijn }
+  - { ats: teamtailor, slug: ascom, name: Ascom }
+  - { ats: ashby, slug: fab2, name: Fab2 }
+  - { ats: ashby, slug: carwow, name: Carwow }
+  - { ats: ashby, slug: relayfi, name: Relayfi }
+  - { ats: ashby, slug: telus-digital, name: Telus Digital }
+  - { ats: ashby, slug: carian, name: Carian }
+  - { ats: ashby, slug: saronic, name: Saronic }
+  - { ats: ashby, slug: astera, name: Astera }
+  - { ats: breezy, slug: unlimited-biking, name: Unlimited Biking }
+  - { ats: breezy, slug: ssg-corp, name: Ssg Corp }
+  - { ats: breezy, slug: beta-bionics-inc, name: Beta Bionics Inc }
+  - { ats: breezy, slug: lindt-sprunglicanada, name: Lindt Sprunglicanada }
+  - { ats: greenhouse, slug: alphasights, name: Alphasights }
+  - { ats: greenhouse, slug: eliotcommunityhumanservices, name: Eliotcommunityhumanservices }
+  - { ats: greenhouse, slug: wehrtyou, name: Wehrtyou }
+  - { ats: greenhouse, slug: bozzuto, name: Bozzuto }
+  - { ats: lever, slug: wachter, name: Wachter }
+  - { ats: lever, slug: spear, name: Spear }
+  - { ats: lever, slug: anavationllc, name: Anavationllc }
+  - { ats: recruitee, slug: sovak3, name: Sovak3 }
+  - { ats: recruitee, slug: imbgmbh, name: Imbgmbh }
+  - { ats: recruitee, slug: metyisag, name: Metyisag }
+  - { ats: recruitee, slug: ballysintralotsa, name: Ballysintralotsa }
+  - { ats: recruitee, slug: collins, name: Collins }
+  - { ats: recruitee, slug: mooremkw, name: Mooremkw }
+  - { ats: recruitee, slug: devfinders, name: Devfinders }
+  - { ats: recruitee, slug: affideaireland, name: Affideaireland }
+  - { ats: teamtailor, slug: familjelakarna-1727350800, name: Familjelakarna 1727350800 }
+  - { ats: teamtailor, slug: smartestenergy, name: Smartestenergy }
+  - { ats: teamtailor, slug: chapter2, name: Chapter2 }
+  - { ats: teamtailor, slug: hesperiaworld, name: Hesperiaworld }
+  - { ats: teamtailor, slug: leitmotiv, name: Leitmotiv }
+  - { ats: ashby, slug: speak, name: Speak }
+  - { ats: ashby, slug: trulioo, name: Trulioo }
+  - { ats: ashby, slug: dualentry, name: Dualentry }
+  - { ats: ashby, slug: livekit, name: Livekit }
+  - { ats: breezy, slug: tempo-libero-cooperativa-sociale-onlus, name: Tempo Libero Cooperativa Sociale Onlus }
+  - { ats: breezy, slug: o-mally-management-group, name: O Mally Management Group }
+  - { ats: breezy, slug: oreganos, name: Oreganos }
+  - { ats: breezy, slug: zantech-it, name: Zantech It }
+  - { ats: breezy, slug: cdpdoctor, name: Cdpdoctor }
+  - { ats: breezy, slug: strata-g-llc, name: Strata G Llc }
+  - { ats: breezy, slug: jnd-inc, name: Jnd Inc }
+  - { ats: greenhouse, slug: cresta, name: Cresta }
+  - { ats: greenhouse, slug: roku, name: Roku }
+  - { ats: greenhouse, slug: housebuyersofamerica, name: Housebuyersofamerica }
+  - { ats: greenhouse, slug: tulip, name: Tulip }
+  - { ats: greenhouse, slug: ww, name: Ww }
+  - { ats: lever, slug: clovirtualfashion, name: Clovirtualfashion }
+  - { ats: lever, slug: keyloop, name: Keyloop }
+  - { ats: lever, slug: acceldata, name: Acceldata }
+  - { ats: recruitee, slug: synspective, name: Synspective }
+  - { ats: recruitee, slug: xiaorestaurant, name: Xiaorestaurant }
+  - { ats: recruitee, slug: transperfect, name: Transperfect }
+  - { ats: recruitee, slug: medischspectrumtwente, name: Medischspectrumtwente }
+  - { ats: recruitee, slug: aidigital, name: Aidigital }
+  - { ats: teamtailor, slug: alpazurhotels-1738160088, name: Alpazurhotels 1738160088 }
+  - { ats: teamtailor, slug: qflow, name: Qflow }
+  - { ats: teamtailor, slug: xxlsverige, name: Xxlsverige }
+  - { ats: teamtailor, slug: stichtingtravers, name: Stichtingtravers }
+  - { ats: teamtailor, slug: wspcentraleurope, name: Wspcentraleurope }
+  - { ats: teamtailor, slug: tutoringjobs, name: Tutoringjobs }
+  - { ats: ashby, slug: xenon, name: Xenon }
+  - { ats: ashby, slug: lemonade, name: Lemonade }
+  - { ats: ashby, slug: dexmate, name: Dexmate }
+  - { ats: ashby, slug: joko, name: Joko }
+  - { ats: breezy, slug: gold-care-homes, name: Gold Care Homes }
+  - { ats: breezy, slug: zinier, name: Zinier }
+  - { ats: breezy, slug: lufco, name: Lufco }
+  - { ats: breezy, slug: vald, name: Vald }
+  - { ats: breezy, slug: elevation-church, name: Elevation Church }
+  - { ats: breezy, slug: solidum-sverige-ab, name: Solidum Sverige Ab }
+  - { ats: greenhouse, slug: kaizengaming, name: Kaizengaming }
+  - { ats: greenhouse, slug: theoriamedical, name: Theoriamedical }
+  - { ats: greenhouse, slug: oklo, name: Oklo }
+  - { ats: greenhouse, slug: agency, name: Agency }
+  - { ats: recruitee, slug: boldteam, name: Boldteam }
+  - { ats: recruitee, slug: evreuxportesdenormandie, name: Evreuxportesdenormandie }
+  - { ats: recruitee, slug: kwadraad, name: Kwadraad }
+  - { ats: recruitee, slug: neokanzlei, name: Neokanzlei }
+  - { ats: recruitee, slug: steuerberatende, name: Steuerberatende }
+  - { ats: teamtailor, slug: knightecgroup, name: Knightecgroup }
+  - { ats: teamtailor, slug: pizzapilgrims, name: Pizzapilgrims }
+  - { ats: teamtailor, slug: roxelfrance, name: Roxelfrance }
+  - { ats: teamtailor, slug: groupevallee, name: Groupevallee }
+  - { ats: teamtailor, slug: lavelacooperativasociale, name: Lavelacooperativasociale }
+  - { ats: teamtailor, slug: gacmotoreuropebv-1747132357, name: Gacmotoreuropebv 1747132357 }
+  - { ats: ashby, slug: beaconsoftware, name: Beaconsoftware }
+  - { ats: ashby, slug: tekion, name: Tekion }
+  - { ats: ashby, slug: delinea, name: Delinea }
+  - { ats: ashby, slug: tandem-health, name: Tandem Health }
+  - { ats: ashby, slug: salmon-group, name: Salmon Group }
+  - { ats: ashby, slug: roadsurfer.com, name: Roadsurfer.Com }
+  - { ats: ashby, slug: focused, name: Focused }
+  - { ats: breezy, slug: themis-insight, name: Themis Insight }
+  - { ats: breezy, slug: tsu, name: Tsu }
+  - { ats: breezy, slug: american-logistics-authority, name: American Logistics Authority }
+  - { ats: breezy, slug: mktg, name: Mktg }
+  - { ats: breezy, slug: reliantinternships, name: Reliantinternships }
+  - { ats: breezy, slug: timeless-select-llc, name: Timeless Select Llc }
+  - { ats: breezy, slug: swa-group, name: Swa Group }
+  - { ats: breezy, slug: hamilton-recruitment, name: Hamilton Recruitment }
+  - { ats: greenhouse, slug: zone5technologies, name: Zone5Technologies }
+  - { ats: greenhouse, slug: pingidentity, name: Pingidentity }
+  - { ats: greenhouse, slug: coreweaveu, name: Coreweaveu }
+  - { ats: greenhouse, slug: datadog, name: Datadog }
+  - { ats: greenhouse, slug: appier, name: Appier }
+  - { ats: greenhouse, slug: lucidmotors, name: Lucidmotors }
+  - { ats: recruitee, slug: triangulargroup, name: Triangulargroup }
+  - { ats: recruitee, slug: medikamentediegrenze, name: Medikamentediegrenze }
+  - { ats: recruitee, slug: villaprovidenceshediacinc, name: Villaprovidenceshediacinc }
+  - { ats: recruitee, slug: thebellezzagroup, name: Thebellezzagroup }
+  - { ats: recruitee, slug: trafilea, name: Trafilea }
+  - { ats: recruitee, slug: bedachungenschmidtgmbh, name: Bedachungenschmidtgmbh }
+  - { ats: recruitee, slug: berenschot, name: Berenschot }
+  - { ats: recruitee, slug: tabelgruppe, name: Tabelgruppe }
+  - { ats: teamtailor, slug: b3consultingpoland, name: B3Consultingpoland }
+  - { ats: teamtailor, slug: salesvalley, name: Salesvalley }
+  - { ats: teamtailor, slug: keystaffoy, name: Keystaffoy }
+  - { ats: teamtailor, slug: honeybirdette, name: Honeybirdette }
+  - { ats: teamtailor, slug: nobiaab, name: Nobiaab }
+  - { ats: teamtailor, slug: tradingview, name: Tradingview }
+  - { ats: teamtailor, slug: pandox-belgium-careers, name: Pandox Belgium Careers }
+  - { ats: ashby, slug: adaptyv, name: Adaptyv }
+  - { ats: ashby, slug: basis-ai, name: Basis Ai }
+  - { ats: ashby, slug: sailorhealth, name: Sailorhealth }
+  - { ats: ashby, slug: positive-development, name: Positive Development }
+  - { ats: ashby, slug: skydropx, name: Skydropx }
+  - { ats: ashby, slug: openloophealth, name: Openloophealth }
+  - { ats: ashby, slug: clera, name: Clera }
+  - { ats: breezy, slug: respond-io, name: Respond Io }
+  - { ats: breezy, slug: thoroughbred-express, name: Thoroughbred Express }
+  - { ats: breezy, slug: 4th-day-trucking, name: 4Th Day Trucking }
+  - { ats: breezy, slug: beex, name: Beex }
+  - { ats: breezy, slug: focus-group-panel, name: Focus Group Panel }
+  - { ats: greenhouse, slug: jumptrading, name: Jumptrading }
+  - { ats: greenhouse, slug: vanleeuwenicecream, name: Vanleeuwenicecream }
+  - { ats: greenhouse, slug: referralsuseonly, name: Referralsuseonly }
+  - { ats: greenhouse, slug: lush, name: Lush }
+  - { ats: greenhouse, slug: marketechinternationalcorporationusa, name: Marketechinternationalcorporationusa }
+  - { ats: greenhouse, slug: moodhealth, name: Moodhealth }
+  - { ats: greenhouse, slug: billiontoone, name: Billiontoone }
+  - { ats: greenhouse, slug: erc8585757pathlight53t353, name: Erc8585757Pathlight53T353 }
+  - { ats: recruitee, slug: centric, name: Centric }
+  - { ats: recruitee, slug: noackconsulting, name: Noackconsulting }
+  - { ats: recruitee, slug: iliabeauty, name: Iliabeauty }
+  - { ats: recruitee, slug: deutschespromotionszentrum, name: Deutschespromotionszentrum }
+  - { ats: recruitee, slug: infomedics, name: Infomedics }
+  - { ats: recruitee, slug: macecareers, name: Macecareers }
+  - { ats: teamtailor, slug: techniquesolairesarl, name: Techniquesolairesarl }
+  - { ats: teamtailor, slug: twlglobalservicessrl, name: Twlglobalservicessrl }
+  - { ats: teamtailor, slug: logicalisespana, name: Logicalisespana }
+  - { ats: teamtailor, slug: forenadecare, name: Forenadecare }
+  - { ats: teamtailor, slug: attendosverige, name: Attendosverige }
+  - { ats: ashby, slug: hinge-health, name: Hinge Health }
+  - { ats: ashby, slug: cerebras, name: Cerebras }
+  - { ats: ashby, slug: rowan, name: Rowan }
+  - { ats: ashby, slug: talentful, name: Talentful }
+  - { ats: ashby, slug: compass-surgical-partners, name: Compass Surgical Partners }
+  - { ats: ashby, slug: jobber, name: Jobber }
+  - { ats: ashby, slug: pebl, name: Pebl }
+  - { ats: ashby, slug: opengov, name: Opengov }
+  - { ats: breezy, slug: tigo, name: Tigo }
+  - { ats: breezy, slug: barnhart-crane-rigging, name: Barnhart Crane Rigging }
+  - { ats: breezy, slug: apex-tk-llc, name: Apex Tk Llc }
+  - { ats: breezy, slug: zetier, name: Zetier }
+  - { ats: breezy, slug: udem, name: Udem }
+  - { ats: breezy, slug: alchemy-financial-group, name: Alchemy Financial Group }
+  - { ats: breezy, slug: buddhist-compassion-relief-tzu-chi-foundation-singapore, name: Buddhist Compassion Relief Tzu Chi Foundation Singapore }
+  - { ats: breezy, slug: sunpower, name: Sunpower }
+  - { ats: greenhouse, slug: ebury, name: Ebury }
+  - { ats: greenhouse, slug: alphafmcroles, name: Alphafmcroles }
+  - { ats: greenhouse, slug: retailinsights, name: Retailinsights }
+  - { ats: greenhouse, slug: thenuclearcompany, name: Thenuclearcompany }
+  - { ats: greenhouse, slug: unitedveincenters, name: Unitedveincenters }
+  - { ats: greenhouse, slug: veeamsoftware, name: Veeamsoftware }
+  - { ats: greenhouse, slug: blueskytelepsych, name: Blueskytelepsych }
+  - { ats: greenhouse, slug: imafinancialgroup, name: Imafinancialgroup }
+  - { ats: recruitee, slug: gmk, name: Gmk }
+  - { ats: recruitee, slug: scioteq, name: Scioteq }
+  - { ats: recruitee, slug: cordesconsulting, name: Cordesconsulting }
+  - { ats: recruitee, slug: altiussearchgroup, name: Altiussearchgroup }
+  - { ats: recruitee, slug: kaptenandson, name: Kaptenandson }
+  - { ats: recruitee, slug: xebiacareers, name: Xebiacareers }
+  - { ats: recruitee, slug: coloriet, name: Coloriet }
+  - { ats: recruitee, slug: unitedalsaqergroup, name: Unitedalsaqergroup }
+  - { ats: teamtailor, slug: tahoetruckeeusd, name: Tahoetruckeeusd }
+  - { ats: teamtailor, slug: areams-1718191759, name: Areams 1718191759 }
+  - { ats: teamtailor, slug: workyn, name: Workyn }
+  - { ats: teamtailor, slug: elitehotels, name: Elitehotels }
+  - { ats: teamtailor, slug: satelliteoffice-1742766257, name: Satelliteoffice 1742766257 }
+  - { ats: teamtailor, slug: fortrayglobalservices, name: Fortrayglobalservices }
+  - { ats: teamtailor, slug: groupeetam, name: Groupeetam }
+  - { ats: teamtailor, slug: wsa1, name: Wsa1 }
+  - { ats: ashby, slug: perplexity, name: Perplexity }
+  - { ats: ashby, slug: metaview, name: Metaview }
+  - { ats: ashby, slug: aerovect, name: Aerovect }
+  - { ats: ashby, slug: uncountable, name: Uncountable }
+  - { ats: ashby, slug: coram-ai, name: Coram Ai }
+  - { ats: ashby, slug: amo, name: Amo }
+  - { ats: ashby, slug: fireworks, name: Fireworks }
+  - { ats: ashby, slug: owner, name: Owner }
+  - { ats: breezy, slug: all-financial-freedom, name: All Financial Freedom }
+  - { ats: breezy, slug: pop-mart-americas-inc, name: Pop Mart Americas Inc }
+  - { ats: breezy, slug: ensemble-performing-arts, name: Ensemble Performing Arts }
+  - { ats: breezy, slug: trueline, name: Trueline }
+  - { ats: breezy, slug: elvis-eckardt-recruitment-sales-solutions-limited, name: Elvis Eckardt Recruitment Sales Solutions Limited }
+  - { ats: breezy, slug: betterme, name: Betterme }
+  - { ats: breezy, slug: salesdraft-recruiting, name: Salesdraft Recruiting }
+  - { ats: breezy, slug: advantia-health, name: Advantia Health }
+  - { ats: greenhouse, slug: toojaysdeli, name: Toojaysdeli }
+  - { ats: greenhouse, slug: mthreerecruitingportal, name: Mthreerecruitingportal }
+  - { ats: greenhouse, slug: certifiedgroup, name: Certifiedgroup }
+  - { ats: greenhouse, slug: sonobello, name: Sonobello }
+  - { ats: greenhouse, slug: woolpert, name: Woolpert }
+  - { ats: greenhouse, slug: humaninterest, name: Humaninterest }
+  - { ats: greenhouse, slug: captiveaire, name: Captiveaire }
+  - { ats: greenhouse, slug: zoominfo, name: Zoominfo }
+  - { ats: recruitee, slug: tepass, name: Tepass }
+  - { ats: recruitee, slug: bestpeople, name: Bestpeople }
+  - { ats: recruitee, slug: recrutementmondialtissus, name: Recrutementmondialtissus }
+  - { ats: recruitee, slug: saudigeophysical, name: Saudigeophysical }
+  - { ats: recruitee, slug: dresselimmobiliengmbh, name: Dresselimmobiliengmbh }
+  - { ats: recruitee, slug: odion, name: Odion }
+  - { ats: recruitee, slug: duravermeer, name: Duravermeer }
+  - { ats: recruitee, slug: fridayrecruitment, name: Fridayrecruitment }
+  - { ats: teamtailor, slug: groupeacorus, name: Groupeacorus }
+  - { ats: teamtailor, slug: isio, name: Isio }
+  - { ats: teamtailor, slug: keepit, name: Keepit }
+  - { ats: teamtailor, slug: eworgmbh, name: Eworgmbh }
+  - { ats: teamtailor, slug: doxallia, name: Doxallia }
+  - { ats: teamtailor, slug: kidsandus, name: Kidsandus }
+  - { ats: teamtailor, slug: vincienergiesuk, name: Vincienergiesuk }
+  - { ats: teamtailor, slug: voscours, name: Voscours }
+  - { ats: ashby, slug: xyz-reality, name: Xyz Reality }
+  - { ats: ashby, slug: ashby, name: Ashby }
+  - { ats: ashby, slug: thought-machine, name: Thought Machine }
+  - { ats: ashby, slug: tellos, name: Tellos }
+  - { ats: ashby, slug: camunda, name: Camunda }
+  - { ats: ashby, slug: united-talent-agency, name: United Talent Agency }
+  - { ats: ashby, slug: neara, name: Neara }
+  - { ats: ashby, slug: nory-co, name: Nory Co }
+  - { ats: breezy, slug: red-cup-it-inc, name: Red Cup It Inc }
+  - { ats: breezy, slug: landmark-hospitality, name: Landmark Hospitality }
+  - { ats: breezy, slug: wongnai-media-co-ltd, name: Wongnai Media Co Ltd }
+  - { ats: breezy, slug: meron-financial-agency, name: Meron Financial Agency }
+  - { ats: breezy, slug: srs-merchandising, name: Srs Merchandising }
+  - { ats: breezy, slug: drivepersonnel, name: Drivepersonnel }
+  - { ats: breezy, slug: erdman-anthony, name: Erdman Anthony }
+  - { ats: breezy, slug: hygienistcareers, name: Hygienistcareers }
+  - { ats: greenhouse, slug: crestwoodcareers, name: Crestwoodcareers }
+  - { ats: greenhouse, slug: flagshippioneeringinc, name: Flagshippioneeringinc }
+  - { ats: greenhouse, slug: asm, name: Asm }
+  - { ats: greenhouse, slug: stone, name: Stone }
+  - { ats: greenhouse, slug: sothebys, name: Sothebys }
+  - { ats: greenhouse, slug: tripledotstudios, name: Tripledotstudios }
+  - { ats: greenhouse, slug: cabify, name: Cabify }
+  - { ats: greenhouse, slug: pediatricsplus, name: Pediatricsplus }
+  - { ats: recruitee, slug: onstweedethuis, name: Onstweedethuis }
+  - { ats: recruitee, slug: lumc, name: Lumc }
+  - { ats: recruitee, slug: bussolagroep, name: Bussolagroep }
+  - { ats: recruitee, slug: anteagroup, name: Anteagroup }
+  - { ats: recruitee, slug: tacobellnederland, name: Tacobellnederland }
+  - { ats: recruitee, slug: yellowtail, name: Yellowtail }
+  - { ats: recruitee, slug: youngtalents, name: Youngtalents }
+  - { ats: recruitee, slug: nozrecrute, name: Nozrecrute }
+  - { ats: teamtailor, slug: directmedics, name: Directmedics }
+  - { ats: teamtailor, slug: grupobeledad-1738232006, name: Grupobeledad 1738232006 }
+  - { ats: teamtailor, slug: winid, name: Winid }
+  - { ats: teamtailor, slug: anicuranl, name: Anicuranl }
+  - { ats: teamtailor, slug: grupoclave, name: Grupoclave }
+  - { ats: teamtailor, slug: naffco, name: Naffco }
+  - { ats: teamtailor, slug: hillgroupuk, name: Hillgroupuk }
+  - { ats: teamtailor, slug: morrissouth, name: Morrissouth }
