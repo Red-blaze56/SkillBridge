@@ -19,6 +19,7 @@ export {
 } from './agent.ts';
 export { checkEvidence, LEVEL_NAMES, SECTION_CAP, type Evidence } from './evidence.ts';
 export { buildResult, FORMULA_VERSION, readiness, targetLevel } from './score.ts';
+export { DEFAULT_GEMINI_MODEL } from './versions.ts';
 
 /** Each Gemini call gets this long. MAX_ROUNDS calls must fit in the worker's lease. */
 export const CALL_TIMEOUT_MS = 60_000;

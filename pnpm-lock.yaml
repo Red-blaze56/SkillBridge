@@ -193,12 +193,21 @@ importers:
 
   apps/api:
     dependencies:
+      '@skillbridge/analysis':
+        specifier: workspace:*
+        version: link:../../packages/analysis
       '@skillbridge/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@skillbridge/queue':
+        specifier: workspace:*
+        version: link:../../packages/queue
       '@skillbridge/resume':
         specifier: workspace:*
         version: link:../../packages/resume
+      '@skillbridge/roles':
+        specifier: workspace:*
+        version: link:../../packages/roles
       '@skillbridge/shared':
         specifier: workspace:*
         version: link:../../packages/shared

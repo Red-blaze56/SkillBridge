@@ -4,7 +4,9 @@ import type { AnalysisResult, SkillAssessment, SkillGap } from '@skillbridge/sha
 import { roleSkills, type Role, type RoleSkill } from '@skillbridge/roles';
 import type { Evidence } from './evidence.ts';
 
-export const FORMULA_VERSION = '1.0.0';
+import { FORMULA_VERSION } from './versions.ts';
+
+export { FORMULA_VERSION };
 
 const round1 = (n: number) => Math.round(n * 10) / 10;
 

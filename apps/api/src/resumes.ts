@@ -6,7 +6,7 @@ import { Binary, ObjectId, type Collection, type Db, type WithId } from 'mongodb
 import { MAX_BYTES, parseResume, PdfError, type ParsedResume } from '@skillbridge/resume';
 import type { ResumeDetail, ResumeSummary } from '@skillbridge/shared';
 import { currentUser } from './auth/http.ts';
-import { once, ownedBy, type Owned } from '@skillbridge/db';
+import { once, ownedBy, type AnalysisCollection, type Owned } from '@skillbridge/db';
 
 /** Resumes, their parsed text and the PDF are deleted this long after upload. */
 export const RESUME_LIFETIME_DAYS = 30;
@@ -76,7 +76,13 @@ function resumeId(raw: unknown): ObjectId | null {
   return typeof raw === 'string' && /^[0-9a-f]{24}$/.test(raw) ? new ObjectId(raw) : null;
 }
 
-export function resumeRoutes(resumes: ResumeCollection, { now = () => new Date() } = {}) {
+export interface ResumeRouteOptions {
+  now?: () => Date;
+  /** Deleting a resume deletes its analyses too. */
+  analyses?: AnalysisCollection;
+}
+
+export function resumeRoutes(resumes: ResumeCollection, { now = () => new Date(), analyses }: ResumeRouteOptions = {}) {
   const router = express.Router();
   const mine = async (req: Request) => ownedBy<ResumeDoc>(await resumes(), currentUser(req).uid);
 
@@ -136,6 +142,9 @@ export function resumeRoutes(resumes: ResumeCollection, { now = () => new Date()
   router.delete('/:id', async (req, res) => {
     const id = resumeId(req.params.id);
     const { deletedCount } = id ? await (await mine(req)).deleteOne({ _id: id }) : { deletedCount: 0 };
+    if (deletedCount && analyses) {
+      await ownedBy(await analyses(), currentUser(req).uid).deleteMany({ resumeId: id! });
+    }
     res.status(deletedCount ? 204 : 404).end();
   });
 

@@ -14,7 +14,12 @@ request with tests.
 | `apps/api` | Express 5 API in TypeScript. Node runs it directly, with no build step |
 | `apps/web` | React + Vite frontend |
 | `packages/shared` | Zod schemas shared by the API, web app and workers |
-| `workers/` | One folder per agent worker (none yet, see `workers/README.md`) |
+| `packages/resume` | Resume PDF parser: hidden-text screening, sections, passages |
+| `packages/roles` | Target roles and their weighted skills |
+| `packages/analysis` | The skill evidence agent (LangGraph + Gemini) and the readiness score |
+| `packages/db` | MongoDB helpers (`ownedBy`, `createMongo`) and collections the API and workers share |
+| `packages/queue` | RabbitMQ jobs: confirmed publishing, retries with growing delays, dead-letter queues |
+| `workers/evidence` | Runs skill gap analyses from the queue (see `workers/README.md`) |
 | `services/interview` | Mock-interview service (FastAPI + its own Postgres + Gemini), copied with its history from the AI Interview Simulator. Only SkillBridge's API can call it (see its README) |
 | `compose.yaml` | MongoDB (single-node replica set), RabbitMQ, and the interview service with its Postgres |
 
@@ -24,7 +29,7 @@ request with tests.
 - **pnpm** ([install it](https://pnpm.io/installation)). It switches itself to the version
   pinned in `package.json`.
 - **Docker Desktop**, for MongoDB, RabbitMQ and the interview service.
-- A **Gemini API key** for mock interviews ([get one](https://aistudio.google.com/apikey)).
+- A **Gemini API key** for skill analyses and mock interviews ([get one](https://aistudio.google.com/apikey)).
 
 ## Run it locally
 
@@ -39,13 +44,15 @@ pnpm install
 docker compose up -d
 ```
 
-Then:
+Then, in two terminals:
 
 ```bash
 pnpm dev
+pnpm worker
 ```
 
 The web app is at http://localhost:5173 and the API at http://localhost:4000/api/health.
+`pnpm worker` runs the evidence worker; without it, analyses stay queued.
 
 Sign-up is invite-only, so create your own account with an invite link:
 
@@ -60,9 +67,10 @@ Open the printed link and choose a password.
 | Command | Does |
 |---|---|
 | `pnpm dev` | Runs the API and web app, reloading on changes |
+| `pnpm worker` | Runs the evidence worker, which does the skill gap analyses |
 | `pnpm lint` | ESLint over the whole repo |
 | `pnpm typecheck` | TypeScript in every package |
-| `pnpm test` | Every test, with Vitest. The sign-in tests need MongoDB running (`docker compose up -d mongo`) |
+| `pnpm test` | Every test, with Vitest. Needs MongoDB and RabbitMQ running (`docker compose up -d mongo rabbitmq`) |
 | `pnpm build` | Builds the web app |
 | `pnpm check` | Lint, typecheck, test and build. CI runs these on every pull request |
 | `pnpm admin invite <email>` | Prints a link that lets that person create an account (works once, valid 7 days) |
@@ -86,5 +94,23 @@ Open the printed link and choose a password.
 
   Accounts are created only through single-use invite links.
 - **Personal data.** Code reaches a collection that holds personal data only through
-  `ownedBy(collection, userId)` in `apps/api/src/db/owned.ts`. It limits every query to one
-  user and blocks updates that would change a document's owner.
+  `ownedBy(collection, userId)` in `packages/db/src/owned.ts`. It limits every query to one
+  user and blocks updates that would change a document's owner. Workers use it too: the
+  evidence worker reads a resume only as the student who owns the analysis.
+
+## Skill gap analysis
+
+1. `GET /api/roles` lists the target roles and their skills, weighted 3 (core), 2 or 1.
+2. `POST /api/analyses` with `{ resumeId, roleId }` saves a queued analysis and puts an
+   `analyze` job on RabbitMQ (202). The same resume, role, prompt and model reuse the
+   earlier result (200). Each student can start `ANALYSES_PER_DAY` (10) a day.
+3. `workers/evidence` claims the job and asks Gemini to cite resume evidence for every
+   skill: 3 = job or internship, 2 = project, 1 = only listed, 0 = absent. Code checks
+   that every quote is really in the resume and caps the level by section (a skills list
+   can't prove more than 1). Code, not the AI, computes the score:
+   `readiness = 100 × Σ weight × (level / 3) / Σ weight`.
+4. `GET /api/analyses/:id` until `status` is `done` (the score, evidence and gaps) or
+   `failed` (an `error` to show). If Gemini is busy, the job is retried after 5 s, 30 s
+   and 5 min first.
+
+Deleting a resume deletes its analyses.

@@ -1,6 +1,6 @@
 // The evidence worker: takes analysis jobs from RabbitMQ and runs the evidence agent.
 // Start it with `pnpm --filter @skillbridge/worker-evidence dev` (reads the root .env).
-import { geminiModel } from '@skillbridge/analysis';
+import { DEFAULT_GEMINI_MODEL, geminiModel } from '@skillbridge/analysis';
 import { createMongo, lazyAnalyses } from '@skillbridge/db';
 import { createQueue } from '@skillbridge/queue';
 import { ANALYZE_JOB, AnalysisJob } from '@skillbridge/shared';
@@ -10,7 +10,7 @@ const env = {
   mongoUri: process.env.MONGODB_URI ?? 'mongodb://127.0.0.1:27017/skillbridge?directConnection=true',
   rabbitUrl: process.env.RABBITMQ_URL ?? 'amqp://skillbridge:skillbridge-dev@127.0.0.1:5672',
   apiKey: process.env.GEMINI_API_KEY ?? '',
-  model: process.env.GEMINI_MODEL || 'gemini-3.6-flash',
+  model: process.env.GEMINI_MODEL || DEFAULT_GEMINI_MODEL,
   concurrency: Number(process.env.EVIDENCE_CONCURRENCY ?? 2),
 };
 

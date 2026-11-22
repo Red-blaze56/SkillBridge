@@ -14,8 +14,7 @@ import type { Passage } from '@skillbridge/shared';
 import { roleSkills, type Role } from '@skillbridge/roles';
 import { checkEvidence, type Evidence } from './evidence.ts';
 
-/** Bump when the prompt or tool changes, so cached analyses aren't reused. */
-export const PROMPT_VERSION = 'skill-evidence-2';
+export { PROMPT_VERSION } from './versions.ts';
 export const MAX_ROUNDS = 4;
 
 /** A chat model with tools bound: the conversation in, the next AI message out. */

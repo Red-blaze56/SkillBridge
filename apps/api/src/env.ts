@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { DEFAULT_GEMINI_MODEL } from '@skillbridge/analysis/versions';
 
 const EnvSchema = z.object({
   // A missing NODE_ENV means production: anything that relaxes security has to be
@@ -19,6 +20,12 @@ const EnvSchema = z.object({
   INTERVIEW_SERVICE_URL: z.url().default('http://127.0.0.1:8100'),
   INTERVIEW_SERVICE_TOKEN: z.preprocess((v) => (v === '' ? undefined : v), z.string().min(32).optional()),
   INTERVIEWS_PER_DAY: z.coerce.number().int().min(1).max(50).default(3),
+
+  // Skill gap analyses: the job queue the evidence worker reads, and a daily cap per student.
+  RABBITMQ_URL: z.string().min(1).default('amqp://skillbridge:skillbridge-dev@127.0.0.1:5672'),
+  ANALYSES_PER_DAY: z.coerce.number().int().min(1).max(100).default(10),
+  // Must match the worker's, so a stored result is only reused for the same model.
+  GEMINI_MODEL: z.preprocess((v) => (v === '' ? undefined : v), z.string().min(1).default(DEFAULT_GEMINI_MODEL)),
 });
 
 export type Env = z.infer<typeof EnvSchema>;

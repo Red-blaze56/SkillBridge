@@ -3,6 +3,7 @@ import type { ErrorRequestHandler } from 'express';
 import type { HealthResponse } from '@skillbridge/shared';
 import { authRoutes, currentUser, requireUser, sameOrigin, sessionAuth } from './auth/http.ts';
 import type { AuthService } from './auth/service.ts';
+import { analysisRoutes, roleRoutes, type AnalysisOptions } from './analyses.ts';
 import { interviewRoutes, type InterviewServiceOptions } from './interviews.ts';
 import { resumeRoutes, type ResumeCollection } from './resumes.ts';
 
@@ -20,9 +21,20 @@ export interface AppOptions {
   interviews?: InterviewServiceOptions;
   /** Where resumes are stored. Without it, /api/resumes doesn't exist. */
   resumes?: ResumeCollection;
+  /** Skill gap analyses (needs resumes). Without it, /api/analyses doesn't exist. */
+  analyses?: Omit<AnalysisOptions, 'resumes'>;
 }
 
-export function createApp({ auth, isDatabaseUp, appOrigin, secureCookies, trustProxy = 0, interviews, resumes }: AppOptions) {
+export function createApp({
+  auth,
+  isDatabaseUp,
+  appOrigin,
+  secureCookies,
+  trustProxy = 0,
+  interviews,
+  resumes,
+  analyses,
+}: AppOptions) {
   const app = express();
   app.disable('x-powered-by');
   if (trustProxy > 0) app.set('trust proxy', trustProxy);
@@ -47,7 +59,9 @@ export function createApp({ auth, isDatabaseUp, appOrigin, secureCookies, trustP
   });
 
   if (interviews) app.use('/api/interviews', interviewRoutes(interviews));
-  if (resumes) app.use('/api/resumes', resumeRoutes(resumes));
+  app.use('/api/roles', roleRoutes());
+  if (resumes) app.use('/api/resumes', resumeRoutes(resumes, { analyses: analyses?.analyses }));
+  if (resumes && analyses) app.use('/api/analyses', analysisRoutes({ ...analyses, resumes }));
 
   app.use((_req, res) => {
     res.status(404).json({ error: 'Not found' });

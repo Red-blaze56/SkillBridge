@@ -10,8 +10,11 @@
     "typecheck": "tsc --noEmit -p tsconfig.json"
   },
   "dependencies": {
+    "@skillbridge/analysis": "workspace:*",
     "@skillbridge/db": "workspace:*",
+    "@skillbridge/queue": "workspace:*",
     "@skillbridge/resume": "workspace:*",
+    "@skillbridge/roles": "workspace:*",
     "@skillbridge/shared": "workspace:*",
     "express": "^5.3.0",
     "mongodb": "^7.9.1",

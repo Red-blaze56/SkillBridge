@@ -1,7 +1,9 @@
 import { createApp } from './app.ts';
 import { createAuthService } from './auth/service.ts';
 import { lazyAuthCollections } from './auth/store.ts';
-import { createMongo } from '@skillbridge/db';
+import { createMongo, lazyAnalyses } from '@skillbridge/db';
+import { createQueue } from '@skillbridge/queue';
+import { ANALYZE_JOB } from '@skillbridge/shared';
 import { loadEnv } from './env.ts';
 import { lazyResumes } from './resumes.ts';
 import { createDailyLimit } from './usage.ts';
@@ -9,6 +11,8 @@ import { createDailyLimit } from './usage.ts';
 const env = loadEnv(process.env);
 
 const mongo = createMongo(env.MONGODB_URI);
+// Connects in the background; until RabbitMQ is up, starting an analysis answers 503.
+const queue = await createQueue({ url: env.RABBITMQ_URL, jobs: [ANALYZE_JOB] });
 const auth = createAuthService(lazyAuthCollections(() => mongo.db()));
 const app = createApp({
   auth,
@@ -22,6 +26,12 @@ const app = createApp({
     limit: createDailyLimit(() => mongo.db(), { name: 'interviews', perDay: env.INTERVIEWS_PER_DAY }),
   },
   resumes: lazyResumes(() => mongo.db()),
+  analyses: {
+    analyses: lazyAnalyses(() => mongo.db()),
+    queue,
+    limit: createDailyLimit(() => mongo.db(), { name: 'analyses', perDay: env.ANALYSES_PER_DAY }),
+    model: env.GEMINI_MODEL,
+  },
 });
 
 if (!env.INTERVIEW_SERVICE_TOKEN) {
@@ -43,7 +53,7 @@ void mongo.isUp().then((up) => {
 
 function shutdown() {
   server.close(() => {
-    void mongo.close().finally(() => process.exit(0));
+    void Promise.allSettled([queue.close(), mongo.close()]).finally(() => process.exit(0));
   });
 }
 process.on('SIGINT', shutdown);

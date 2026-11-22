@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "pnpm --parallel --filter \"./apps/*\" dev",
     "admin": "pnpm --filter @skillbridge/api admin",
+    "worker": "pnpm --filter @skillbridge/worker-evidence dev",
     "lint": "eslint .",
     "typecheck": "pnpm -r typecheck",
     "test": "vitest run",
