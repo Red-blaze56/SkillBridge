@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, Gauge, LayoutDashboard, LogOut } from 'lucide-react';
+import { ArrowRight, FileText, Gauge, LayoutDashboard, LogOut, MessagesSquare } from 'lucide-react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import type { AuthUser } from '@skillbridge/shared';
 import { signOut } from '../../services/auth.ts';
@@ -10,6 +10,7 @@ const items = [
   { label: 'Overview', to: '/', icon: LayoutDashboard },
   { label: 'Resume', to: '/resume', icon: FileText },
   { label: 'Readiness', to: '/readiness', icon: Gauge },
+  { label: 'Interviews', to: '/interviews', icon: MessagesSquare },
 ];
 
 export function AppShell({

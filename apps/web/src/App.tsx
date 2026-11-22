@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import type { AuthUser } from '@skillbridge/shared';
 import { AppShell } from './components/layout/AppShell.tsx';
+import { InterviewNewPage } from './pages/InterviewNewPage.tsx';
+import { InterviewPage } from './pages/InterviewPage.tsx';
+import { InterviewsPage } from './pages/InterviewsPage.tsx';
 import { LoginPage } from './pages/LoginPage.tsx';
 import { OverviewPage } from './pages/OverviewPage.tsx';
 import { ReadinessPage } from './pages/ReadinessPage.tsx';
@@ -58,6 +61,9 @@ export function App() {
               <Route index element={<OverviewPage user={session.user} />} />
               <Route path="resume" element={<ResumePage />} />
               <Route path="readiness" element={<ReadinessPage />} />
+              <Route path="interviews" element={<InterviewsPage />} />
+              <Route path="interviews/new" element={<InterviewNewPage />} />
+              <Route path="interviews/:id" element={<InterviewPage />} />
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
