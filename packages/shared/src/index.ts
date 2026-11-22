@@ -237,3 +237,47 @@ export const JobMatches = z.object({
   updatedAt: z.iso.datetime().nullable(),
 });
 export type JobMatches = z.infer<typeof JobMatches>;
+
+// ── Learning roadmap ───────────────────────────────────────────────────────
+
+export const RoadmapResource = z.object({
+  id: z.string(),
+  title: z.string(),
+  provider: z.string(),
+  url: z.string(),
+  kind: z.enum(['docs', 'course', 'tutorial', 'practice', 'book']),
+  hours: z.number(),
+});
+export type RoadmapResource = z.infer<typeof RoadmapResource>;
+
+export const RoadmapStep = z.object({
+  skillId: z.string(),
+  name: z.string(),
+  weight: z.number().int().min(1).max(3),
+  from: EvidenceLevel,
+  to: EvidenceLevel,
+  /** What the student should be able to do afterwards. */
+  objective: z.string(),
+  /** What to build or do. */
+  activity: z.string(),
+  /** The resume evidence that shows the step is done. */
+  doneWhen: z.string(),
+  hours: z.number(),
+  /** Earlier steps this one builds on. */
+  prerequisites: z.array(z.string()),
+  resources: z.array(RoadmapResource),
+});
+export type RoadmapStep = z.infer<typeof RoadmapStep>;
+
+/** GET /api/analyses/:id/roadmap */
+export const Roadmap = z.object({
+  analysisId: z.string(),
+  roleId: z.string(),
+  steps: z.array(RoadmapStep),
+  totalHours: z.number(),
+  weeks: z.number().int(),
+  hoursPerWeek: z.number(),
+  /** When every catalogue link last answered. */
+  catalogueCheckedAt: z.string(),
+});
+export type Roadmap = z.infer<typeof Roadmap>;

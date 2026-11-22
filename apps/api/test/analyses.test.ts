@@ -215,6 +215,29 @@ describe('reading analyses', () => {
     expect((await request(app).get('/api/analyses?resumeId=bad').set(as(ALICE))).body).toEqual([]);
   });
 
+  it('gives the learning plan for a finished analysis, only to its owner', async () => {
+    const resumeId = await addResume();
+    const { body } = await start({ resumeId, roleId: 'backend-developer' });
+    const roadmap = (user = ALICE) => request(app).get(`/api/analyses/${body.id}/roadmap`).set(as(user));
+    expect((await roadmap()).status).toBe(404); // still queued
+
+    const gaps = [
+      { skillId: 'node', name: 'Node.js', weight: 3, level: 0, target: 2 },
+      { skillId: 'javascript', name: 'JavaScript', weight: 3, level: 1, target: 2 },
+    ];
+    const result = { score: 20, skills: [], gaps, roleId: 'backend-developer', roleVersion: '1.0.0', formulaVersion: '1.0.0', promptVersion: 'p', model: 'm' };
+    await db.collection('analyses').updateOne({ _id: new ObjectId(body.id) }, { $set: { status: 'done', result } });
+
+    const res = await roadmap();
+    expect(res.status).toBe(200);
+    expect(res.body.steps.map((s: { skillId: string }) => s.skillId)).toEqual(['javascript', 'node']); // foundation first
+    expect(res.body).toMatchObject({ analysisId: body.id, roleId: 'backend-developer', totalHours: 42 });
+    expect(res.body.steps[0].resources.length).toBeGreaterThan(0);
+
+    expect((await roadmap(BOB)).status).toBe(404);
+    expect((await request(app).get('/api/analyses/nope/roadmap').set(as(ALICE))).status).toBe(404);
+  });
+
   it('deletes a resume’s analyses with the resume', async () => {
     const resumeId = await addResume();
     const keep = await addResume();

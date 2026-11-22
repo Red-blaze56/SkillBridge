@@ -15,6 +15,7 @@
     "@skillbridge/jobs": "workspace:*",
     "@skillbridge/queue": "workspace:*",
     "@skillbridge/resume": "workspace:*",
+    "@skillbridge/roadmap": "workspace:*",
     "@skillbridge/roles": "workspace:*",
     "@skillbridge/shared": "workspace:*",
     "express": "^5.3.0",

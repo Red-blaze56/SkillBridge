@@ -1,4 +1,4 @@
-import { Analysis, RoleSummary } from '@skillbridge/shared';
+import { Analysis, Roadmap, RoleSummary } from '@skillbridge/shared';
 import { api } from '../api.ts';
 
 /** GET /api/roles — the roles a student can measure a resume against. */
@@ -25,4 +25,9 @@ export async function listAnalyses(resumeId?: string, signal?: AbortSignal): Pro
   return Analysis.array().parse(await api<unknown>(`/analyses${query}`, { signal }));
 }
 
-export const isFinished = (analysis: Analysis) => analysis.status === 'done' || analysis.status === 'failed';
+/** GET /api/analyses/:id/roadmap — the learning plan for a finished analysis. */
+export async function getRoadmap(id: string, signal?: AbortSignal): Promise<Roadmap> {
+  return Roadmap.parse(await api<unknown>(`/analyses/${encodeURIComponent(id)}/roadmap`, { signal }));
+}
+
+export const isFinished =(analysis: Analysis) => analysis.status === 'done' || analysis.status === 'failed';

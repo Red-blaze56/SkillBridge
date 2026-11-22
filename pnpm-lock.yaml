@@ -208,6 +208,9 @@ importers:
       '@skillbridge/resume':
         specifier: workspace:*
         version: link:../../packages/resume
+      '@skillbridge/roadmap':
+        specifier: workspace:*
+        version: link:../../packages/roadmap
       '@skillbridge/roles':
         specifier: workspace:*
         version: link:../../packages/roles
@@ -350,6 +353,19 @@ importers:
       pdf-lib:
         specifier: ^1.17.1
         version: 1.17.1
+
+  packages/roadmap:
+    dependencies:
+      '@skillbridge/roles':
+        specifier: workspace:*
+        version: link:../roles
+      '@skillbridge/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      '@types/node':
+        specifier: 24.19.2
+        version: 24.19.2
 
   packages/roles:
     devDependencies:

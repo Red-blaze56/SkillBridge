@@ -10,6 +10,7 @@ import { ObjectId, type WithId } from 'mongodb';
 import { FORMULA_VERSION, PROMPT_VERSION } from '@skillbridge/analysis/versions';
 import { ownedBy, type AnalysisCollection, type AnalysisDoc, type Owned } from '@skillbridge/db';
 import { QueueUnavailableError, type Queue } from '@skillbridge/queue';
+import { buildRoadmap } from '@skillbridge/roadmap';
 import { getRole, roleSkills, ROLES } from '@skillbridge/roles';
 import { ANALYZE_JOB, AnalysisRequest, type Analysis, type RoleSummary } from '@skillbridge/shared';
 import { currentUser } from './auth/http.ts';
@@ -148,6 +149,17 @@ export function analysisRoutes({ analyses, resumes, queue, limit, model, now = (
     }
     const docs = await (await mine(req)).find(filter).sort({ createdAt: -1 }).limit(50).toArray();
     res.json((docs as WithId<Owned<AnalysisDoc>>[]).map(view));
+  });
+
+  // The learning plan for one of your finished analyses: built in code from the link-checked catalogue.
+  router.get('/:id/roadmap', async (req, res) => {
+    const id = objectId(req.params.id);
+    const doc = id ? ((await (await mine(req)).findOne({ _id: id, status: 'done' })) as WithId<Owned<AnalysisDoc>> | null) : null;
+    if (!doc?.result) {
+      res.status(404).json({ error: 'Not found' });
+      return;
+    }
+    res.json(buildRoadmap(doc._id.toHexString(), doc.result));
   });
 
   router.get('/:id', async (req, res) => {

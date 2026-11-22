@@ -1,0 +1,20 @@
+{
+  "name": "@skillbridge/roadmap",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "check-links": "node scripts/check-links.ts"
+  },
+  "dependencies": {
+    "@skillbridge/roles": "workspace:*",
+    "@skillbridge/shared": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2"
+  }
+}

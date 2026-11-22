@@ -2,6 +2,7 @@ import { ArrowRight, Loader2, RotateCcw, Sparkles } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import type { Analysis, AnalysisResult, ResumeSummary, RoleSummary, SkillAssessment } from '@skillbridge/shared';
+import { RoadmapPlan } from '../components/roadmap/RoadmapPlan.tsx';
 import { Button } from '../components/ui/Button.tsx';
 import { cn } from '../lib/cn.ts';
 import { dateTime } from '../lib/format.ts';
@@ -349,6 +350,8 @@ function Result({ result, roleName, analysisId }: { result: AnalysisResult; role
           </ul>
         </section>
       )}
+
+      {result.gaps.length > 0 && <RoadmapPlan analysisId={analysisId} />}
 
       <section className="border border-line bg-card p-6 sm:p-8">
         <p className="micro">Every skill, with its evidence</p>

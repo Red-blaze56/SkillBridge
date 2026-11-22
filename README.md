@@ -20,6 +20,7 @@ request with tests.
 | `packages/db` | MongoDB helpers (`ownedBy`, `createMongo`) and collections the API and workers share |
 | `packages/queue` | RabbitMQ jobs: confirmed publishing, retries with growing delays, dead-letter queues |
 | `packages/jobs` | Job matching: readers for 8 public job-board APIs, fresher filters, skill extraction, match scores, and the checked company list |
+| `packages/roadmap` | Learning plans: a curated, link-checked catalogue of free resources and the rule-based planner |
 | `workers/evidence` | Runs skill gap analyses from the queue (see `workers/README.md`) |
 | `workers/jobs` | Refreshes the job postings from the company boards every 6 hours |
 | `services/interview` | Mock-interview service (FastAPI + its own Postgres + Gemini), copied with its history from the AI Interview Simulator. Only SkillBridge's API can call it (see its README) |
@@ -73,6 +74,7 @@ Open the printed link and choose a password.
 | `pnpm dev` | Runs the API and web app, reloading on changes |
 | `pnpm worker` | Runs the evidence worker, which does the skill gap analyses |
 | `pnpm jobs-worker` | Runs the jobs worker, which refreshes job postings from the company boards |
+| `pnpm --filter @skillbridge/roadmap check-links` | Checks every learning resource link (exits 1 if one is broken) |
 | `pnpm --filter @skillbridge/jobs check-companies` | Re-checks every company board and rewrites `packages/jobs/data/companies.json` |
 | `pnpm lint` | ESLint over the whole repo |
 | `pnpm typecheck` | TypeScript in every package |
@@ -123,6 +125,17 @@ Open the printed link and choose a password.
    and 5 min first.
 
 Deleting a resume deletes its analyses.
+
+## Learning roadmap
+
+`GET /api/analyses/:id/roadmap` turns a finished analysis's gaps into an ordered plan, in
+code: the gaps' order (core skills first), except that a foundation that is also a gap
+comes before what builds on it (JavaScript before React, Python before machine learning).
+Each step has an objective, a project to do, what on the resume shows it is done, the hours
+(14, 10 or 6 per level for core, important and nice-to-have skills) and resources from
+`packages/roadmap/src/catalogue.ts`, a curated list of free resources. Plans refer to
+resources by id, so a plan can't contain a made-up link; `check-links` re-checks them all.
+The Readiness page shows the plan under the gaps, with steps a student can tick.
 
 ## Job matching
 
