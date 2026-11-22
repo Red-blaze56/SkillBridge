@@ -3,6 +3,7 @@ import type { ErrorRequestHandler } from 'express';
 import type { HealthResponse } from '@skillbridge/shared';
 import { authRoutes, currentUser, requireUser, sameOrigin, sessionAuth } from './auth/http.ts';
 import type { AuthService } from './auth/service.ts';
+import { interviewRoutes, type InterviewServiceOptions } from './interviews.ts';
 
 export interface AppOptions {
   auth: AuthService;
@@ -14,9 +15,11 @@ export interface AppOptions {
   secureCookies: boolean;
   /** How many reverse proxies (like Nginx) sit in front, so req.ip is the student's real address. */
   trustProxy?: number;
+  /** The mock-interview service. Without it, /api/interviews doesn't exist. */
+  interviews?: InterviewServiceOptions;
 }
 
-export function createApp({ auth, isDatabaseUp, appOrigin, secureCookies, trustProxy = 0 }: AppOptions) {
+export function createApp({ auth, isDatabaseUp, appOrigin, secureCookies, trustProxy = 0, interviews }: AppOptions) {
   const app = express();
   app.disable('x-powered-by');
   if (trustProxy > 0) app.set('trust proxy', trustProxy);
@@ -39,6 +42,8 @@ export function createApp({ auth, isDatabaseUp, appOrigin, secureCookies, trustP
   app.get('/api/me', (req, res) => {
     res.json(currentUser(req));
   });
+
+  if (interviews) app.use('/api/interviews', interviewRoutes(interviews));
 
   app.use((_req, res) => {
     res.status(404).json({ error: 'Not found' });

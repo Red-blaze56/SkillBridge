@@ -13,6 +13,12 @@ const EnvSchema = z.object({
     .transform((url) => new URL(url).origin),
   // Number of reverse proxies in front of the API (1 behind Nginx).
   TRUST_PROXY: z.coerce.number().int().min(0).max(5).default(0),
+
+  // The mock-interview service (services/interview) and the secret it shares with this API.
+  // Left empty, mock interviews are switched off.
+  INTERVIEW_SERVICE_URL: z.url().default('http://127.0.0.1:8100'),
+  INTERVIEW_SERVICE_TOKEN: z.preprocess((v) => (v === '' ? undefined : v), z.string().min(32).optional()),
+  INTERVIEWS_PER_DAY: z.coerce.number().int().min(1).max(50).default(3),
 });
 
 export type Env = z.infer<typeof EnvSchema>;

@@ -3,6 +3,7 @@ import { createAuthService } from './auth/service.ts';
 import { lazyAuthCollections } from './auth/store.ts';
 import { createMongo } from './db/mongo.ts';
 import { loadEnv } from './env.ts';
+import { createDailyLimit } from './usage.ts';
 
 const env = loadEnv(process.env);
 
@@ -14,7 +15,16 @@ const app = createApp({
   appOrigin: env.APP_ORIGIN,
   secureCookies: env.NODE_ENV !== 'development',
   trustProxy: env.TRUST_PROXY,
+  interviews: {
+    url: env.INTERVIEW_SERVICE_URL,
+    token: env.INTERVIEW_SERVICE_TOKEN,
+    limit: createDailyLimit(() => mongo.db(), { name: 'interviews', perDay: env.INTERVIEWS_PER_DAY }),
+  },
 });
+
+if (!env.INTERVIEW_SERVICE_TOKEN) {
+  console.warn('Mock interviews are off: set INTERVIEW_SERVICE_TOKEN in the root .env (see .env.example).');
+}
 
 const server = app.listen(env.PORT, (error) => {
   if (error) {
