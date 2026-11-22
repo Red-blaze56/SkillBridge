@@ -61,6 +61,12 @@ Grading (be strict — a mock interview that flatters the candidate is worthless
 """
 
 def _client() -> AsyncOpenAI:
+    if not settings.llm_api_key:
+        # The SDK would raise a bare OpenAIError (a 500); say what to do instead.
+        raise LLMUnavailable(
+            "No Gemini API key is set. Add GEMINI_API_KEY to SkillBridge's root .env "
+            "and restart the interview service."
+        )
     return AsyncOpenAI(api_key=settings.llm_api_key, base_url=settings.llm_base_url)
 
 
