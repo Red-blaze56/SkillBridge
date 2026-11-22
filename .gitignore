@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+*.log
+
+# Secrets stay on your machine. Only the example files are shared.
+.env
+.env.*
+!.env.example
+
+.DS_Store
+Thumbs.db
