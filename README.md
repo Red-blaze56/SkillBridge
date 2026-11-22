@@ -84,9 +84,12 @@ Open the printed link and choose a password.
 
 ## How changes get in
 
-- `main` changes only through pull requests that pass CI and are reviewed.
-- One task per branch, named `feat/<task>`, branched from the latest `main`.
-- Every pull request fills in the checklist in `.github/pull_request_template.md`.
+- For now one person integrates, committing to `main` only after `pnpm check` passes;
+  CI runs the same checks on every push.
+- Teammates work on a branch named `feat/<task>`, from the latest `main`, and open a pull
+  request that passes CI, fills in `.github/pull_request_template.md`, and is reviewed
+  before it is merged.
+- One task per commit or pull request, with tests for what it changes.
 
 ## Two rules the code already enforces
 

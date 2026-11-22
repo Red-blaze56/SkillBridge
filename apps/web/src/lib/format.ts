@@ -13,10 +13,6 @@ export function count(n: number, singular: string, plural = `${singular}s`) {
   return `${n} ${n === 1 ? singular : plural}`;
 }
 
-export function capitalize(value: string) {
-  return value.charAt(0).toUpperCase() + value.slice(1);
-}
-
 export function longDate(date = new Date()) {
   return date
     .toLocaleDateString('en-GB', {
