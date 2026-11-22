@@ -62,7 +62,7 @@ services:
       DATABASE_URL: postgresql+asyncpg://interview:${INTERVIEW_DB_PASSWORD:-interview-dev}@interview-db:5432/interview
       SERVICE_TOKEN: ${INTERVIEW_SERVICE_TOKEN:-}
       LLM_API_KEY: ${GEMINI_API_KEY:-}
-      LLM_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+      LLM_MODEL: ${GEMINI_MODEL:-gemini-3.6-flash}
     depends_on:
       interview-db:
         condition: service_healthy

@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     service_token: str = Field(min_length=32)
 
     llm_api_key: str = ""  # empty: interview turns fail with a clear "check LLM_API_KEY" message
-    llm_model: str = "gemini-2.5-flash"
+    llm_model: str = "gemini-3.6-flash"
     llm_base_url: str = "https://generativelanguage.googleapis.com/v1beta/openai/"
 
 

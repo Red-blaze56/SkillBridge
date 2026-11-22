@@ -102,3 +102,77 @@ export const ResumeDetail = ResumeSummary.extend({
   quality: ResumeQuality,
 });
 export type ResumeDetail = z.infer<typeof ResumeDetail>;
+
+// ── Roles and skill analysis ───────────────────────────────────────────────
+
+/** GET /api/roles */
+export const RoleSummary = z.object({
+  id: z.string(),
+  name: z.string(),
+  version: z.string(),
+  summary: z.string(),
+  skills: z.array(z.object({ id: z.string(), name: z.string(), weight: z.number().int().min(1).max(3) })),
+});
+export type RoleSummary = z.infer<typeof RoleSummary>;
+
+/** 0 = absent, 1 = mentioned, 2 = applied (project), 3 = professional (job or internship). */
+export const EvidenceLevel = z.number().int().min(0).max(3);
+
+export const SkillAssessment = z.object({
+  skillId: z.string(),
+  name: z.string(),
+  weight: z.number().int().min(1).max(3),
+  level: EvidenceLevel,
+  /** The resume passage that shows the skill, quoted word for word. Null at level 0. */
+  evidence: z.object({ passageId: z.number().int().positive(), section: ResumeSection, quote: z.string() }).nullable(),
+  /** Why a level was lowered, e.g. a skills list can only show a skill is known. */
+  note: z.string().nullable(),
+  /** What this skill adds to the score. */
+  points: z.number(),
+});
+export type SkillAssessment = z.infer<typeof SkillAssessment>;
+
+export const SkillGap = z.object({
+  skillId: z.string(),
+  name: z.string(),
+  weight: z.number().int().min(1).max(3),
+  level: EvidenceLevel,
+  target: EvidenceLevel,
+});
+export type SkillGap = z.infer<typeof SkillGap>;
+
+export const AnalysisResult = z.object({
+  /** Readiness, 0-100: 100 × Σ weight × (level / 3) / Σ weight. */
+  score: z.number().min(0).max(100),
+  skills: z.array(SkillAssessment),
+  /** Skills below their target level, most important first. */
+  gaps: z.array(SkillGap),
+  // Everything needed to reproduce the score.
+  roleId: z.string(),
+  roleVersion: z.string(),
+  formulaVersion: z.string(),
+  promptVersion: z.string(),
+  model: z.string(),
+});
+export type AnalysisResult = z.infer<typeof AnalysisResult>;
+
+export const AnalysisStatus = z.enum(['queued', 'running', 'done', 'failed']);
+export type AnalysisStatus = z.infer<typeof AnalysisStatus>;
+
+/** GET /api/analyses/:id */
+export const Analysis = z.object({
+  id: z.string(),
+  resumeId: z.string(),
+  roleId: z.string(),
+  status: AnalysisStatus,
+  createdAt: z.iso.datetime(),
+  result: AnalysisResult.nullable(),
+  error: z.string().nullable(),
+});
+export type Analysis = z.infer<typeof Analysis>;
+
+/** POST /api/analyses */
+export const AnalysisRequest = z.object({
+  resumeId: z.string().regex(/^[0-9a-f]{24}$/),
+  roleId: z.string().min(1).max(64),
+});
