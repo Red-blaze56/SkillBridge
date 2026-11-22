@@ -19,7 +19,9 @@ request with tests.
 | `packages/analysis` | The skill evidence agent (LangGraph + Gemini) and the readiness score |
 | `packages/db` | MongoDB helpers (`ownedBy`, `createMongo`) and collections the API and workers share |
 | `packages/queue` | RabbitMQ jobs: confirmed publishing, retries with growing delays, dead-letter queues |
+| `packages/jobs` | Job matching: readers for 8 public job-board APIs, fresher filters, skill extraction, match scores, and the checked company list |
 | `workers/evidence` | Runs skill gap analyses from the queue (see `workers/README.md`) |
+| `workers/jobs` | Refreshes the job postings from the company boards every 6 hours |
 | `services/interview` | Mock-interview service (FastAPI + its own Postgres + Gemini), copied with its history from the AI Interview Simulator. Only SkillBridge's API can call it (see its README) |
 | `compose.yaml` | MongoDB (single-node replica set), RabbitMQ, and the interview service with its Postgres |
 
@@ -44,15 +46,17 @@ pnpm install
 docker compose up -d
 ```
 
-Then, in two terminals:
+Then, in three terminals:
 
 ```bash
 pnpm dev
 pnpm worker
+pnpm jobs-worker
 ```
 
 The web app is at http://localhost:5173 and the API at http://localhost:4000/api/health.
-`pnpm worker` runs the evidence worker; without it, analyses stay queued.
+`pnpm worker` runs the evidence worker; without it, analyses stay queued. `pnpm jobs-worker`
+fills the job postings for matching (the first refresh takes a few minutes).
 
 Sign-up is invite-only, so create your own account with an invite link:
 
@@ -68,6 +72,8 @@ Open the printed link and choose a password.
 |---|---|
 | `pnpm dev` | Runs the API and web app, reloading on changes |
 | `pnpm worker` | Runs the evidence worker, which does the skill gap analyses |
+| `pnpm jobs-worker` | Runs the jobs worker, which refreshes job postings from the company boards |
+| `pnpm --filter @skillbridge/jobs check-companies` | Re-checks every company board and rewrites `packages/jobs/data/companies.json` |
 | `pnpm lint` | ESLint over the whole repo |
 | `pnpm typecheck` | TypeScript in every package |
 | `pnpm test` | Every test, with Vitest. Needs MongoDB and RabbitMQ running (`docker compose up -d mongo rabbitmq`) |
@@ -114,3 +120,22 @@ Open the printed link and choose a password.
    and 5 min first.
 
 Deleting a resume deletes its analyses.
+
+## Job matching
+
+1. `workers/jobs` reads the public job-board APIs of the companies in
+   `packages/jobs/data/companies.json` every 6 hours: Greenhouse, Lever, Ashby, Workable,
+   SmartRecruiters, Recruitee, Breezy and Teamtailor. No scraping, no logins. Each board is
+   a RabbitMQ `fetch-board` job, so a failing board is retried on its own.
+2. It keeps developer jobs a fresher can apply for: a developer, SDE or intern title, in
+   India or remote, asking for at most a year of experience, posted in the last 45 days.
+   For each it stores the skills the ad names and the target roles it suits.
+3. `GET /api/jobs/matches` scores those jobs against the student's newest finished
+   analysis: `match = Σ weight × min(level, 2) ÷ 2 ÷ Σ weight` over the skills the ad names,
+   so a skill used in a project is enough for a fresher job. Each match lists the skills
+   the resume shows, only lists, and lacks. `?where=india|remote`, `?roleId=`,
+   `?analysisId=` and `?limit=` narrow it down.
+
+The board readers, the fresher filters, the experience parser and the first company lists
+come from the jobscout tool on the `feat/jobapplier` branch (by ayoszdeep), ported to
+TypeScript.

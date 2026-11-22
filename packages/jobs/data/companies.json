@@ -1,0 +1,2603 @@
+[
+ {
+  "ats": "ashby",
+  "slug": "bjakcareer",
+  "name": "Bjakcareer",
+  "open": 1610,
+  "india": 25,
+  "fresherFit": 145,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "openai",
+  "name": "Openai",
+  "open": 851,
+  "india": 9,
+  "fresherFit": 117,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "airapps",
+  "name": "Airapps",
+  "open": 498,
+  "india": 0,
+  "fresherFit": 63,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "tether",
+  "name": "Tether",
+  "open": 206,
+  "india": 0,
+  "fresherFit": 56,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "decircletalentpartner",
+  "name": "Decircletalentpartner",
+  "open": 252,
+  "india": 0,
+  "fresherFit": 27,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "cerebras",
+  "name": "Cerebras",
+  "open": 132,
+  "india": 6,
+  "fresherFit": 26,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "jobgether",
+  "name": "Jobgether",
+  "open": 3863,
+  "india": 311,
+  "fresherFit": 23,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "uvation",
+  "name": "Uvation",
+  "open": 113,
+  "india": 31,
+  "fresherFit": 19,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "lilt-production",
+  "name": "Lilt Production",
+  "open": 453,
+  "india": 154,
+  "fresherFit": 17,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "elevenlabs",
+  "name": "Elevenlabs",
+  "open": 122,
+  "india": 5,
+  "fresherFit": 17,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "bedrock-robotics",
+  "name": "Bedrock Robotics",
+  "open": 61,
+  "india": 0,
+  "fresherFit": 17,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "point72",
+  "name": "Point72",
+  "open": 202,
+  "india": 40,
+  "fresherFit": 15,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "supabase",
+  "name": "Supabase",
+  "open": 80,
+  "india": 0,
+  "fresherFit": 15,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "smartrecruiters",
+  "slug": "BoschGroup",
+  "name": "Bosch",
+  "open": 1000,
+  "india": 174,
+  "fresherFit": 12,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "gitlab",
+  "name": "GitLab",
+  "open": 246,
+  "india": 31,
+  "fresherFit": 12,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "clickhouse",
+  "name": "Clickhouse",
+  "open": 205,
+  "india": 7,
+  "fresherFit": 12,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "sezzle",
+  "name": "Sezzle",
+  "open": 228,
+  "india": 5,
+  "fresherFit": 11,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "stripe",
+  "name": "Stripe",
+  "open": 778,
+  "india": 44,
+  "fresherFit": 10,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "oneapp",
+  "name": "Oneapp",
+  "open": 34,
+  "india": 1,
+  "fresherFit": 10,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "doctolib",
+  "name": "Doctolib",
+  "open": 154,
+  "india": 0,
+  "fresherFit": 10,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "lingarogroup",
+  "name": "Lingarogroup",
+  "open": 73,
+  "india": 28,
+  "fresherFit": 9,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "olsson",
+  "name": "Olsson",
+  "open": 345,
+  "india": 0,
+  "fresherFit": 9,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "smartrecruiters",
+  "slug": "PHONEPELIMITED",
+  "name": "PhonePe",
+  "open": 158,
+  "india": 158,
+  "fresherFit": 8,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "rubrik",
+  "name": "Rubrik",
+  "open": 208,
+  "india": 42,
+  "fresherFit": 8,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "harvey",
+  "name": "Harvey",
+  "open": 390,
+  "india": 8,
+  "fresherFit": 8,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "alan",
+  "name": "Alan",
+  "open": 135,
+  "india": 0,
+  "fresherFit": 8,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "plaud",
+  "name": "Plaud",
+  "open": 52,
+  "india": 0,
+  "fresherFit": 8,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "tailscale",
+  "name": "Tailscale",
+  "open": 89,
+  "india": 0,
+  "fresherFit": 8,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "affirm",
+  "name": "Affirm",
+  "open": 222,
+  "india": 0,
+  "fresherFit": 7,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "reddit",
+  "name": "Reddit",
+  "open": 148,
+  "india": 0,
+  "fresherFit": 7,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "tgs",
+  "name": "Tgs",
+  "open": 776,
+  "india": 79,
+  "fresherFit": 6,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "transperfect",
+  "name": "Transperfect",
+  "open": 776,
+  "india": 79,
+  "fresherFit": 6,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "sarvam",
+  "name": "Sarvam",
+  "open": 42,
+  "india": 42,
+  "fresherFit": 6,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "telus-digital",
+  "name": "Telus Digital",
+  "open": 57,
+  "india": 4,
+  "fresherFit": 6,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "commure",
+  "name": "Commure",
+  "open": 74,
+  "india": 3,
+  "fresherFit": 6,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "fieldguide",
+  "name": "Fieldguide",
+  "open": 35,
+  "india": 0,
+  "fresherFit": 6,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "plaid",
+  "name": "Plaid",
+  "open": 147,
+  "india": 0,
+  "fresherFit": 6,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "brillio-2",
+  "name": "Brillio 2",
+  "open": 219,
+  "india": 164,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "squarepointcapital",
+  "name": "Squarepointcapital",
+  "open": 87,
+  "india": 22,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "twilio",
+  "name": "Twilio",
+  "open": 109,
+  "india": 15,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "nebius",
+  "name": "Nebius",
+  "open": 367,
+  "india": 11,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "anthropic",
+  "name": "Anthropic",
+  "open": 636,
+  "india": 6,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "bitdeer",
+  "name": "Bitdeer",
+  "open": 131,
+  "india": 0,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "clera",
+  "name": "Clera",
+  "open": 305,
+  "india": 0,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "constructor",
+  "name": "Constructor",
+  "open": 34,
+  "india": 0,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "fireworks",
+  "name": "Fireworks",
+  "open": 105,
+  "india": 0,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "speak",
+  "name": "Speak",
+  "open": 29,
+  "india": 0,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "twlglobalservicessrl",
+  "name": "Twlglobalservicessrl",
+  "open": 29,
+  "india": 0,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "vetsez",
+  "name": "Vetsez",
+  "open": 65,
+  "india": 0,
+  "fresherFit": 5,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "prolificacademicltd",
+  "name": "Prolificacademicltd",
+  "open": 4265,
+  "india": 38,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "chalhoubgroup",
+  "name": "Chalhoubgroup",
+  "open": 173,
+  "india": 30,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "smartsheet",
+  "name": "Smartsheet",
+  "open": 72,
+  "india": 24,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "gleanwork",
+  "name": "Gleanwork",
+  "open": 129,
+  "india": 18,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "astspacemobile",
+  "name": "Astspacemobile",
+  "open": 277,
+  "india": 16,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "veeamsoftware",
+  "name": "Veeamsoftware",
+  "open": 201,
+  "india": 16,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "abnormalsecurity",
+  "name": "Abnormal",
+  "open": 85,
+  "india": 11,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "neuralconcept",
+  "name": "Neuralconcept",
+  "open": 40,
+  "india": 3,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "pear-vc",
+  "name": "Pear Vc",
+  "open": 110,
+  "india": 2,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "overview",
+  "name": "Overview",
+  "open": 69,
+  "india": 1,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "atlas-technica",
+  "name": "Atlas Technica",
+  "open": 35,
+  "india": 0,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "beyondtrust",
+  "name": "Beyondtrust",
+  "open": 42,
+  "india": 0,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "delan-associates-inc",
+  "name": "Delan Associates Inc",
+  "open": 392,
+  "india": 0,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "logicalisespana",
+  "name": "Logicalisespana",
+  "open": 44,
+  "india": 0,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "nooks",
+  "name": "Nooks",
+  "open": 63,
+  "india": 0,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "pinterest",
+  "name": "Pinterest",
+  "open": 174,
+  "india": 0,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "techpartnerships",
+  "name": "Techpartnerships",
+  "open": 62,
+  "india": 0,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "upstart",
+  "name": "Upstart",
+  "open": 77,
+  "india": 0,
+  "fresherFit": 4,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "purestorage",
+  "name": "Purestorage",
+  "open": 401,
+  "india": 65,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "hevodata",
+  "name": "Hevo Data",
+  "open": 40,
+  "india": 39,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "opengov",
+  "name": "Opengov",
+  "open": 89,
+  "india": 32,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "nationsbenefits",
+  "name": "Nationsbenefits",
+  "open": 139,
+  "india": 16,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "vultr",
+  "name": "Vultr",
+  "open": 78,
+  "india": 11,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "flextrade",
+  "name": "Flextrade",
+  "open": 26,
+  "india": 8,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "deepgram",
+  "name": "Deepgram",
+  "open": 52,
+  "india": 2,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "amplify",
+  "name": "Amplify",
+  "open": 30,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "camunda",
+  "name": "Camunda",
+  "open": 55,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "focused",
+  "name": "Focused",
+  "open": 35,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "guidepointsecurity",
+  "name": "Guidepointsecurity",
+  "open": 85,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "hopper",
+  "name": "Hopper",
+  "open": 29,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "jway-group",
+  "name": "Jway Group",
+  "open": 19,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "kayak",
+  "name": "Kayak",
+  "open": 42,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "livekit",
+  "name": "Livekit",
+  "open": 30,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "mercury",
+  "name": "Mercury",
+  "open": 70,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "noda-ai",
+  "name": "Noda Ai",
+  "open": 27,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "omnea",
+  "name": "Omnea",
+  "open": 66,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "openloophealth",
+  "name": "Openloophealth",
+  "open": 70,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "reliable-robotics",
+  "name": "Reliable Robotics",
+  "open": 75,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "thought-machine",
+  "name": "Thought Machine",
+  "open": 32,
+  "india": 0,
+  "fresherFit": 3,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "zscaler",
+  "name": "Zscaler",
+  "open": 387,
+  "india": 101,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "vmlenterprisesolutions",
+  "name": "Vmlenterprisesolutions",
+  "open": 119,
+  "india": 43,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "wundermanthompson",
+  "name": "Wundermanthompson",
+  "open": 383,
+  "india": 27,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "addepar1",
+  "name": "Addepar1",
+  "open": 120,
+  "india": 22,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "hackerrank",
+  "name": "HackerRank",
+  "open": 31,
+  "india": 16,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "airbnb",
+  "name": "Airbnb",
+  "open": 203,
+  "india": 12,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "neweratech",
+  "name": "Neweratech",
+  "open": 68,
+  "india": 11,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "towerresearchcapital",
+  "name": "Towerresearchcapital",
+  "open": 92,
+  "india": 10,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "span",
+  "name": "Span",
+  "open": 31,
+  "india": 8,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "digicert",
+  "name": "Digicert",
+  "open": 50,
+  "india": 6,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "paralucent",
+  "name": "Paralucent",
+  "open": 34,
+  "india": 2,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "20four7va",
+  "name": "20Four7Va",
+  "open": 122,
+  "india": 1,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "cresta",
+  "name": "Cresta",
+  "open": 84,
+  "india": 1,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "hirehangar",
+  "name": "Hirehangar",
+  "open": 118,
+  "india": 1,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "ontrac-solutions-llc",
+  "name": "Ontrac Solutions Llc",
+  "open": 33,
+  "india": 1,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "adaptyv",
+  "name": "Adaptyv",
+  "open": 38,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "aerovect",
+  "name": "Aerovect",
+  "open": 44,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "ardentmc",
+  "name": "Ardentmc",
+  "open": 19,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "atwellgroup",
+  "name": "Atwellgroup",
+  "open": 201,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "aviation-technology-associates-llc",
+  "name": "Aviation Technology Associates Llc",
+  "open": 47,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "commerzbank-poland",
+  "name": "Commerzbank Poland",
+  "open": 33,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "easyapplyrekluti",
+  "name": "Easyapplyrekluti",
+  "open": 246,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "natera",
+  "name": "Natera",
+  "open": 204,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "nubank",
+  "name": "Nubank",
+  "open": 111,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "rimutee",
+  "name": "Rimutee",
+  "open": 246,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "robin-radar",
+  "name": "Robin Radar",
+  "open": 26,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "salmon-group",
+  "name": "Salmon Group",
+  "open": 52,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "satelliteoffice-1742766257",
+  "name": "Satelliteoffice 1742766257",
+  "open": 119,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "thequalitygroupgmbh1",
+  "name": "Thequalitygroupgmbh1",
+  "open": 111,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "thequalitygroupgmbh2",
+  "name": "Thequalitygroupgmbh2",
+  "open": 95,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "thumbtack",
+  "name": "Thumbtack",
+  "open": 43,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "uncountable",
+  "name": "Uncountable",
+  "open": 31,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "urrly",
+  "name": "Urrly",
+  "open": 42,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "voyagertechnologiesinc",
+  "name": "Voyagertechnologiesinc",
+  "open": 178,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "wongnai-media-co-ltd",
+  "name": "Wongnai Media Co Ltd",
+  "open": 59,
+  "india": 0,
+  "fresherFit": 2,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "databricks",
+  "name": "Databricks",
+  "open": 893,
+  "india": 76,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "mongodb",
+  "name": "MongoDB",
+  "open": 417,
+  "india": 70,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "agency",
+  "name": "Agency",
+  "open": 827,
+  "india": 51,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "anaplan",
+  "name": "Anaplan",
+  "open": 123,
+  "india": 34,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "ensono",
+  "name": "Ensono",
+  "open": 78,
+  "india": 34,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "fictiv",
+  "name": "Fictiv",
+  "open": 100,
+  "india": 33,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "payoneer",
+  "name": "Payoneer",
+  "open": 101,
+  "india": 33,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "kaseya",
+  "name": "Kaseya",
+  "open": 95,
+  "india": 25,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "konradgroup",
+  "name": "Konradgroup",
+  "open": 106,
+  "india": 25,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "toast",
+  "name": "Toast",
+  "open": 324,
+  "india": 24,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "celonis",
+  "name": "Celonis",
+  "open": 262,
+  "india": 22,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "g2",
+  "name": "G2",
+  "open": 46,
+  "india": 21,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "keyloop",
+  "name": "Keyloop",
+  "open": 58,
+  "india": 18,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "acceldata",
+  "name": "Acceldata",
+  "open": 41,
+  "india": 16,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "ion",
+  "name": "Ion",
+  "open": 100,
+  "india": 15,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "careersdeltacapita",
+  "name": "Careersdeltacapita",
+  "open": 59,
+  "india": 14,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "fampay",
+  "name": "FamPay",
+  "open": 14,
+  "india": 14,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "skylo",
+  "name": "Skylo",
+  "open": 31,
+  "india": 14,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "scopely",
+  "name": "Scopely",
+  "open": 172,
+  "india": 12,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "rzr",
+  "name": "Rzr",
+  "open": 42,
+  "india": 10,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "icapitalnetwork",
+  "name": "Icapitalnetwork",
+  "open": 235,
+  "india": 9,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "blackduck",
+  "name": "Blackduck",
+  "open": 38,
+  "india": 6,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "opswat",
+  "name": "Opswat",
+  "open": 98,
+  "india": 6,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "singlestore",
+  "name": "SingleStore",
+  "open": 43,
+  "india": 6,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "clovirtualfashion",
+  "name": "Clovirtualfashion",
+  "open": 43,
+  "india": 4,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "woolpert",
+  "name": "Woolpert",
+  "open": 118,
+  "india": 4,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "chainguard",
+  "name": "Chainguard",
+  "open": 109,
+  "india": 2,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "dept",
+  "name": "Dept",
+  "open": 202,
+  "india": 2,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "neara",
+  "name": "Neara",
+  "open": 37,
+  "india": 2,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "aidigital",
+  "name": "Aidigital",
+  "open": 34,
+  "india": 1,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "vercel",
+  "name": "Vercel",
+  "open": 86,
+  "india": 1,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "abinbev",
+  "name": "Abinbev",
+  "open": 58,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "adjoe",
+  "name": "Adjoe",
+  "open": 42,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "adoc-tm",
+  "name": "Adoc Tm",
+  "open": 22,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "axiomtalentplatform",
+  "name": "Axiomtalentplatform",
+  "open": 205,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "b3consultingpoland",
+  "name": "B3Consultingpoland",
+  "open": 33,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "beex",
+  "name": "Beex",
+  "open": 49,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "betclic-group",
+  "name": "Betclic Group",
+  "open": 65,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "betterme",
+  "name": "Betterme",
+  "open": 13,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "boldteam",
+  "name": "Boldteam",
+  "open": 68,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "cribl",
+  "name": "Cribl",
+  "open": 84,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "deintraumjobwartet",
+  "name": "Deintraumjobwartet",
+  "open": 206,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "gen-tech",
+  "name": "Gen Tech",
+  "open": 46,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "grupoclave",
+  "name": "Grupoclave",
+  "open": 242,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "gusto",
+  "name": "Gusto",
+  "open": 82,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "gympass",
+  "name": "Gympass",
+  "open": 93,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "happyrobot.ai",
+  "name": "Happyrobot.Ai",
+  "open": 34,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "higgsfieldai",
+  "name": "Higgsfieldai",
+  "open": 83,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "innodatainc",
+  "name": "Innodatainc",
+  "open": 107,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "joko",
+  "name": "Joko",
+  "open": 46,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "marianaminerals",
+  "name": "Marianaminerals",
+  "open": 101,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "novacard",
+  "name": "Novacard",
+  "open": 23,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "oklo",
+  "name": "Oklo",
+  "open": 54,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "perk",
+  "name": "Perk",
+  "open": 116,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "perplexity",
+  "name": "Perplexity",
+  "open": 151,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "pliant",
+  "name": "Pliant",
+  "open": 30,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "pointclickcare",
+  "name": "Pointclickcare",
+  "open": 87,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "pyrovio",
+  "name": "Pyrovio",
+  "open": 17,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "rain",
+  "name": "Rain",
+  "open": 46,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "sailorhealth",
+  "name": "Sailorhealth",
+  "open": 154,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "sevenai",
+  "name": "Sevenai",
+  "open": 45,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "sierra",
+  "name": "Sierra",
+  "open": 194,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "skydropx",
+  "name": "Skydropx",
+  "open": 26,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "slice",
+  "name": "Slice",
+  "open": 22,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "ssg-corp",
+  "name": "Ssg Corp",
+  "open": 29,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "test-yantra-eu-2",
+  "name": "Test Yantra Eu 2",
+  "open": 13,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "themis-insight",
+  "name": "Themis Insight",
+  "open": 38,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "trafilea",
+  "name": "Trafilea",
+  "open": 40,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "vdkgroep",
+  "name": "Vdkgroep",
+  "open": 726,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "weave",
+  "name": "Weave",
+  "open": 24,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "wspcentraleurope",
+  "name": "Wspcentraleurope",
+  "open": 238,
+  "india": 0,
+  "fresherFit": 1,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "okta",
+  "name": "Okta",
+  "open": 373,
+  "india": 102,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "tekion",
+  "name": "Tekion",
+  "open": 92,
+  "india": 65,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "wppmedia",
+  "name": "Wppmedia",
+  "open": 766,
+  "india": 60,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "oliverseapac",
+  "name": "Oliverseapac",
+  "open": 61,
+  "india": 44,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "zetaglobal",
+  "name": "Zetaglobal",
+  "open": 101,
+  "india": 35,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "riveron",
+  "name": "Riveron",
+  "open": 60,
+  "india": 33,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "coherehealth",
+  "name": "Coherehealth",
+  "open": 63,
+  "india": 31,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "pubmatic",
+  "name": "Pubmatic",
+  "open": 78,
+  "india": 31,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "tide",
+  "name": "Tide",
+  "open": 84,
+  "india": 31,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "bursonglobalcareers",
+  "name": "Bursonglobalcareers",
+  "open": 197,
+  "india": 25,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "coupanginternal",
+  "name": "Coupanginternal",
+  "open": 433,
+  "india": 23,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "fivetran",
+  "name": "Fivetran",
+  "open": 196,
+  "india": 22,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "guidepoint",
+  "name": "Guidepoint",
+  "open": 108,
+  "india": 22,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "stage",
+  "name": "Stage",
+  "open": 133,
+  "india": 21,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "five9",
+  "name": "Five9",
+  "open": 84,
+  "india": 20,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "graphcore",
+  "name": "Graphcore",
+  "open": 190,
+  "india": 20,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "xometry",
+  "name": "Xometry",
+  "open": 252,
+  "india": 18,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "asteralabs",
+  "name": "Asteralabs",
+  "open": 175,
+  "india": 15,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "digitalocean98",
+  "name": "Digitalocean98",
+  "open": 132,
+  "india": 15,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "thirdbridge",
+  "name": "Thirdbridge",
+  "open": 146,
+  "india": 15,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "agoda",
+  "name": "Agoda",
+  "open": 342,
+  "india": 14,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "appian",
+  "name": "Appian",
+  "open": 159,
+  "india": 14,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "bsm",
+  "name": "Bsm",
+  "open": 57,
+  "india": 14,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "elastic",
+  "name": "Elastic",
+  "open": 382,
+  "india": 14,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "mediabrands",
+  "name": "Mediabrands",
+  "open": 216,
+  "india": 14,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "tripactions",
+  "name": "Tripactions",
+  "open": 236,
+  "india": 14,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "zoominfo",
+  "name": "Zoominfo",
+  "open": 90,
+  "india": 14,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "crunchyroll",
+  "name": "Crunchyroll",
+  "open": 99,
+  "india": 13,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "nice",
+  "name": "Nice",
+  "open": 115,
+  "india": 13,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "roblox",
+  "name": "Roblox",
+  "open": 259,
+  "india": 13,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "sentinellabs",
+  "name": "Sentinellabs",
+  "open": 263,
+  "india": 11,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "signode",
+  "name": "Signode",
+  "open": 45,
+  "india": 11,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "junipersquare",
+  "name": "Junipersquare",
+  "open": 56,
+  "india": 10,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "coram-ai",
+  "name": "Coram Ai",
+  "open": 44,
+  "india": 9,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "datadog",
+  "name": "Datadog",
+  "open": 382,
+  "india": 9,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "nucleusteq",
+  "name": "Nucleusteq",
+  "open": 22,
+  "india": 9,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "pfm",
+  "name": "Pfm",
+  "open": 89,
+  "india": 9,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "artefact",
+  "name": "Artefact",
+  "open": 150,
+  "india": 7,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "cloudflare",
+  "name": "Cloudflare",
+  "open": 504,
+  "india": 7,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "sambanovasystems",
+  "name": "Sambanovasystems",
+  "open": 74,
+  "india": 7,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "sonymusicentertainment",
+  "name": "Sonymusicentertainment",
+  "open": 126,
+  "india": 7,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "hinge-health",
+  "name": "Hinge Health",
+  "open": 88,
+  "india": 6,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "jensenhughes",
+  "name": "Jensenhughes",
+  "open": 186,
+  "india": 6,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "metropolis",
+  "name": "Metropolis",
+  "open": 89,
+  "india": 6,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "recruitee",
+  "slug": "metyisag",
+  "name": "Metyisag",
+  "open": 69,
+  "india": 6,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "pebl",
+  "name": "Pebl",
+  "open": 40,
+  "india": 6,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "blitzy",
+  "name": "Blitzy",
+  "open": 50,
+  "india": 5,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "lyrahealth",
+  "name": "Lyrahealth",
+  "open": 451,
+  "india": 5,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "mixpanel",
+  "name": "Mixpanel",
+  "open": 40,
+  "india": 5,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "quberesearchandtechnologies",
+  "name": "Quberesearchandtechnologies",
+  "open": 205,
+  "india": 5,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "siteminder",
+  "name": "Siteminder",
+  "open": 32,
+  "india": 5,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "cursor",
+  "name": "Cursor",
+  "open": 89,
+  "india": 4,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "feverup",
+  "name": "Feverup",
+  "open": 578,
+  "india": 4,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "flexport",
+  "name": "Flexport",
+  "open": 212,
+  "india": 4,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "knowbe4",
+  "name": "Knowbe4",
+  "open": 58,
+  "india": 4,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "optiverus",
+  "name": "Optiverus",
+  "open": 149,
+  "india": 4,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "shipbobinc",
+  "name": "Shipbobinc",
+  "open": 60,
+  "india": 4,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "tenstorrent",
+  "name": "Tenstorrent",
+  "open": 145,
+  "india": 4,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "wrike",
+  "name": "Wrike",
+  "open": 69,
+  "india": 4,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "adyen",
+  "name": "Adyen",
+  "open": 243,
+  "india": 3,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "cannondesign",
+  "name": "Cannondesign",
+  "open": 129,
+  "india": 3,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "encora10",
+  "name": "Encora10",
+  "open": 342,
+  "india": 3,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "jellyfishcareers",
+  "name": "Jellyfishcareers",
+  "open": 52,
+  "india": 3,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "roku",
+  "name": "Roku",
+  "open": 94,
+  "india": 3,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "waymo",
+  "name": "Waymo",
+  "open": 363,
+  "india": 3,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "c3iot",
+  "name": "C3Iot",
+  "open": 87,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "eositsolutions",
+  "name": "Eositsolutions",
+  "open": 184,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "exa",
+  "name": "Exa",
+  "open": 70,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "figma",
+  "name": "Figma",
+  "open": 147,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "jumptrading",
+  "name": "Jumptrading",
+  "open": 85,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "northpointtechnology",
+  "name": "Northpointtechnology",
+  "open": 113,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "pingidentity",
+  "name": "Pingidentity",
+  "open": 70,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "lever",
+  "slug": "pocketfm",
+  "name": "Pocket FM",
+  "open": 10,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "rockstargames",
+  "name": "Rockstargames",
+  "open": 16,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "wehrtyou",
+  "name": "Wehrtyou",
+  "open": 86,
+  "india": 2,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "canonical",
+  "name": "Canonical",
+  "open": 318,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "chapter2",
+  "name": "Chapter2",
+  "open": 49,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "delinea",
+  "name": "Delinea",
+  "open": 77,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "dualentry",
+  "name": "Dualentry",
+  "open": 66,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "eplusinc",
+  "name": "Eplusinc",
+  "open": 53,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "fortrayglobalservices",
+  "name": "Fortrayglobalservices",
+  "open": 56,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "genscript",
+  "name": "Genscript",
+  "open": 85,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "grafanalabs",
+  "name": "Grafanalabs",
+  "open": 139,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "high-volume",
+  "name": "High Volume",
+  "open": 229,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "map",
+  "name": "Map",
+  "open": 38,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "moniepoint",
+  "name": "Moniepoint",
+  "open": 67,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "scaleai",
+  "name": "Scaleai",
+  "open": 166,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "smartlyio",
+  "name": "Smartlyio",
+  "open": 72,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "spoton",
+  "name": "Spoton",
+  "open": 77,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "teads1",
+  "name": "Teads1",
+  "open": 44,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "teamtailor",
+  "slug": "techniquesolairesarl",
+  "name": "Techniquesolairesarl",
+  "open": 34,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "ashby",
+  "slug": "terac",
+  "name": "Terac",
+  "open": 62,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "greenhouse",
+  "slug": "thetradedesk",
+  "name": "Thetradedesk",
+  "open": 118,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "breezy",
+  "slug": "vald",
+  "name": "Vald",
+  "open": 79,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ },
+ {
+  "ats": "smartrecruiters",
+  "slug": "whatfix",
+  "name": "Whatfix",
+  "open": 1,
+  "india": 1,
+  "fresherFit": 0,
+  "checkedAt": "2026-11-22"
+ }
+]

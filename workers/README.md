@@ -12,4 +12,4 @@ Planned, each in its own pull request with tests:
 | `evidence/` | Evidence Analyst: finds which passages prove which skill. **Built**: `pnpm worker` |
 | `planner/` | Builds the learning roadmap from catalogue resources |
 | `interviewer/` | Runs mock interviews and records weak topics |
-| `job-scout/` | Fetches postings from company job boards and matches them |
+| `jobs/` | Fetches postings from company job boards for matching. **Built**: `pnpm jobs-worker` |

@@ -181,3 +181,59 @@ export const AnalysisRequest = z.object({
 export const ANALYZE_JOB = 'analyze';
 export const AnalysisJob = z.object({ analysisId: z.string().regex(/^[0-9a-f]{24}$/) });
 export type AnalysisJob = z.infer<typeof AnalysisJob>;
+
+// ── Job matching ───────────────────────────────────────────────────────────
+
+/** The RabbitMQ job that reads one company's job board. workers/jobs publishes and handles it. */
+export const FETCH_BOARD_JOB = 'fetch-board';
+export const FetchBoardJob = z.object({
+  ats: z.string().min(1).max(32),
+  slug: z.string().min(1).max(200),
+  name: z.string().min(1).max(200),
+});
+export type FetchBoardJob = z.infer<typeof FetchBoardJob>;
+
+export const MatchedSkill = z.object({
+  skillId: z.string(),
+  name: z.string(),
+  level: EvidenceLevel,
+  weight: z.number().int().min(1).max(3),
+});
+export type MatchedSkill = z.infer<typeof MatchedSkill>;
+
+export const JobMatch = z.object({
+  id: z.string(),
+  company: z.string(),
+  title: z.string(),
+  location: z.string(),
+  url: z.string(),
+  remote: z.boolean(),
+  postedAt: z.iso.datetime().nullable(),
+  /** Years asked for, e.g. "0-2", or null when the posting doesn't say. */
+  experience: z.string().nullable(),
+  /** 0-100, or null when the posting names none of the analysed skills. */
+  score: z.number().min(0).max(100).nullable(),
+  /** Shown at project level or better. */
+  strong: z.array(MatchedSkill),
+  /** Only listed on the resume. */
+  weak: z.array(MatchedSkill),
+  /** Not shown on the resume. */
+  missing: z.array(MatchedSkill),
+  /** Named by the posting but outside the analysed role (skill names). */
+  unchecked: z.array(z.string()),
+});
+export type JobMatch = z.infer<typeof JobMatch>;
+
+/** GET /api/jobs/matches */
+export const JobMatches = z.object({
+  /** The analysis the matches are scored against; null until the student has a finished one. */
+  analysis: z
+    .object({ id: z.string(), resumeId: z.string(), roleId: z.string(), score: z.number(), createdAt: z.iso.datetime() })
+    .nullable(),
+  matches: z.array(JobMatch),
+  /** Postings for this role before the limit. */
+  total: z.number().int().min(0),
+  /** When the newest posting was fetched; null before the first refresh. */
+  updatedAt: z.iso.datetime().nullable(),
+});
+export type JobMatches = z.infer<typeof JobMatches>;

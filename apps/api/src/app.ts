@@ -5,6 +5,7 @@ import { authRoutes, currentUser, requireUser, sameOrigin, sessionAuth } from '.
 import type { AuthService } from './auth/service.ts';
 import { analysisRoutes, roleRoutes, type AnalysisOptions } from './analyses.ts';
 import { interviewRoutes, type InterviewServiceOptions } from './interviews.ts';
+import { jobRoutes, type JobOptions } from './jobs.ts';
 import { resumeRoutes, type ResumeCollection } from './resumes.ts';
 
 export interface AppOptions {
@@ -23,6 +24,8 @@ export interface AppOptions {
   resumes?: ResumeCollection;
   /** Skill gap analyses (needs resumes). Without it, /api/analyses doesn't exist. */
   analyses?: Omit<AnalysisOptions, 'resumes'>;
+  /** Job postings from workers/jobs (needs analyses). Without it, /api/jobs doesn't exist. */
+  jobs?: Omit<JobOptions, 'analyses'>;
 }
 
 export function createApp({
@@ -34,6 +37,7 @@ export function createApp({
   interviews,
   resumes,
   analyses,
+  jobs,
 }: AppOptions) {
   const app = express();
   app.disable('x-powered-by');
@@ -62,6 +66,7 @@ export function createApp({
   app.use('/api/roles', roleRoutes());
   if (resumes) app.use('/api/resumes', resumeRoutes(resumes, { analyses: analyses?.analyses }));
   if (resumes && analyses) app.use('/api/analyses', analysisRoutes({ ...analyses, resumes }));
+  if (analyses && jobs) app.use('/api/jobs', jobRoutes({ ...jobs, analyses: analyses.analyses }));
 
   app.use((_req, res) => {
     res.status(404).json({ error: 'Not found' });

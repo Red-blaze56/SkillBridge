@@ -12,6 +12,7 @@
   "dependencies": {
     "@skillbridge/analysis": "workspace:*",
     "@skillbridge/db": "workspace:*",
+    "@skillbridge/jobs": "workspace:*",
     "@skillbridge/queue": "workspace:*",
     "@skillbridge/resume": "workspace:*",
     "@skillbridge/roles": "workspace:*",

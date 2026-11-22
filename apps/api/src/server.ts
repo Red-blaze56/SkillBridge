@@ -1,7 +1,7 @@
 import { createApp } from './app.ts';
 import { createAuthService } from './auth/service.ts';
 import { lazyAuthCollections } from './auth/store.ts';
-import { createMongo, lazyAnalyses } from '@skillbridge/db';
+import { createMongo, lazyAnalyses, lazyJobPostings } from '@skillbridge/db';
 import { createQueue } from '@skillbridge/queue';
 import { ANALYZE_JOB } from '@skillbridge/shared';
 import { loadEnv } from './env.ts';
@@ -32,6 +32,7 @@ const app = createApp({
     limit: createDailyLimit(() => mongo.db(), { name: 'analyses', perDay: env.ANALYSES_PER_DAY }),
     model: env.GEMINI_MODEL,
   },
+  jobs: { postings: lazyJobPostings(() => mongo.db()) },
 });
 
 if (!env.INTERVIEW_SERVICE_TOKEN) {

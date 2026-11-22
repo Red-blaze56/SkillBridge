@@ -199,6 +199,9 @@ importers:
       '@skillbridge/db':
         specifier: workspace:*
         version: link:../../packages/db
+      '@skillbridge/jobs':
+        specifier: workspace:*
+        version: link:../../packages/jobs
       '@skillbridge/queue':
         specifier: workspace:*
         version: link:../../packages/queue
@@ -306,6 +309,19 @@ importers:
         specifier: 24.19.2
         version: 24.19.2
 
+  packages/jobs:
+    dependencies:
+      '@skillbridge/roles':
+        specifier: workspace:*
+        version: link:../roles
+      '@skillbridge/shared':
+        specifier: workspace:*
+        version: link:../shared
+    devDependencies:
+      '@types/node':
+        specifier: 24.19.2
+        version: 24.19.2
+
   packages/queue:
     dependencies:
       amqplib:
@@ -368,6 +384,28 @@ importers:
       '@langchain/core':
         specifier: 1.5.0
         version: 1.5.0
+      '@types/node':
+        specifier: 24.19.2
+        version: 24.19.2
+
+  workers/jobs:
+    dependencies:
+      '@skillbridge/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@skillbridge/jobs':
+        specifier: workspace:*
+        version: link:../../packages/jobs
+      '@skillbridge/queue':
+        specifier: workspace:*
+        version: link:../../packages/queue
+      '@skillbridge/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      mongodb:
+        specifier: 7.9.1
+        version: 7.9.1
+    devDependencies:
       '@types/node':
         specifier: 24.19.2
         version: 24.19.2
