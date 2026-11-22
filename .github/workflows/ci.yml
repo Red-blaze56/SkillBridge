@@ -34,3 +34,17 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
+
+  interview-service:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/interview/backend
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --locked
+      - run: uv run pytest
+      - name: Docker image builds
+        working-directory: services/interview
+        run: docker build -f backend/Dockerfile -t skillbridge-interview .
