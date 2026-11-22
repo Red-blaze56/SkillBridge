@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, Gauge, LayoutDashboard, LogOut, MessagesSquare } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, FileText, Gauge, LayoutDashboard, LogOut, MessagesSquare } from 'lucide-react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import type { AuthUser } from '@skillbridge/shared';
 import { signOut } from '../../services/auth.ts';
@@ -11,7 +11,11 @@ const items = [
   { label: 'Resume', to: '/resume', icon: FileText },
   { label: 'Readiness', to: '/readiness', icon: Gauge },
   { label: 'Interviews', to: '/interviews', icon: MessagesSquare },
+  { label: 'Jobs', to: '/jobs', icon: BriefcaseBusiness },
 ];
+
+/** The menu item for a path: /interviews/new and /interviews/:id belong to Interviews. */
+const isActive = (to: string, pathname: string) => (to === '/' ? pathname === '/' : pathname === to || pathname.startsWith(`${to}/`));
 
 export function AppShell({
   user,
@@ -63,7 +67,7 @@ export function AppShell({
                 to={to}
                 className={cn(
                   'flex items-center gap-3 border-l-2 py-2 pl-3 pr-2 text-[13px] transition-colors',
-                  location.pathname === to
+                  isActive(to, location.pathname)
                     ? 'border-ink text-ink'
                     : 'border-transparent text-muted hover:border-line hover:text-ink',
                 )}
@@ -89,7 +93,7 @@ export function AppShell({
             <p className="text-xs">
               <span className="text-muted">Workspace</span>
               <span className="mx-2 text-line">/</span>
-              <strong>{items.find((item) => item.to === location.pathname && item.to !== '/')?.label ?? 'Overview'}</strong>
+              <strong>{items.find((item) => item.to !== '/' && isActive(item.to, location.pathname))?.label ?? 'Overview'}</strong>
             </p>
             <div className="flex items-center gap-3">
               <ThemeToggle />
@@ -106,7 +110,7 @@ export function AppShell({
                 to={to}
                 className={cn(
                   'whitespace-nowrap border px-3 py-1.5 text-[10px] uppercase tracking-[0.1em]',
-                  location.pathname === to
+                  isActive(to, location.pathname)
                     ? 'border-ink bg-ink text-paper'
                     : 'border-transparent text-muted',
                 )}

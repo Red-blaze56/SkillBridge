@@ -218,7 +218,9 @@ export function ReadinessPage() {
               </Button>
             </div>
           )}
-          {analysis?.status === 'done' && analysis.result && <Result result={analysis.result} roleName={role?.name} />}
+          {analysis?.status === 'done' && analysis.result && (
+            <Result result={analysis.result} roleName={role?.name} analysisId={analysis.id} />
+          )}
         </section>
       </div>
     </div>
@@ -289,7 +291,7 @@ function Waiting({ status }: { status: Analysis['status'] }) {
   );
 }
 
-function Result({ result, roleName }: { result: AnalysisResult; roleName?: string }) {
+function Result({ result, roleName, analysisId }: { result: AnalysisResult; roleName?: string; analysisId: string }) {
   const totalWeight = result.skills.reduce((sum, s) => sum + s.weight, 0);
   const skills = [...result.skills].sort((a, b) => b.weight - a.weight || b.level - a.level);
 
@@ -316,6 +318,12 @@ function Result({ result, roleName }: { result: AnalysisResult; roleName?: strin
           <p className="mt-3 text-[10px] text-muted">
             Role v{result.roleVersion} · formula v{result.formulaVersion} · {result.model}
           </p>
+          <Link
+            to={`/jobs?analysis=${analysisId}`}
+            className="mt-4 inline-flex items-center gap-1 text-xs underline underline-offset-4"
+          >
+            Matching jobs <ArrowRight size={12} />
+          </Link>
         </div>
       </div>
 

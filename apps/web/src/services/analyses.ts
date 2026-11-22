@@ -19,9 +19,10 @@ export async function getAnalysis(id: string, signal?: AbortSignal): Promise<Ana
   return Analysis.parse(await api<unknown>(`/analyses/${id}`, { signal }));
 }
 
-/** GET /api/analyses?resumeId= — one resume's analyses, newest first. */
-export async function listAnalyses(resumeId: string): Promise<Analysis[]> {
-  return Analysis.array().parse(await api<unknown>(`/analyses?resumeId=${encodeURIComponent(resumeId)}`));
+/** GET /api/analyses?resumeId= — one resume's analyses (or all of them), newest first. */
+export async function listAnalyses(resumeId?: string, signal?: AbortSignal): Promise<Analysis[]> {
+  const query = resumeId ? `?resumeId=${encodeURIComponent(resumeId)}` : '';
+  return Analysis.array().parse(await api<unknown>(`/analyses${query}`, { signal }));
 }
 
 export const isFinished = (analysis: Analysis) => analysis.status === 'done' || analysis.status === 'failed';

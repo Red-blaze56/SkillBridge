@@ -5,6 +5,7 @@ import { AppShell } from './components/layout/AppShell.tsx';
 import { InterviewNewPage } from './pages/InterviewNewPage.tsx';
 import { InterviewPage } from './pages/InterviewPage.tsx';
 import { InterviewsPage } from './pages/InterviewsPage.tsx';
+import { JobsPage } from './pages/JobsPage.tsx';
 import { LoginPage } from './pages/LoginPage.tsx';
 import { OverviewPage } from './pages/OverviewPage.tsx';
 import { ReadinessPage } from './pages/ReadinessPage.tsx';
@@ -64,6 +65,7 @@ export function App() {
               <Route path="interviews" element={<InterviewsPage />} />
               <Route path="interviews/new" element={<InterviewNewPage />} />
               <Route path="interviews/:id" element={<InterviewPage />} />
+              <Route path="jobs" element={<JobsPage />} />
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>
