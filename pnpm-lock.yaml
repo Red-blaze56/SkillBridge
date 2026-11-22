@@ -247,6 +247,12 @@ importers:
         specifier: ^8.3.8
         version: 8.3.8(@types/node@26.6.6)
 
+  packages/analysis: {}
+
+  packages/db: {}
+
+  packages/queue: {}
+
   packages/resume:
     dependencies:
       '@skillbridge/shared':
@@ -262,6 +268,12 @@ importers:
       pdf-lib:
         specifier: ^1.17.1
         version: 1.17.1
+
+  packages/roles:
+    devDependencies:
+      '@types/node':
+        specifier: ^24.19.2
+        version: 24.19.2
 
   packages/shared:
     dependencies:
