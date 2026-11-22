@@ -1,4 +1,4 @@
-import { ArrowRight, FileText, LayoutDashboard, LogOut } from 'lucide-react';
+import { ArrowRight, FileText, Gauge, LayoutDashboard, LogOut } from 'lucide-react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import type { AuthUser } from '@skillbridge/shared';
 import { signOut } from '../../services/auth.ts';
@@ -9,6 +9,7 @@ import { ThemeToggle } from '../ui/ThemeToggle.tsx';
 const items = [
   { label: 'Overview', to: '/', icon: LayoutDashboard },
   { label: 'Resume', to: '/resume', icon: FileText },
+  { label: 'Readiness', to: '/readiness', icon: Gauge },
 ];
 
 export function AppShell({
@@ -87,7 +88,7 @@ export function AppShell({
             <p className="text-xs">
               <span className="text-muted">Workspace</span>
               <span className="mx-2 text-line">/</span>
-              <strong>{location.pathname === '/resume' ? 'Resume' : 'Career readiness'}</strong>
+              <strong>{items.find((item) => item.to === location.pathname && item.to !== '/')?.label ?? 'Overview'}</strong>
             </p>
             <div className="flex items-center gap-3">
               <ThemeToggle />

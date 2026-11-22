@@ -91,12 +91,15 @@ export function OverviewPage({ user }: { user: AuthUser }) {
         </section>
 
         <section className="border border-line bg-card p-6">
-          <p className="micro">Product status</p>
-          <h2 className="mt-2 font-serif text-2xl">Built for the next step</h2>
+          <p className="micro">Readiness</p>
+          <h2 className="mt-2 font-serif text-2xl">How ready is your resume?</h2>
           <p className="mt-4 text-xs leading-relaxed text-muted">
-            Resume parsing, hidden-text screening, readiness scoring and skill gaps work on the
-            server. Their screens, mock interviews and job matches come next.
+            Pick a target role. The analyzer quotes your resume for every skill it needs, scores
+            you out of 100 and lists the gaps, most important first.
           </p>
+          <Link to="/readiness" className="mt-4 inline-flex items-center gap-1 text-xs underline underline-offset-4">
+            Check readiness <ArrowRight size={12} />
+          </Link>
         </section>
       </div>
     </div>

@@ -4,6 +4,7 @@ import type { AuthUser } from '@skillbridge/shared';
 import { AppShell } from './components/layout/AppShell.tsx';
 import { LoginPage } from './pages/LoginPage.tsx';
 import { OverviewPage } from './pages/OverviewPage.tsx';
+import { ReadinessPage } from './pages/ReadinessPage.tsx';
 import { ResumePage } from './pages/ResumePage.tsx';
 import { setUnauthorizedHandler } from './api.ts';
 import { getMe } from './services/auth.ts';
@@ -56,6 +57,7 @@ export function App() {
             >
               <Route index element={<OverviewPage user={session.user} />} />
               <Route path="resume" element={<ResumePage />} />
+              <Route path="readiness" element={<ReadinessPage />} />
             </Route>
             <Route path="*" element={<Navigate to="/" replace />} />
           </>

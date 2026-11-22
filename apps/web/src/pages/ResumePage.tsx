@@ -1,5 +1,6 @@
-import { Check, Trash2, Upload } from 'lucide-react';
+import { ArrowRight, Check, Trash2, Upload } from 'lucide-react';
 import { useEffect, useRef, useState, type ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
 import type { ResumeDetail, ResumeSummary } from '@skillbridge/shared';
 import { Button } from '../components/ui/Button.tsx';
 import {
@@ -161,7 +162,17 @@ export function ResumePage() {
                   <span className="text-[11px] text-warn">Unreadable</span>
                 )}
               </div>
-              <p className="mt-3 text-sm font-medium">{selected.fileName}</p>
+              <div className="mt-3 flex flex-wrap items-baseline justify-between gap-2">
+                <p className="text-sm font-medium">{selected.fileName}</p>
+                {selected.status === 'parsed' && (
+                  <Link
+                    to={`/readiness?resume=${selected.id}`}
+                    className="inline-flex items-center gap-1 text-xs underline underline-offset-4"
+                  >
+                    Check readiness <ArrowRight size={12} />
+                  </Link>
+                )}
+              </div>
               <p className="mt-1 text-[11px] text-muted">
                 {count(selected.pageCount, 'page')} · {count(selected.passageCount, 'passage')} ·{' '}
                 {count(selected.hiddenCount, 'hidden line')}
