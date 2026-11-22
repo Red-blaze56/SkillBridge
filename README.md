@@ -15,6 +15,7 @@ request with tests.
 | `apps/web` | React + Vite frontend |
 | `packages/shared` | Zod schemas shared by the API, web app and workers |
 | `workers/` | One folder per agent worker (none yet, see `workers/README.md`) |
+| `services/interview` | Mock-interview service (FastAPI + Postgres + Gemini), copied with its history from the AI Interview Simulator. For now it still runs on its own, with its own sign-in (see its README) |
 | `compose.yaml` | MongoDB (single-node replica set) and RabbitMQ for local development |
 
 ## Prerequisites
