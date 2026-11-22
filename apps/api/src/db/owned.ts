@@ -1,4 +1,4 @@
-import type { Collection, Document, Filter, OptionalUnlessRequiredId, UpdateFilter } from 'mongodb';
+import type { Collection, Document, Filter, FindOptions, OptionalUnlessRequiredId, UpdateFilter } from 'mongodb';
 
 /** A stored document that belongs to one signed-in user. */
 export type Owned<T extends Document> = T & { userId: string };
@@ -17,8 +17,8 @@ export function ownedBy<T extends Document>(collection: Collection<Owned<T>>, us
   const scope = (filter: Filter<Owned<T>> = {}) => ({ ...filter, userId }) as Filter<Owned<T>>;
 
   return {
-    findOne: (filter?: Filter<Owned<T>>) => collection.findOne(scope(filter)),
-    find: (filter?: Filter<Owned<T>>) => collection.find(scope(filter)),
+    findOne: (filter?: Filter<Owned<T>>, options?: FindOptions) => collection.findOne(scope(filter), options),
+    find: (filter?: Filter<Owned<T>>, options?: FindOptions) => collection.find(scope(filter), options),
     countDocuments: (filter?: Filter<Owned<T>>) => collection.countDocuments(scope(filter)),
     insertOne: (doc: T) =>
       collection.insertOne({ ...doc, userId } as OptionalUnlessRequiredId<Owned<T>>),

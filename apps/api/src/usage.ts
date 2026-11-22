@@ -1,4 +1,5 @@
-import type { Collection, Db } from 'mongodb';
+import type { Db } from 'mongodb';
+import { once } from './db/once.ts';
 
 interface CounterDoc {
   key: string;
@@ -27,19 +28,14 @@ export interface DailyLimitOptions {
  * after its day ends.
  */
 export function createDailyLimit(getDb: () => Promise<Db>, { name, perDay, now = () => new Date() }: DailyLimitOptions): DailyLimit {
-  let ready: Promise<Collection<CounterDoc>> | undefined;
-  const counters = () =>
-    (ready ??= (async () => {
-      const c = (await getDb()).collection<CounterDoc>('usageCounters');
-      await Promise.all([
-        c.createIndex({ key: 1 }, { unique: true }),
-        c.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
-      ]);
-      return c;
-    })().catch((error: unknown) => {
-      ready = undefined; // MongoDB was down: try again next time
-      throw error;
-    }));
+  const counters = once(async () => {
+    const c = (await getDb()).collection<CounterDoc>('usageCounters');
+    await Promise.all([
+      c.createIndex({ key: 1 }, { unique: true }),
+      c.createIndex({ expiresAt: 1 }, { expireAfterSeconds: 0 }),
+    ]);
+    return c;
+  });
 
   const keyFor = (userId: string) => `${name}:${userId}:${now().toISOString().slice(0, 10)}`;
 

@@ -3,6 +3,7 @@ import { createAuthService } from './auth/service.ts';
 import { lazyAuthCollections } from './auth/store.ts';
 import { createMongo } from './db/mongo.ts';
 import { loadEnv } from './env.ts';
+import { lazyResumes } from './resumes.ts';
 import { createDailyLimit } from './usage.ts';
 
 const env = loadEnv(process.env);
@@ -20,6 +21,7 @@ const app = createApp({
     token: env.INTERVIEW_SERVICE_TOKEN,
     limit: createDailyLimit(() => mongo.db(), { name: 'interviews', perDay: env.INTERVIEWS_PER_DAY }),
   },
+  resumes: lazyResumes(() => mongo.db()),
 });
 
 if (!env.INTERVIEW_SERVICE_TOKEN) {

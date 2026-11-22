@@ -1,4 +1,5 @@
 import type { Db } from 'mongodb';
+import { once } from '../db/once.ts';
 
 export interface UserDoc {
   email: string;
@@ -60,19 +61,11 @@ export async function ensureAuthIndexes(c: AuthCollections): Promise<void> {
   ]);
 }
 
-/**
- * The auth collections, set up on first use. If MongoDB is down the attempt is
- * forgotten and retried next time, so the API keeps running while it starts.
- */
+/** The auth collections, with their indexes created on first use. */
 export function lazyAuthCollections(getDb: () => Promise<Db>): () => Promise<AuthCollections> {
-  let ready: Promise<AuthCollections> | undefined;
-  return () =>
-    (ready ??= (async () => {
-      const c = authCollections(await getDb());
-      await ensureAuthIndexes(c);
-      return c;
-    })().catch((error: unknown) => {
-      ready = undefined;
-      throw error;
-    }));
+  return once(async () => {
+    const c = authCollections(await getDb());
+    await ensureAuthIndexes(c);
+    return c;
+  });
 }
