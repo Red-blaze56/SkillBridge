@@ -20,12 +20,15 @@ export {
 export { checkEvidence, LEVEL_NAMES, SECTION_CAP, type Evidence } from './evidence.ts';
 export { buildResult, FORMULA_VERSION, readiness, targetLevel } from './score.ts';
 
+/** Each Gemini call gets this long. MAX_ROUNDS calls must fit in the worker's lease. */
+export const CALL_TIMEOUT_MS = 60_000;
+
 /** Gemini through LangChain. Temperature 0 and no hidden retries: the job queue retries. */
 export function geminiModel({ apiKey, model }: { apiKey: string; model: string }): ModelFactory {
   return (tools) => {
     const chat = new ChatGoogleGenerativeAI({ apiKey, model, temperature: 0, maxRetries: 0 });
     const bound = chat.bindTools(tools as Parameters<typeof chat.bindTools>[0]);
-    return { invoke: (messages) => bound.invoke(messages) as Promise<AIMessage> };
+    return { invoke: (messages) => bound.invoke(messages, { timeout: CALL_TIMEOUT_MS }) as Promise<AIMessage> };
   };
 }
 

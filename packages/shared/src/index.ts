@@ -176,3 +176,8 @@ export const AnalysisRequest = z.object({
   resumeId: z.string().regex(/^[0-9a-f]{24}$/),
   roleId: z.string().min(1).max(64),
 });
+
+/** The RabbitMQ job that runs one analysis. The API publishes it; workers/evidence handles it. */
+export const ANALYZE_JOB = 'analyze';
+export const AnalysisJob = z.object({ analysisId: z.string().regex(/^[0-9a-f]{24}$/) });
+export type AnalysisJob = z.infer<typeof AnalysisJob>;

@@ -286,6 +286,9 @@ importers:
 
   packages/db:
     dependencies:
+      '@skillbridge/shared':
+        specifier: workspace:*
+        version: link:../shared
       mongodb:
         specifier: 7.9.1
         version: 7.9.1
@@ -331,6 +334,34 @@ importers:
       zod:
         specifier: ^4.6.7
         version: 4.6.7
+
+  workers/evidence:
+    dependencies:
+      '@skillbridge/analysis':
+        specifier: workspace:*
+        version: link:../../packages/analysis
+      '@skillbridge/db':
+        specifier: workspace:*
+        version: link:../../packages/db
+      '@skillbridge/queue':
+        specifier: workspace:*
+        version: link:../../packages/queue
+      '@skillbridge/roles':
+        specifier: workspace:*
+        version: link:../../packages/roles
+      '@skillbridge/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      mongodb:
+        specifier: 7.9.1
+        version: 7.9.1
+    devDependencies:
+      '@langchain/core':
+        specifier: 1.5.0
+        version: 1.5.0
+      '@types/node':
+        specifier: 24.19.2
+        version: 24.19.2
 
 packages:
 
