@@ -128,12 +128,10 @@ async def main():
     records, report = [], None
 
     async with httpx.AsyncClient(base_url=args.base_url, timeout=120) as http:
-        email, password = f"fake_{secrets.token_hex(4)}@candidatebot.dev", secrets.token_urlsafe(12)
-        r = await http.post("/auth/register", json={"email": email, "password": password})
-        if r.status_code != 409:
-            check(r)
-        tok = check(await http.post("/auth/login", data={"username": email, "password": password})).json()
-        http.headers["Authorization"] = f"Bearer {tok['access_token']}"
+        # Call the service the way SkillBridge's API does: the shared token plus a user id.
+        from app.core.config import settings  # lazy: needs backend/.env
+        http.headers["Authorization"] = f"Bearer {settings.service_token}"
+        http.headers["X-User-Id"] = f"fake-candidate-{secrets.token_hex(4)}"
 
         interview = check(await http.post("/interviews", json={
             "programming_language": "python",

@@ -1,31 +1,20 @@
-from typing import Literal
-
-from pydantic import model_validator
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
-    debug: bool = True
+    debug: bool = False  # True logs every SQL statement
 
-    frontend_url: str
     database_url: str
-    secret_key: str
-    access_token_ttl_minutes: int = 15
-    refresh_token_ttl_days: int = 30
-    cookie_secure: bool = True                                # secure by default; set COOKIE_SECURE=false in local .env for non-HTTPS
-    cookie_samesite: Literal["lax", "strict", "none"] = "lax"
 
-    llm_api_key: str
+    # Shared secret between SkillBridge's API and this service. Only SkillBridge's API
+    # knows it, so only SkillBridge's API can call this service.
+    service_token: str = Field(min_length=32)
+
+    llm_api_key: str = ""  # empty: interview turns fail with a clear "check LLM_API_KEY" message
     llm_model: str = "gemini-2.5-flash"
     llm_base_url: str = "https://generativelanguage.googleapis.com/v1beta/openai/"
-
-    @model_validator(mode="after")
-    def _samesite_none_needs_secure(self):
-        # Browsers reject SameSite=None cookies that aren't Secure; fail fast instead.
-        if self.cookie_samesite == "none" and not self.cookie_secure:
-            raise ValueError("cookie_samesite='none' requires cookie_secure=True")
-        return self
 
 
 settings = Settings()  # type: ignore[call-arg]

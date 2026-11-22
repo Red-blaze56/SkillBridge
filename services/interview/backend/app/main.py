@@ -1,27 +1,18 @@
-from fastapi import FastAPI, APIRouter
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI
 from sqlalchemy import text
 
 from app.auth.dependencies import DBSession
-from app.auth.router import auth_router
 from app.interview.router import interview_router
-from app.core.config import settings
 
+# No CORS and no sign-in routes: browsers never call this service directly.
+# SkillBridge's API signs students in and calls it with the service token.
 app = FastAPI(
-    title="AI Interview Simulator",
+    title="SkillBridge interview service",
     version="1.0.0",
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[settings.frontend_url],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.include_router(auth_router)
 app.include_router(interview_router)
+
 
 @app.get("/health", tags=["ops"])
 async def health(db: DBSession):

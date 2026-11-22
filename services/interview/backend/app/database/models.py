@@ -7,10 +7,6 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 class Base(DeclarativeBase):
     pass
 
-class RoleEnum(str, Enum):
-    ADMIN = "admin"
-    USER = "user"
-
 class ProgrammingLanguageEnum(str, Enum):
     PYTHON = "python"
     JAVASCRIPT = "javascript"
@@ -57,37 +53,14 @@ class SenderEnum(str, Enum):
     INTERVIEWER = "interviewer"
     CANDIDATE = "candidate"
 
-class User(Base):
-    __tablename__ = "users"
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, index=True, default = uuid4)
-    email: Mapped[str] = mapped_column(String, unique=True, index =True, nullable=False)
-    hashed_password: Mapped[str] = mapped_column(String, nullable=False)
-    role: Mapped[RoleEnum] = mapped_column(SqlEnum(RoleEnum), nullable=False, default = RoleEnum.USER)
-    is_verified: Mapped[bool] = mapped_column(Boolean, default=False)
-    is_active: Mapped[bool] = mapped_column(Boolean, default=True)
-    created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())
-
-    refresh_tokens: Mapped[list["RefreshToken"]] = relationship(back_populates="user", cascade="all, delete-orphan")
-
-class RefreshToken(Base):
-    __tablename__ = "refresh_tokens"
-
-    id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, default=uuid4)
-    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True)
-    token_hash: Mapped[str] = mapped_column(String(64), unique=True, index=True, nullable=False)
-    expires_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False)
-    revoked_at: Mapped[datetime | None] = mapped_column(TIMESTAMP(timezone=True), nullable=True)
-    created_at: Mapped[datetime] = mapped_column(TIMESTAMP(timezone=True), nullable=False, server_default=func.now())
-
-    user: Mapped["User"] = relationship(back_populates="refresh_tokens")
-
 class Interview(Base):
     __tablename__ = "interviews"
     # Serves the paginated "my interviews, newest first" query (see interview/pagination.py).
     __table_args__ = (Index("ix_interviews_user_created", "user_id", "created_at", "id"),)
 
     id: Mapped[UUID] = mapped_column(Uuid, primary_key=True, index=True, default = uuid4)
-    user_id: Mapped[UUID] = mapped_column(ForeignKey("users.id"), nullable=False)
+    # The SkillBridge user id (users live in SkillBridge, not in this service).
+    user_id: Mapped[str] = mapped_column(String(64), nullable=False)
     programming_language: Mapped[ProgrammingLanguageEnum] = mapped_column(SqlEnum(ProgrammingLanguageEnum), nullable=False)
     candidate_level: Mapped[CandidateLevelEnum] = mapped_column(SqlEnum(CandidateLevelEnum), nullable=False)
     personality_type: Mapped[PersonalityTypeEnum] = mapped_column(SqlEnum(PersonalityTypeEnum), nullable=False)

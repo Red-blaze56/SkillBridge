@@ -28,7 +28,7 @@ async def _get_full(db: AsyncSession, interview_id: UUID) -> Interview | None :
     )
     return result
 
-async def create_interview(db: AsyncSession, *, user_id: UUID, payload: InterviewCreate) -> Interview:
+async def create_interview(db: AsyncSession, *, user_id: str, payload: InterviewCreate) -> Interview:
     interview = Interview(
         user_id=user_id,
         programming_language=payload.programming_language,
@@ -132,7 +132,7 @@ async def submit_answer(db:AsyncSession, *, interview: Interview, content: str) 
 #--------------------------------------------------------------------------------------
 
 async def list_interviews(
-    db: AsyncSession, *, user_id: UUID, limit: int = 20, cursor: tuple[datetime, UUID] | None = None
+    db: AsyncSession, *, user_id: str, limit: int = 20, cursor: tuple[datetime, UUID] | None = None
 ) -> tuple[list[Interview], str | None]:
     """One page of the user's interviews, newest first, plus the cursor for the next page
     (None on the last page). Rows are ordered by (created_at, id) so rows created in the
