@@ -5,7 +5,7 @@ import express from 'express';
 import type { Request } from 'express';
 import { ObjectId, type Filter, type WithId } from 'mongodb';
 import { ownedBy, type AnalysisCollection, type AnalysisDoc, type JobPostingCollection, type JobPostingDoc, type Owned } from '@skillbridge/db';
-import { matchPosting } from '@skillbridge/jobs';
+import { compareMatches, matchPosting } from '@skillbridge/jobs';
 import { SKILLS } from '@skillbridge/roles';
 import type { JobMatch, JobMatches } from '@skillbridge/shared';
 import { currentUser } from './auth/http.ts';
@@ -67,8 +67,8 @@ export function jobRoutes({ postings, analyses, now = () => new Date() }: JobOpt
     const seen = new Set<string>();
     const unique = docs.filter((d) => !seen.has(d.fingerprint) && seen.add(d.fingerprint));
 
-    const scored = unique.map((doc) => ({ doc, match: matchPosting(doc.skills, result) }));
-    scored.sort((a, b) => (b.match.score ?? -1) - (a.match.score ?? -1));
+    const scored = unique.map((doc) => ({ doc, postedAt: doc.postedAt, match: matchPosting(doc.skills, result) }));
+    scored.sort(compareMatches);
 
     const matches: JobMatch[] = scored.slice(0, limit).map(({ doc, match }) => ({
       id: doc._id,

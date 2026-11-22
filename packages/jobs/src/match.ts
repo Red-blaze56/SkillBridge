@@ -28,6 +28,32 @@ export interface Match {
   unchecked: string[];
 }
 
+/** A posting must name this many checked skills before its score counts in full when ranking. */
+export const FULL_CONFIDENCE_SKILLS = 3;
+
+/**
+ * How high a match ranks. The shown score stays the same, but a job that names one skill the
+ * student has (score 100) shouldn't outrank one that names four and scores 80: the score is
+ * scaled by min(1, checked skills ÷ 3). Null scores rank last.
+ */
+export function rankValue(match: Match): number {
+  if (match.score === null) return -1;
+  const checked = match.strong.length + match.weak.length + match.missing.length;
+  return match.score * Math.min(1, checked / FULL_CONFIDENCE_SKILLS);
+}
+
+/** Best first: rank value, then more skills shown, then the newest posting. */
+export function compareMatches(
+  a: { match: Match; postedAt: Date | null },
+  b: { match: Match; postedAt: Date | null },
+): number {
+  return (
+    rankValue(b.match) - rankValue(a.match) ||
+    b.match.strong.length - a.match.strong.length ||
+    (b.postedAt?.getTime() ?? 0) - (a.postedAt?.getTime() ?? 0)
+  );
+}
+
 /**
  * Score = Σ weight × min(level, 2) ÷ 2 ÷ Σ weight, over the skills the posting names that
  * the analysis checked. Core skills of the role count three times a nice-to-have.

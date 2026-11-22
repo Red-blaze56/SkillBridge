@@ -45,6 +45,10 @@ const INDIA = new RegExp(
 );
 /** Checked against the location only: "Distributed Systems Engineer" is not remote. */
 const REMOTE = /\b(remote|anywhere|work from home|wfh)\b/i;
+/** Remote that a student in India can take: no other country named, or open to everyone or to Asia. */
+const OPEN_TO_INDIA = /\b(anywhere|worldwide|global(ly)?|apac|asia([\s-]?pacific)?|international)\b/i;
+/** Words that say how remote a job is, not where: what's left after removing them is a place. */
+const REMOTE_WORDS = /\b(remote|work from home|wfh|hybrid|fully|first|only|friendly|ok|optional|possible|option)\b/gi;
 
 export const MAX_EXPERIENCE_YEARS = 1;
 export const MAX_AGE_DAYS = 45;
@@ -55,7 +59,16 @@ export const titleFits = (title: string) =>
   INCLUDE_TITLES.some((p) => p.test(title)) && !EXCLUDE_TITLES.some((p) => p.test(title));
 
 export const inIndia = (p: Pick<Posting, 'title' | 'location'>) => INDIA.test(p.location) || INDIA.test(p.title);
-export const isRemote = (p: Pick<Posting, 'location'>) => REMOTE.test(p.location);
+/**
+ * Remote and open to students in India: "Remote", "Remote (India)", "Anywhere", "Remote - APAC".
+ * Not "Remote, US", "Remote Canada" or "San Francisco, Remote": those usually need the right
+ * to work in that country.
+ */
+export function isRemote(p: Pick<Posting, 'location'>): boolean {
+  if (!REMOTE.test(p.location)) return false;
+  if (OPEN_TO_INDIA.test(p.location) || INDIA.test(p.location)) return true;
+  return p.location.replace(REMOTE_WORDS, '').replace(/[^\p{L}]+/gu, '') === '';
+}
 
 /** Too many years asked for? Unknown until the description is loaded; "Intern" in the title wins. */
 export function tooExperienced(p: Pick<Posting, 'title' | 'description'>, maxYears = MAX_EXPERIENCE_YEARS): boolean {

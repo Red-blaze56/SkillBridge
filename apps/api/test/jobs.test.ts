@@ -154,6 +154,17 @@ describe('GET /api/jobs/matches', () => {
     expect(res.body.matches[2].score).toBeNull();
   });
 
+  it('ranks a job naming several of your skills above one naming a single skill', async () => {
+    await addAnalysis(ALICE, { node: 3, javascript: 3, sql: 2, docker: 0 });
+    await addPosting('one-skill', { skills: ['node'] }); // 100, one skill
+    await addPosting('four-skills', { skills: ['node', 'javascript', 'sql', 'docker'] }); // 89
+    const res = await matches();
+    expect(res.body.matches.map((m: { id: string; score: number }) => [m.id, m.score])).toEqual([
+      ['four-skills', 89],
+      ['one-skill', 100],
+    ]);
+  });
+
   it('shows a job listed twice only once', async () => {
     await addAnalysis(ALICE, { node: 3 });
     await addPosting('pune', { fingerprint: 'acme|sde', skills: ['node'] });

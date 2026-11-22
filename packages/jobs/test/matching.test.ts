@@ -2,8 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { AnalysisResult } from '@skillbridge/shared';
 import type { Posting } from '../src/boards.ts';
 import { experience } from '../src/experience.ts';
-import { dropReason, fingerprint } from '../src/filters.ts';
-import { matchPosting } from '../src/match.ts';
+import { dropReason, fingerprint, isRemote } from '../src/filters.ts';
+import { compareMatches, matchPosting, rankValue } from '../src/match.ts';
 import { rolesFor, skillsIn } from '../src/skills.ts';
 
 const NOW = new Date('2026-11-23T00:00:00Z');
@@ -38,7 +38,7 @@ describe('experience', () => {
 describe('dropReason', () => {
   it('keeps a fresher-friendly developer job in India or remote', () => {
     expect(dropReason(job({}), NOW)).toBeNull();
-    expect(dropReason(job({ title: 'Software Development Engineer', location: 'Remote - Europe' }), NOW)).toBeNull();
+    expect(dropReason(job({ title: 'Software Development Engineer', location: 'Remote' }), NOW)).toBeNull();
     expect(dropReason(job({ title: 'SDE Intern', description: 'Ideally 3+ years of experience.' }), NOW)).toBeNull(); // "Intern" wins
   });
 
@@ -48,8 +48,23 @@ describe('dropReason', () => {
     expect(dropReason(job({ title: 'Enterprise Account Executive' }), NOW)).toBe('title');
     expect(dropReason(job({ location: 'San Francisco, CA' }), NOW)).toBe('location');
     expect(dropReason(job({ location: 'Indianapolis, Indiana' }), NOW)).toBe('location'); // whole words only
+    expect(dropReason(job({ location: 'Remote - Europe' }), NOW)).toBe('location'); // remote, but not open to India
     expect(dropReason(job({ description: '2-5 years backend experience' }), NOW)).toBe('experience');
     expect(dropReason(job({ postedAt: '2026-01-01' }), NOW)).toBe('age');
+  });
+});
+
+describe('isRemote', () => {
+  it('counts remote jobs a student in India can take', () => {
+    for (const location of ['Remote', 'Fully remote', 'Remote (India)', 'Remote - APAC', 'Anywhere', 'Worldwide, Remote', 'Remote / Remote', 'Remote-first, hybrid OK']) {
+      expect(isRemote({ location }), location).toBe(true);
+    }
+  });
+
+  it('not remote jobs tied to another country, or not remote at all', () => {
+    for (const location of ['Remote, US', 'Remote Canada', 'San Francisco, Remote', 'Remote - Europe', 'Bengaluru', 'Distributed team']) {
+      expect(isRemote({ location }), location).toBe(false);
+    }
   });
 });
 
@@ -108,5 +123,40 @@ describe('matchPosting', () => {
   it('has no score when the posting names none of the analysed skills', () => {
     expect(matchPosting(['react'], analysis).score).toBeNull();
     expect(matchPosting([], analysis).score).toBeNull();
+  });
+});
+
+describe('ranking', () => {
+  const analysis: Pick<AnalysisResult, 'skills'> = {
+    skills: ['node', 'javascript', 'sql', 'docker', 'git'].map((skillId, i) => ({
+      skillId,
+      name: skillId,
+      weight: 2,
+      level: i < 4 ? 2 : 0,
+      evidence: null,
+      note: null,
+      points: 0,
+    })),
+  };
+  const entry = (skills: string[], postedAt = new Date('2026-11-20')) => ({ match: matchPosting(skills, analysis), postedAt });
+
+  it('scales a score by how many checked skills the posting names, up to three', () => {
+    expect(rankValue(matchPosting(['node'], analysis))).toBeCloseTo(100 / 3);
+    expect(rankValue(matchPosting(['node', 'javascript', 'sql'], analysis))).toBe(100);
+    expect(rankValue(matchPosting(['react'], analysis))).toBe(-1);
+  });
+
+  it('puts a four-skill 80 above a one-skill 100, and null scores last', () => {
+    const one = entry(['node']); // 100, one skill
+    const four = entry(['node', 'javascript', 'sql', 'docker', 'git']); // 80, five skills
+    const none = entry(['react']);
+    expect([one, none, four].sort(compareMatches)).toEqual([four, one, none]);
+    expect(four.match.score).toBe(80);
+  });
+
+  it('breaks ties by skills shown, then by the newest posting', () => {
+    const older = entry(['node', 'javascript', 'sql'], new Date('2026-11-01'));
+    const newer = entry(['node', 'javascript', 'sql'], new Date('2026-11-21'));
+    expect([older, newer].sort(compareMatches)).toEqual([newer, older]);
   });
 });

@@ -17,6 +17,6 @@ export {
 } from './boards.ts';
 export { experience, FRESHER, minYears } from './experience.ts';
 export { dropReason, fingerprint, inIndia, isRemote, MAX_AGE_DAYS, MAX_EXPERIENCE_YEARS, titleFits, tooExperienced, type DropReason } from './filters.ts';
-export { ENOUGH_LEVEL, matchPosting, type Match, type SkillFit } from './match.ts';
+export { compareMatches, ENOUGH_LEVEL, FULL_CONFIDENCE_SKILLS, matchPosting, rankValue, type Match, type SkillFit } from './match.ts';
 export { rolesFor, skillsIn } from './skills.ts';
 export { decodeEntities, stripHtml } from './text.ts';
