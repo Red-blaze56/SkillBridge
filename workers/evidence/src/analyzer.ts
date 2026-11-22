@@ -18,6 +18,15 @@ export const LEASE_MS = 5 * 60_000;
 /** What the student sees when the AI couldn't finish after every retry. */
 export const TRY_AGAIN = 'The analysis could not be finished. Please try again in a few minutes.';
 
+/** What the student sees when the Gemini key's daily quota is used up: retrying today won't help. */
+export const DAILY_LIMIT = "The AI service's daily limit is used up. Please try again tomorrow.";
+
+/** Gemini's 429 for a quota per day (the free tier allows a few requests a day per model). */
+export function isDailyQuotaError(error: unknown): boolean {
+  const e = error as { status?: unknown; message?: unknown } | null;
+  return e?.status === 429 && typeof e.message === 'string' && /per ?day|daily/i.test(e.message);
+}
+
 export interface AnalyzerDeps {
   analyses: AnalysisCollection;
   db: () => Promise<Db>;
@@ -71,6 +80,8 @@ export function createAnalyzer({ analyses, db, model, modelName, now = () => new
         await c
           .updateOne({ _id, status: 'running' }, { $set: { leaseUntil: null, updatedAt: now() } })
           .catch(() => undefined);
+        // Retrying a used-up daily quota for 5 minutes only delays the bad news.
+        if (isDailyQuotaError(error)) throw new PermanentError(DAILY_LIMIT, { cause: error });
         throw error;
       }
     },

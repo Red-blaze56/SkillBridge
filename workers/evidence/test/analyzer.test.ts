@@ -6,7 +6,7 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it } from 'vitest';
 import type { ModelFactory } from '@skillbridge/analysis';
 import { lazyAnalyses, resumesIn, type AnalysisDoc, type Owned } from '@skillbridge/db';
 import { PermanentError } from '@skillbridge/queue';
-import { createAnalyzer, LEASE_MS, TRY_AGAIN } from '../src/analyzer.ts';
+import { createAnalyzer, DAILY_LIMIT, isDailyQuotaError, LEASE_MS, TRY_AGAIN } from '../src/analyzer.ts';
 
 const MONGODB_URI = process.env.MONGODB_TEST_URI ?? 'mongodb://127.0.0.1:27017/?directConnection=true';
 let client: MongoClient;
@@ -152,6 +152,31 @@ describe('the evidence worker', () => {
     });
     await analyzer(peeking).handle({ analysisId: id });
     expect(leaseSeen).toEqual(new Date(NOW.getTime() + LEASE_MS));
+  });
+});
+
+describe('a used-up daily quota', () => {
+  it('fails at once with a message saying so, instead of retrying', async () => {
+    const quotaError = Object.assign(new Error('[429 Too Many Requests] Generate content requests per day limit exceeded on Free Tier.'), { status: 429 });
+    const exhausted: ModelFactory = () => ({
+      invoke: async () => {
+        throw quotaError;
+      },
+    });
+    const id = await seed();
+    const worker = analyzer(exhausted);
+    const failure = await worker.handle({ analysisId: id }).catch((e: unknown) => e);
+    expect(failure).toBeInstanceOf(PermanentError);
+    expect((failure as Error).message).toBe(DAILY_LIMIT);
+
+    await worker.onGiveUp({ analysisId: id }, failure);
+    expect(await load(id)).toMatchObject({ status: 'failed', error: DAILY_LIMIT });
+  });
+
+  it('only for a per-day quota, not a short burst limit', () => {
+    expect(isDailyQuotaError(Object.assign(new Error('requests per minute exceeded'), { status: 429 }))).toBe(false);
+    expect(isDailyQuotaError(Object.assign(new Error('Daily limit reached'), { status: 429 }))).toBe(true);
+    expect(isDailyQuotaError(new Error('per day'))).toBe(false); // not a 429
   });
 });
 
