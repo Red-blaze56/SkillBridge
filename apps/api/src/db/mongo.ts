@@ -1,8 +1,10 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, type Db } from 'mongodb';
 
 export interface Mongo {
   /** True when MongoDB answers a ping. */
   isUp(): Promise<boolean>;
+  /** The database named in the connection string. Throws while MongoDB is unreachable. */
+  db(): Promise<Db>;
   close(): Promise<void>;
 }
 
@@ -38,6 +40,9 @@ export function createMongo(uri: string, newClient: (uri: string) => Client = de
       } catch {
         return false;
       }
+    },
+    async db() {
+      return (await connected()).db();
     },
     async close() {
       const current = client;

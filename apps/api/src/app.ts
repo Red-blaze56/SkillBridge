@@ -1,18 +1,25 @@
 import express from 'express';
-import type { ErrorRequestHandler, RequestHandler } from 'express';
+import type { ErrorRequestHandler } from 'express';
 import type { HealthResponse } from '@skillbridge/shared';
-import { currentUser, requireUser } from './auth.ts';
+import { authRoutes, currentUser, requireUser, sameOrigin, sessionAuth } from './auth/http.ts';
+import type { AuthService } from './auth/service.ts';
 
 export interface AppOptions {
-  /** Sets req.user: devAuth locally, Firebase verification before deployment. */
-  authenticate: RequestHandler;
+  auth: AuthService;
   /** True when the database answers. */
   isDatabaseUp: () => Promise<boolean>;
+  /** Where the web app runs, e.g. http://localhost:5173. Only it may send requests that change data. */
+  appOrigin: string;
+  /** Mark cookies HTTPS-only. True everywhere except local development. */
+  secureCookies: boolean;
+  /** How many reverse proxies (like Nginx) sit in front, so req.ip is the student's real address. */
+  trustProxy?: number;
 }
 
-export function createApp({ authenticate, isDatabaseUp }: AppOptions) {
+export function createApp({ auth, isDatabaseUp, appOrigin, secureCookies, trustProxy = 0 }: AppOptions) {
   const app = express();
   app.disable('x-powered-by');
+  if (trustProxy > 0) app.set('trust proxy', trustProxy);
   app.use(express.json({ limit: '100kb' }));
 
   // Public, so the web app and Docker can check the API is alive.
@@ -21,8 +28,13 @@ export function createApp({ authenticate, isDatabaseUp }: AppOptions) {
     res.json(body);
   });
 
+  app.use('/api', sameOrigin(appOrigin));
+
+  // Sign-in itself is public.
+  app.use('/api/auth', authRoutes(auth, { secureCookies }));
+
   // Everything else under /api needs a signed-in user.
-  app.use('/api', authenticate, requireUser);
+  app.use('/api', sessionAuth(auth), requireUser);
 
   app.get('/api/me', (req, res) => {
     res.json(currentUser(req));

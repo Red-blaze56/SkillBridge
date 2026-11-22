@@ -20,4 +20,12 @@ describe('loadEnv', () => {
   it('rejects an unknown NODE_ENV', () => {
     expect(() => loadEnv({ NODE_ENV: 'staging' })).toThrow(/Invalid environment/);
   });
+
+  it('reduces APP_ORIGIN to just the origin browsers send', () => {
+    expect(loadEnv({ APP_ORIGIN: 'https://skillbridge.example/app/' }).APP_ORIGIN).toBe('https://skillbridge.example');
+  });
+
+  it('rejects an APP_ORIGIN that is not a URL', () => {
+    expect(() => loadEnv({ APP_ORIGIN: 'skillbridge' })).toThrow(/Invalid environment/);
+  });
 });
