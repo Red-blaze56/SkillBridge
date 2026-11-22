@@ -25,6 +25,7 @@ request with tests.
 | `workers/jobs` | Refreshes the job postings from the company boards every 6 hours |
 | `services/interview` | Mock-interview service (FastAPI + its own Postgres + Gemini), copied with its history from the AI Interview Simulator. Only SkillBridge's API can call it (see its README) |
 | `compose.yaml` | MongoDB (single-node replica set), RabbitMQ, and the interview service with its Postgres |
+| `compose.prod.yaml`, `deploy/` | Production on one server: Nginx in front, the API and workers in one image, nothing else exposed |
 
 ## Prerequisites
 
@@ -83,6 +84,15 @@ Open the printed link and choose a password.
 | `pnpm check` | Lint, typecheck, test and build. CI runs these on every pull request |
 | `pnpm admin invite <email>` | Prints a link that lets that person create an account (works once, valid 7 days) |
 | `pnpm admin reset <email>` | Prints a link that lets that person choose a new password (works once, valid 1 hour) |
+
+## Deploying
+
+One server with Docker runs everything behind Nginx: see [`deploy/README.md`](deploy/README.md).
+In short, fill in `deploy/.env.prod` from its example, then:
+
+```bash
+docker compose -p skillbridge -f compose.yaml -f compose.prod.yaml --env-file deploy/.env.prod up -d --build
+```
 
 ## How changes get in
 

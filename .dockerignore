@@ -1,0 +1,16 @@
+# Keep secrets, dependencies and build output out of the Docker build context.
+**/node_modules
+**/dist
+**/coverage
+**/.venv
+**/__pycache__
+.git
+.github
+# The interview service builds from its own folder (compose.yaml).
+services
+.claude
+**/.env
+**/.env.*
+!**/.env.example
+deploy/.env.prod
+*.log

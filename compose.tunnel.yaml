@@ -1,0 +1,23 @@
+# HTTPS through a Cloudflare Tunnel (free, no open ports, certificate handled by Cloudflare).
+# Add it after compose.prod.yaml:
+#
+#   docker compose -p skillbridge -f compose.yaml -f compose.prod.yaml -f compose.tunnel.yaml --env-file deploy/.env.prod up -d --build
+#
+# Nginx then has no published port at all: the only way in is through the tunnel, so the
+# visitor address Cloudflare reports (CF-Connecting-IP) can be trusted.
+services:
+  web:
+    ports: !reset []
+    environment:
+      CLIENT_IP: $$http_cf_connecting_ip
+      FORWARDED_PROTO: https
+
+  cloudflared:
+    # Pin a version you have tested once it works: https://hub.docker.com/r/cloudflare/cloudflared/tags
+    image: cloudflare/cloudflared:latest
+    command: ["tunnel", "--no-autoupdate", "run"]
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN:?set TUNNEL_TOKEN in deploy/.env.prod}
+    depends_on:
+      - web
+    restart: unless-stopped
