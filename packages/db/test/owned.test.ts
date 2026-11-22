@@ -1,6 +1,6 @@
 import type { Collection } from 'mongodb';
 import { describe, expect, it } from 'vitest';
-import { ownedBy, type Owned } from '../src/db/owned.ts';
+import { ownedBy, type Owned } from '../src/owned.ts';
 
 interface Note {
   text: string;

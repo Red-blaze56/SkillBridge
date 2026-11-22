@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createMongo } from '../src/db/mongo.ts';
+import { createMongo } from '../src/mongo.ts';
 
 /** A stand-in MongoClient whose connect() fails or succeeds as told. */
 function fakeClient(connects: boolean) {

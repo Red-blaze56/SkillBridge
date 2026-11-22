@@ -1,5 +1,5 @@
 import type { Db } from 'mongodb';
-import { once } from '../db/once.ts';
+import { once } from '@skillbridge/db';
 
 export interface UserDoc {
   email: string;

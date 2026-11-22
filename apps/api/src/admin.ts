@@ -5,7 +5,7 @@
 import { Email } from '@skillbridge/shared';
 import { createAuthService } from './auth/service.ts';
 import { lazyAuthCollections } from './auth/store.ts';
-import { createMongo } from './db/mongo.ts';
+import { createMongo } from '@skillbridge/db';
 import { loadEnv } from './env.ts';
 
 const [command, rawEmail] = process.argv.slice(2);

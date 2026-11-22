@@ -193,6 +193,9 @@ importers:
 
   apps/api:
     dependencies:
+      '@skillbridge/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@skillbridge/resume':
         specifier: workspace:*
         version: link:../../packages/resume
@@ -281,9 +284,25 @@ importers:
         specifier: ^24.19.2
         version: 24.19.2
 
-  packages/db: {}
+  packages/db:
+    dependencies:
+      mongodb:
+        specifier: 7.9.1
+        version: 7.9.1
+    devDependencies:
+      '@types/node':
+        specifier: 24.19.2
+        version: 24.19.2
 
-  packages/queue: {}
+  packages/queue:
+    dependencies:
+      amqplib:
+        specifier: ~2.4.0
+        version: 2.4.0
+    devDependencies:
+      '@types/node':
+        specifier: 24.19.2
+        version: 24.19.2
 
   packages/resume:
     dependencies:
@@ -949,6 +968,10 @@ packages:
 
   ajv@6.15.0:
     resolution: {integrity: sha512-fgFx7Hfoq60ytK2c7DhnF8jIvzYgOMxfugjLOSMHjLIPgenqa7S7oaagATUq99mV6IYvN2tRmC0wnTYX6iPbMw==}
+
+  amqplib@2.4.0:
+    resolution: {integrity: sha512-HNxvtv3etFqFNTJZlXCQLGljtxghyY7Wz9elG7qHMfj4O2Fdpd+XrQuJ+4NQ6M7+9NjGHNk5XncNsnb1nqIPYw==}
+    engines: {node: '>=18'}
 
   asap@2.0.6:
     resolution: {integrity: sha512-BSHWgDSAiKs50o2Re8ppvp3seVHXSRM44cdSsT9FfNEUUZLOGWVCsiWaRPWM1Znn+mqZ1OfVZ3z3DWEzSp7hRA==}
@@ -2534,6 +2557,8 @@ snapshots:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
+
+  amqplib@2.4.0: {}
 
   asap@2.0.6: {}
 

@@ -6,8 +6,7 @@ import { Binary, ObjectId, type Collection, type Db, type WithId } from 'mongodb
 import { MAX_BYTES, parseResume, PdfError, type ParsedResume } from '@skillbridge/resume';
 import type { ResumeDetail, ResumeSummary } from '@skillbridge/shared';
 import { currentUser } from './auth/http.ts';
-import { once } from './db/once.ts';
-import { ownedBy, type Owned } from './db/owned.ts';
+import { once, ownedBy, type Owned } from '@skillbridge/db';
 
 /** Resumes, their parsed text and the PDF are deleted this long after upload. */
 export const RESUME_LIFETIME_DAYS = 30;

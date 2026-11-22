@@ -22,6 +22,19 @@ jobs:
           --health-interval 5s
           --health-timeout 5s
           --health-retries 20
+      # The job queue tests run against a real RabbitMQ.
+      rabbitmq:
+        image: rabbitmq:4.1
+        env:
+          RABBITMQ_DEFAULT_USER: skillbridge
+          RABBITMQ_DEFAULT_PASS: skillbridge-dev
+        ports:
+          - 5672:5672
+        options: >-
+          --health-cmd "rabbitmq-diagnostics -q ping"
+          --health-interval 5s
+          --health-timeout 10s
+          --health-retries 30
     steps:
       - uses: actions/checkout@v5
       - uses: pnpm/action-setup@v4

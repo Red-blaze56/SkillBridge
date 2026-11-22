@@ -1,7 +1,7 @@
 import { createApp } from './app.ts';
 import { createAuthService } from './auth/service.ts';
 import { lazyAuthCollections } from './auth/store.ts';
-import { createMongo } from './db/mongo.ts';
+import { createMongo } from '@skillbridge/db';
 import { loadEnv } from './env.ts';
 import { lazyResumes } from './resumes.ts';
 import { createDailyLimit } from './usage.ts';
