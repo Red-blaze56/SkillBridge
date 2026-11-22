@@ -34,8 +34,7 @@ Browser ─► SkillBridge API (/api/interviews/*) ─► interview service ─�
 | `backend/alembic/` | Database migrations |
 | `backend/scripts/seed_references.py` | Loads `data/common-backend-knowledge-base.txt` into the reference bank. Safe to rerun |
 | `backend/scripts/fake_candidate.py` | A bot that plays a candidate through a whole interview, for testing |
-| `data/` | Reference-bank source files |
-| `frontend/` | The standalone app's screens, being moved into SkillBridge's `apps/web` |
+| `data/` | Reference-bank source files. Only `common-backend-knowledge-base.txt` is loaded so far |
 
 ## Tests
 
