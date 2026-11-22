@@ -1,0 +1,20 @@
+{
+  "name": "@skillbridge/resume",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@skillbridge/shared": "workspace:*",
+    "pdfjs-dist": "^6.5.438"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "pdf-lib": "^1.17.1"
+  }
+}

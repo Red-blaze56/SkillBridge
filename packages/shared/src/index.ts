@@ -38,3 +38,67 @@ export const SetPasswordRequest = z.object({
   token: z.string().min(1).max(100),
   password: NewPassword,
 });
+
+// ── Resumes ────────────────────────────────────────────────────────────────
+
+/** Which part of the resume a passage came from. "header" is the name/contact block. */
+export const ResumeSection = z.enum([
+  'header',
+  'summary',
+  'skills',
+  'experience',
+  'projects',
+  'education',
+  'certifications',
+  'achievements',
+  'other',
+]);
+export type ResumeSection = z.infer<typeof ResumeSection>;
+
+/** A numbered piece of the resume (a bullet, a line or a paragraph). Evidence cites passages by id. */
+export const Passage = z.object({
+  id: z.number().int().positive(),
+  section: ResumeSection,
+  page: z.number().int().positive(),
+  text: z.string(),
+});
+export type Passage = z.infer<typeof Passage>;
+
+/** Text in the PDF that a reader can't see, removed before anything reads the resume. */
+export const HiddenText = z.object({
+  page: z.number().int().positive(),
+  reason: z.enum(['invisible', 'transparent', 'too-small', 'off-page', 'blends-into-background']),
+  preview: z.string(),
+});
+export type HiddenText = z.infer<typeof HiddenText>;
+
+export const ResumeQuality = z.object({
+  /** False when the text couldn't be read well enough to analyse (e.g. a scanned PDF). */
+  readable: z.boolean(),
+  /** Why it isn't readable. */
+  problems: z.array(z.string()),
+  /** Things worth knowing that don't stop the analysis. */
+  notes: z.array(z.string()),
+});
+export type ResumeQuality = z.infer<typeof ResumeQuality>;
+
+/** A resume in GET /api/resumes. */
+export const ResumeSummary = z.object({
+  id: z.string(),
+  fileName: z.string(),
+  uploadedAt: z.iso.datetime(),
+  status: z.enum(['parsed', 'unreadable']),
+  pageCount: z.number().int(),
+  passageCount: z.number().int(),
+  hiddenCount: z.number().int(),
+});
+export type ResumeSummary = z.infer<typeof ResumeSummary>;
+
+/** GET /api/resumes/:id and the response to an upload. */
+export const ResumeDetail = ResumeSummary.extend({
+  columns: z.array(z.number().int()),
+  passages: z.array(Passage),
+  hidden: z.array(HiddenText),
+  quality: ResumeQuality,
+});
+export type ResumeDetail = z.infer<typeof ResumeDetail>;
