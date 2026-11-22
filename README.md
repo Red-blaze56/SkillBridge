@@ -15,24 +15,31 @@ request with tests.
 | `apps/web` | React + Vite frontend |
 | `packages/shared` | Zod schemas shared by the API, web app and workers |
 | `workers/` | One folder per agent worker (none yet, see `workers/README.md`) |
-| `services/interview` | Mock-interview service (FastAPI + Postgres + Gemini), copied with its history from the AI Interview Simulator. For now it still runs on its own, with its own sign-in (see its README) |
-| `compose.yaml` | MongoDB (single-node replica set) and RabbitMQ for local development |
+| `services/interview` | Mock-interview service (FastAPI + its own Postgres + Gemini), copied with its history from the AI Interview Simulator. Only SkillBridge's API can call it (see its README) |
+| `compose.yaml` | MongoDB (single-node replica set), RabbitMQ, and the interview service with its Postgres |
 
 ## Prerequisites
 
 - **Node.js 24.** With fnm: `fnm install 24`. The repo's `.node-version` selects it.
 - **pnpm** ([install it](https://pnpm.io/installation)). It switches itself to the version
   pinned in `package.json`.
-- **Docker Desktop**, for MongoDB and RabbitMQ.
+- **Docker Desktop**, for MongoDB, RabbitMQ and the interview service.
+- A **Gemini API key** for mock interviews ([get one](https://aistudio.google.com/apikey)).
 
 ## Run it locally
+
+1. Copy `.env.example` to `.env` (repo root). Put in your Gemini key and generate an
+   `INTERVIEW_SERVICE_TOKEN` (the command is in the file).
+2. Copy `apps/api/.env.example` to `apps/api/.env`.
+3. Install and start the services. The first `docker compose up` builds the interview
+   service:
 
 ```bash
 pnpm install
 docker compose up -d
 ```
 
-Copy `apps/api/.env.example` to `apps/api/.env`, then:
+Then:
 
 ```bash
 pnpm dev

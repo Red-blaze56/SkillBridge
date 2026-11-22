@@ -37,5 +37,39 @@ services:
       timeout: 10s
       retries: 10
 
+  # The mock-interview service (services/interview) and its own database.
+  # Secrets come from the root .env file (see .env.example).
+  interview-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: interview
+      POSTGRES_PASSWORD: ${INTERVIEW_DB_PASSWORD:-interview-dev}
+      POSTGRES_DB: interview
+    volumes:
+      - interview-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U interview -d interview"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    # No ports: only the interview service talks to this database.
+
+  interview:
+    build:
+      context: services/interview
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: postgresql+asyncpg://interview:${INTERVIEW_DB_PASSWORD:-interview-dev}@interview-db:5432/interview
+      SERVICE_TOKEN: ${INTERVIEW_SERVICE_TOKEN:-}
+      LLM_API_KEY: ${GEMINI_API_KEY:-}
+      LLM_MODEL: ${GEMINI_MODEL:-gemini-2.5-flash}
+    depends_on:
+      interview-db:
+        condition: service_healthy
+    ports:
+      # Only SkillBridge's API calls this, with the service token. Local only.
+      - "127.0.0.1:8100:8000"
+
 volumes:
   mongo-data:
+  interview-data:
