@@ -82,6 +82,17 @@
     cursor: pointer;
   }
 
+  /*
+   * Selects are transparent, so an open dropdown fell back to the browser's white list
+   * while its options inherited the light dark-mode text: unreadable. Give the options
+   * the theme's own colours.
+   */
+  option,
+  optgroup {
+    background-color: var(--card);
+    color: var(--ink);
+  }
+
   button:disabled {
     cursor: not-allowed;
   }
