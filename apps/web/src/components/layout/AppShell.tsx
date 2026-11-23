@@ -1,4 +1,4 @@
-import { ArrowRight, BriefcaseBusiness, FileText, Gauge, LayoutDashboard, LogOut, MessagesSquare } from 'lucide-react';
+import { ArrowRight, BriefcaseBusiness, FileText, Gauge, LayoutDashboard, LogOut, MessagesSquare, Milestone } from 'lucide-react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import type { AuthUser } from '@skillbridge/shared';
 import { signOut } from '../../services/auth.ts';
@@ -76,6 +76,16 @@ export function AppShell({
                 <span>{label}</span>
               </Link>
             ))}
+            {/* Not a link yet: shown faded so students can see what's coming. */}
+            <div
+              aria-disabled="true"
+              title="Coming soon"
+              className="flex cursor-default select-none items-center gap-3 border-l-2 border-transparent py-2 pl-3 pr-2 text-[13px] text-muted opacity-50"
+            >
+              <Milestone size={16} strokeWidth={1.6} />
+              <span>Roadmap</span>
+              <span className="ml-auto text-[9px] uppercase tracking-[0.12em]">Coming soon</span>
+            </div>
           </nav>
 
           <button
